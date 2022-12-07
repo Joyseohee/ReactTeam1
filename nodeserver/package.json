@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joyseohee/ReactTeam1.git"
+  },
+  "keywords": [
+    "Douzone",
+    "3rd",
+    "Class",
+    "React",
+    "Team",
+    "Project"
+  ],
+  "author": "Team1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joyseohee/ReactTeam1/issues"
+  },
+  "homepage": "https://github.com/Joyseohee/ReactTeam1#readme",
+  "description": ""
+}
