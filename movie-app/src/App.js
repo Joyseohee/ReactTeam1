@@ -1,13 +1,18 @@
-import './App.css';
-import RenderMovie from './movie';
+import "./App.css";
+import RenderMovie from "./movie";
+import Mypage from "./pages/Mypage";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-        <p>
-          <RenderMovie/>
-        </p>
-    </div>
+    <>
+      <div className="App">
+        <Routes>
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/" element={<RenderMovie />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
