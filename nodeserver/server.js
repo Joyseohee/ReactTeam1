@@ -8,8 +8,9 @@ app.listen(8080, function () {
 
 app.use(express.static(path.join(__dirname, "../movie-app/build")));
 
+
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../movie-app/build/index.html"));
 });
 
-// /react-project/build/index.html
+
