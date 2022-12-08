@@ -10,10 +10,9 @@ const tmdbAPI = axios.create({
     // 요청과 함께 전송되는 URL 파라미터
     params: {
         api_key : "4a25f61de2f3faf6ce9c03308ff09d05",
-        language : 'ko-KR'
+        language : 'ko-KR',
     }
 })
 
-tmdbAPI.get('movie/popular');
 
 export default tmdbAPI;
