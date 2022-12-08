@@ -1,19 +1,18 @@
+
 import "./App.css";
-import RenderMovie from "./movie";
 import Mypage from "./pages/Mypage";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MainMoive from './pages/Mainmovie';
 
 function App() {
-
-  return (
-    <>
-      <div className="App">
-        <Routes>
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/" element={<RenderMovie />} />
-        </Routes>
-      </div>
-    </>
+  return ( 
+    <div className="App">
+      <Routes>
+      <Route path="/mypage" element={<Mypage />} />
+        <Route path="/" element={<MainMoive /> }/>
+      </Routes>
+    </div>
   );
 }
 

@@ -4,20 +4,30 @@ import Col from "react-bootstrap/Col";
 
 export default function Mypage() {
   return (
-    <>
-      console.log("mypage on loading");
-      <Container>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col xs={6}>2 of 3 (wider)</Col>
-          <Col>3 of 3</Col>
-        </Row>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col xs={5}>2 of 3 (wider)</Col>
-          <Col>3 of 3</Col>
-        </Row>
-      </Container>
-    </>
+    <Container>
+      <Row>
+        <Col xs={12} md={8}>
+          xs=12 md=8
+        </Col>
+        <Col xs={6} md={4}>
+          xs=6 md=4
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6} md={4}>
+          xs=6 md=4
+        </Col>
+        <Col xs={6} md={4}>
+          xs=6 md=4
+        </Col>
+        <Col xs={6} md={4}>
+          xs=6 md=4
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6}>xs=6</Col>
+        <Col xs={6}>xs=6</Col>
+      </Row>
+    </Container>
   );
 }
