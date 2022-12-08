@@ -1,33 +1,18 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Favorite from "../components/Mypage/Favorite";
+import Likes from "../components/Mypage/Likes";
 
-export default function Mypage() {
+export default function Mypage(movie, setMovie, like, setLike) {
   return (
-    <Container>
-      <Row>
-        <Col xs={12} md={8}>
-          xs=12 md=8
-        </Col>
-        <Col xs={6} md={4}>
-          xs=6 md=4
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6} md={4}>
-          xs=6 md=4
-        </Col>
-        <Col xs={6} md={4}>
-          xs=6 md=4
-        </Col>
-        <Col xs={6} md={4}>
-          xs=6 md=4
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6}>xs=6</Col>
-        <Col xs={6}>xs=6</Col>
-      </Row>
-    </Container>
+    <>
+      <div>
+        <Favorite />
+      </div>
+      <div>
+        <Likes />
+      </div>
+    </>
   );
 }

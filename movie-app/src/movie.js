@@ -1,9 +1,9 @@
 import { useEffect, useState, memo } from "react";
 import tmdbAPI from "./tmdbAPI";
 
-function RenderMovie(){
-    // 가져올 영화 담을 배열
-    const [movie, setMovie] = useState([]);
+function RenderMovie() {
+  // 가져올 영화 담을 배열
+  const [movie, setMovie] = useState([]);
 
     useEffect(()=>{
         tmdbAPI.get('movie/popular')
@@ -38,11 +38,9 @@ function RenderMovie(){
     //     })
         
 
-    //     </>
-    // );
 
-
-    
+  //     </>
+  // );
 }
 
 export default RenderMovie;
