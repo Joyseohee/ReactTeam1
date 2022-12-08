@@ -2,8 +2,8 @@ import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Mypage from "./pages/Mypage";
-import Detail from "./pages/Detail";
-import Review from "./pages/Review";
+import Detail_joyTest from "./pages/Detail_joyTest";
+import Review_joyTest from "./pages/Review_joyTest";
 import Main from "./pages/Main";
 import RenderMovie from "./movie";
 
@@ -26,8 +26,8 @@ function App() {
               />
             }
           />
-          <Route path="/detail:id" element={<Detail />} />
-          <Route path="/review/id" element={<Review />} />
+          <Route path="/detail:id" element={<Detail_joyTest />} />
+          <Route path="/review/id" element={<Review_joyTest />} />
           <Route path="/" element={<Main like={like} setLike={setLike} />} />
         </Routes>
       </div>
