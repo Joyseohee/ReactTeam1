@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import tmdbAPI from "./tmdbAPI";
 
 function RenderMovie(){
@@ -11,9 +11,8 @@ function RenderMovie(){
             console.log(res.data.results);
             setMovie(res.data.results);
         })
-    },[])
+    }, [])
 
-    console.log(movie);
     return(
         <div>
             {
