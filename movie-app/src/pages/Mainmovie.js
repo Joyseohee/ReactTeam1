@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { Navbar, Container } from "react-bootstrap";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,16 +9,15 @@ import Search from "../components/Search/Search";
 
 
 function MainMoive() {
-    
-    const API_IMAGEURL = 'https://image.tmdb.org/t/p/w300'; // 영화 이미지 baseURL
-    const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
+  const API_IMAGEURL = "https://image.tmdb.org/t/p/w300"; // 영화 이미지 baseURL
+  const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
 
-    const [page, setPage] = useState(1); // 화면에 출력할 페이지(max 500)
+  const [page, setPage] = useState(1); // 화면에 출력할 페이지(max 500)
 
-    const observerRef = useRef(null); // endpage 체크
-    const [load, setLoad] = useState(false); // 로딩 스피너
-    const preventRef = useRef(true); // 옵저버 중복 실행 방지
-    const endRef = useRef(false);
+  const observerRef = useRef(null); // endpage 체크
+  const [load, setLoad] = useState(false); // 로딩 스피너
+  const preventRef = useRef(true); // 옵저버 중복 실행 방지
+  const endRef = useRef(false);
 
     const navigate = useNavigate();
 
@@ -29,18 +28,19 @@ function MainMoive() {
         AOS.init();
     })
 
-    // 영화 출력 함수
-    const getMovie = async () => {
-        const movies = await tmdbAPI.get('movie/popular', { params: { page: `${page}` } })
-        let temp = [...movie, ...movies.data.results];
-        setMovie(temp);
-    }
+  // 영화 출력 함수
+  const getMovie = async () => {
+    const movies = await tmdbAPI.get("movie/popular", {
+      params: { page: `${page}` },
+    });
+    let temp = [...movie, ...movies.data.results];
+    setMovie(temp);
+  };
 
-
-    useEffect(() => {
-        getMovie()
-    }, [])
-    // console.log(movie);
+  useEffect(() => {
+    getMovie();
+  }, []);
+  // console.log(movie);
 
     return (
         <>
