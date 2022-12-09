@@ -42,7 +42,7 @@ function MainMoive() {
 
                             <div key={i}>
                                 <div className={style.movieCard}>
-                                    <img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={ ()=>{navigate(`Detail/${movie.id}`)}}/>
+                                    <img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={ ()=>{navigate(`detail/${movie.id}`)}}/>
                                     <div className={style.title}>{movie.title}</div>
                                     <div className={style.release_date}>{movie.release_date}</div>
                                 </div>
