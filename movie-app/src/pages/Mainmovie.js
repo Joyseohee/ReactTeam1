@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import  AOS  from "aos";
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material"
 import "aos/dist/aos.css";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
+import Search from "../components/Search/Search";
 import Loading from "../components/loading";
 import Header from "../components/header";
 
@@ -60,18 +62,24 @@ function MainMoive() {
         setLoad(false); // 로딩 종료
 
     }, [page]);
+    
+    const setData = (movie) => {
+        setMovie(movie);
+    }
 
     return (
         <>
             {/* 헤더 */}
             <Header />
+            {Search(setData)}
 
             {/* 영화렌더링 영역 */}
             <div className={style.container}>
                 <div className={style.popular}>
                     <h4 style={{ color: 'white' }}>Popular</h4>
                 </div>
-                {
+                
+                {   
                     movie &&
                     <>
                         {/* {
@@ -128,6 +136,7 @@ function MainMoive() {
                                 );
                             })
                         }
+                        
                     </>
                 }
                 {
@@ -135,6 +144,7 @@ function MainMoive() {
                 }
                 <div ref={observerRef}>옵저버</div>
             </div>
+            
         </>
     );
 

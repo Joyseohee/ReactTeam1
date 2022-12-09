@@ -31,3 +31,12 @@
     height: 450px;
     /* border-radius: 10px; */
 }
+
+#fly {
+    animation: ani 1s infinite alternate; 
+}
+
+@keyframes ani {
+    0%{transform: translate(0,0);}
+    100%{transform: translate(0,50px);}
+}
