@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import logo from './logo.svg';
 import './App.css';
 
@@ -19,6 +20,25 @@ function App() {
         </a>
       </header>
     </div>
+=======
+import "./App.css";
+import RenderMovie from "./movie";
+import Mypage from "./pages/Mypage";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import ReviewDetailTest from "./components/ReviewDetailTest";
+
+function App() {
+  return (
+    <>
+      <div className="App">
+        <Routes>
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/" element={<RenderMovie />} />
+          <Route path="/ReviewDetailTest" element={<ReviewDetailTest />} />
+        </Routes>
+      </div>
+    </>
+>>>>>>> Stashed changes
   );
 }
 
