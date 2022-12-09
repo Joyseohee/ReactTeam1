@@ -1,0 +1,22 @@
+.ReviewTestTemplate {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ReviewTest-title {
+  background: #da4b4beb;
+  color: white;
+  height: 4rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReviewTest-content {
+  background: whitesmoke;
+}

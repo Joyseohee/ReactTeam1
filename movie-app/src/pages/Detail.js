@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import style from "./Detail.module.css";
 import tmdbAPI from "../tmdbAPI";
@@ -9,6 +9,19 @@ import { Nav } from "react-bootstrap";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import Modal from "../components/Review/Modal";
+import ReviewList from "../components/Review/ReviewList";
+import ReviewInsert from "../components/Review/ReviewInsert";
+import "../components/Review/ReviewInsert";
+import "../components/Review/Modal";
+import "../store";
+import { ReviewWrite } from "../store";
+import ReviewTestTemplate from "../components/ReviewTest/ReviewTestTemplate";
+import ReviewTestList from "../components/ReviewTest/ReviewTestList";
+import ReviewTestInsert from "../components/ReviewTest/ReviewTestInsert";
+
 function Detail() {
   let id = useParams();
   const [movie, setMovie] = useState([]);
@@ -16,8 +29,6 @@ function Detail() {
   const [video, setVideo] = useState([]);
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
-
-  let [clickTab, setClickTab] = useState(0);
 
   console.log(id.id);
 
@@ -27,6 +38,8 @@ function Detail() {
       setMovie(res.data);
     });
   }, []);
+
+  let [clickTab, setClickTab] = useState(0);
 
   useEffect(() => {
     tmdbAPI
