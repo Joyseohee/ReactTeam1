@@ -10,25 +10,21 @@ export default function Likes() {
   let id = useParams();
   let [likes, setLikes] = useState([]);
   let [recentId, setRecentId] = useState([]);
-
-  // console.log(recentId.find());
+  let [dupleId, setDupleId] = useState([]);
 
   useEffect(() => {
     let arr = localStorage.getItem("store");
-    let checkId = { id: id.id };
+    let checkId = Number(id.id);
 
     if (arr == null) {
       localStorage.setItem("store", JSON.stringify([checkId]));
       setRecentId([checkId]);
     } else {
-      let checkDuple = arr.filter((el, checkId) => arr.indexOf(el) === checkId);
-      // console.log("***");
-      // console.log(arr);
-      // console.log("여기");
       arr = JSON.parse(arr);
       arr.push(checkId);
       arr = new Set(arr);
       arr = [...arr];
+      console.log(arr);
 
       localStorage.setItem("store", JSON.stringify(arr));
       setRecentId(arr);
