@@ -1,8 +1,9 @@
 
+import { Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import "./App.css";
 import Mypage from "./pages/Mypage";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import MainMoive from './pages/Mainmovie';
 
 function App() {
