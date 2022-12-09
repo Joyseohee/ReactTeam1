@@ -3,47 +3,20 @@ import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MainMoive from "./pages/Mainmovie";
-import Detail_joyTest from "./pages/Detail_joyTest";
-import Review_joyTest from "./pages/Review_joyTest";
+import MainTest from "./pages/MainTest";
 import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
-import Main from "./pages/Main";
+import Main from "./pages/MainTest";
 
 function App() {
-
-
   return (
     <>
       <div className="App">
-      <Route path="/detail:id" element={<Detail_joyTest />} />
-          <Route path="/review/id" element={<Review_joyTest />} />
-
-          <Route path="/" element={<MainMoive /> }/>
-        <Route path='/detail/:id' element={
-                <Detail />
-            }/>
-          <Route path="/" element={<Main like={like} setLike={setLike} />} />
         <Routes>
-          <Route
-            path="/mypage"
-            element={
-              <Mypage
-                movie={movie}
-                setMovie={setMovie}
-                like={like}
-                setLike={setLike}
-              />
-            }
-          />
-
-          <Route path="/de:id" element={<Detail_joyTest />} />
-          <Route path="/re:id" element={<Review_joyTest />} />
           <Route path="/" element={<MainMoive />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route
-            path="/main"
-            element={<Main like={like} setLike={setLike} />}
-          />
+
+          <Route path="/test" element={<MainTest />} />
         </Routes>
       </div>
     </>
