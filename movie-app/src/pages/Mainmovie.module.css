@@ -17,16 +17,19 @@
     width: 300px;
     word-break: break-all;
     color: white;
+    font-family: "NanumSquareRound";
 }
 
 .release_date {
     color: white;
+    font-family: "NanumSquareRound";
+    font-size: small;
 }
 
 .moviePoster {
     width: 300px;
     height: 450px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 #fly {
