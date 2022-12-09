@@ -1,7 +1,6 @@
 
 import "./App.css";
 import Mypage from "./pages/Mypage";
-import DetailPage from "./pages/DetailPage";
 import Detail from "./pages/Detail";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
