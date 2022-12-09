@@ -1,16 +1,21 @@
-import "./App.css";
-import RenderMovie from "./movie";
-import Mypage from "./pages/Mypage";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import logo from './logo.svg';
+import './App.css';
+import { Routes, Route } from "react-dom";
+import MainMoive from './pages/Mainmovie';
+
 
 function App() {
   return (
     <>
       <div className="App">
-        <Routes>
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/" element={<RenderMovie />} />
-        </Routes>
+      <Route path="/detail:id" element={<Detail_joyTest />} />
+          <Route path="/review/id" element={<Review_joyTest />} />
+
+          <Route path="/" element={<MainMoive /> }/>
+        <Route path='/detail/:id' element={
+                <Detail />
+            }/>
+          <Route path="/" element={<Main like={like} setLike={setLike} />} />
       </div>
     </>
   );

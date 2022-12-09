@@ -9,13 +9,24 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
+<<<<<<< HEAD
     "fs": "^0.0.1-security",
+=======
+<<<<<<< Updated upstream
+=======
+    "fs": "^0.0.1-security",
+    "node-sass": "^8.0.0",
+>>>>>>> Stashed changes
+>>>>>>> review
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.2",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "sass": "^1.56.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
