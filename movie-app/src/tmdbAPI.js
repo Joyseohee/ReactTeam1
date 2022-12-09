@@ -14,6 +14,4 @@ const tmdbAPI = axios.create({
     }
 })
 
-tmdbAPI.get('movie/popular');
-
 export default tmdbAPI;
