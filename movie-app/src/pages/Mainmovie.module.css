@@ -17,10 +17,13 @@
     width: 300px;
     word-break: break-all;
     color: white;
+    font-family: "NanumSquareRound";
 }
 
 .release_date {
     color: white;
+    font-family: "NanumSquareRound";
+    font-size: small;
 }
 
 .moviePoster {
