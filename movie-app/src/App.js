@@ -1,8 +1,7 @@
-import logo from './logo.svg';
-import "./App.css";
-import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import Mypage from "./pages/Mypage";
 import MainMoive from './pages/Mainmovie';
 import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
