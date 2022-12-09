@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { Navbar, Container } from "react-bootstrap";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
+import Search from "../components/Search/Search";
 
 
 function MainMoive() {
+    
     const API_IMAGEURL = 'https://image.tmdb.org/t/p/w300'; // 영화 이미지 baseURL
     const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
 
@@ -19,6 +22,12 @@ function MainMoive() {
 
     const navigate = useNavigate();
 
+    const setData = (movie) => {
+        setMovie(movie);
+    }
+    useEffect(() => {
+        AOS.init();
+    })
 
     // 영화 출력 함수
     const getMovie = async () => {
@@ -43,22 +52,22 @@ function MainMoive() {
                 </Container>
             </Navbar>
 
-
+            {Search(setData)}
+            
             {/* 영화렌더링 영역 */}
             <div className={style.container}>
                 <div className={style.popular}>
                     <h4 style={{ color: 'white' }}>Popular</h4>
                 </div>
-                {
+                
+                {   
                     movie &&
                     <>
                         {
                             movie.map((movie, i) => {
                                 return (
-
-
-                                    <div key={i}>
-                                        <div className={style.movieCard}>
+                                    <div key={i} >
+                                        <div className={style.movieCard} data-aos = "fade-up">
                                             <img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`detail/${movie.id}`) }} />
                                             <div className={style.title}><h5>{movie.title}</h5></div>
                                             <div className={style.release_date}>{movie.release_date}</div>
@@ -67,9 +76,13 @@ function MainMoive() {
                                 );
                             })
                         }
+                        
                     </>
                 }
+                
+                
             </div>
+            
         </>
     );
 
