@@ -10,22 +10,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function ClickLikes() {
+export default function ShowLikes(id) {
+  //   let id = useParams();
+  id = id.id;
+
   return (
     <>
-      <div
-        style={{
-          color: "red",
-          fontWeight: 700,
-          fontSize: 20,
-          display: "inline-block",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
-        <span>👍🏼</span>
-        <span>좋아요</span>
+      <div>
+        <h3>{id.id}</h3>
+        <h3>나오냐</h3>
       </div>
     </>
   );
