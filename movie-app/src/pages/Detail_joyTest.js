@@ -11,6 +11,9 @@ export default function Detail() {
   const { id } = useParams();
   // const id = params.id;
   console.log("id" + id);
+  const search = (id) => {
+    id.preventDefault();
+  };
 
   useEffect(() => {
     tmdbAPI.get("movie/popular").then((res) => {
@@ -21,8 +24,23 @@ export default function Detail() {
   console.log(movie);
 
   return (
-    <>
-      <Movie key={`key-${id}`} movie={movie} />
-    </>
+    movie && (
+      <div>
+        <div>
+          <img
+            src={`${API_IMAGEURL}${poster_path}`}
+            onClick={() => {
+              navigate(`/de:${id}`);
+            }}
+          />
+        </div>
+        <div>
+          <span style={{ color: "white" }}>제목 : {title}</span>
+        </div>
+        <div>
+          <span style={{ color: "white" }}>{overview}</span>
+        </div>
+      </div>
+    )
   );
 }
