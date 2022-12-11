@@ -10,11 +10,11 @@ fs.exists('text1.txt', function (exists) {
 
 const file = 'data.json';
 
-for(let i = 1; i < 501; i ++) {
-  await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=4a25f61de2f3faf6ce9c03308ff09d05&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&page=${i}`)
+for(let i = 1; i < 3; i ++) {
+  axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=4a25f61de2f3faf6ce9c03308ff09d05&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&page=${i}`)
   .then((res) => {
     setTimeout(() => {
-      fs.appendFile('data.json', JSON.stringify(res.data), 'utf-8', function(error) {
+      fs.appendFile('data.json', JSON.stringify(res.data.results), 'utf-8', function(error) {
         console.log('write end');
       })
     }, 1000);
