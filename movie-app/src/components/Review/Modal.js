@@ -1,26 +1,44 @@
-import React from "react";
-import './Modal.scss';
+import React, { useState } from "react";
+import "./Modal.scss";
+import { useSelector } from "react-redux";
+import ModalInsert from "./ModalInsert";
 
 function Modal({ onClose }) {
-    const handleClose = () => {
-      onClose?.();
-    };
-    return (
-        <div className="Overlay">
-          <div className="ModalWrap">
-            <button className="ModalPageButton" onClick={handleClose}>
-              <i className="fa-solid fa-xmark"></i>
-            </button>
-            <div className="Contents">
-              <div className="ModalImg">
-                <textarea>안녕</textarea>
-              <h1>리뷰를 입력해주세요</h1>
-              </div>
-              <button className="ModalPageButton" onClick={handleClose}>Close</button>
-            </div>
-          </div>
-        </div>
-    );
-  }
+  const handleClose = () => {
+    onClose?.();
+  };
 
-  export default Modal;
+  let [onInsert, setOnInsert] = useState("");
+
+  return (
+    <div className="Overlay">
+      <div className="ModalWrap">
+        <div className="Contents">
+          {/* <div className="ModalImg" onInsert={onInsert}> */}
+          <form>
+            <div className="ModalImg">
+              {/* <textarea>안녕</textarea> */}
+              {/* <button className="ModalPageButton" onClick={Insert}> */}
+              {/* <input type="text" id="content" content=""></input> */}
+              <ModalInsert></ModalInsert>
+              <button type="submit" className="ModalPageButton">
+                <i
+                  className="fa-solid fa-xmark"
+                  onClick={() => {
+                    console.log(document.getElementById("content").value);
+                  }}
+                ></i>
+                등록
+              </button>
+              <button className="ModalPageButton" onClick={handleClose}>
+                닫기
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Modal;
