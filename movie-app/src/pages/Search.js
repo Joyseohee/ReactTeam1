@@ -83,7 +83,7 @@ function Search() {
     function RecommendMovie() {
         let myMovieName = JSON.parse(localStorage.getItem('moviename')); //로컬스토리지에서 영화이름 가져오기
         let myMovieinfo = []; //이름, 장르번호 기억
-        let firstMovie = [];
+        let firstMovie = []; //첫영화
         let myGenreIds = [];
         let random2 = -1;
         //영화 제목으로 영화 정보 얻기
@@ -97,9 +97,14 @@ function Search() {
             }
         }
         
-        for(let i = 0; i < 4; i ++) {
-            let random = Math.floor(Math.random() * 4);
+        
 
+
+        for(let i = 1; i < 4; i ++) { //첫영화 제외하고 4개 (한줄에 다섯개의 영화가 있기 때문에)
+            let random = Math.floor(Math.random() * 4);
+            if(random !== random2) {
+
+            }
         }
     }
 }
