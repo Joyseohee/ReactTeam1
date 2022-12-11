@@ -1,8 +1,14 @@
-.ModalImg{
-  background-color: #5d5d5d;
-  background-size: cover;
-  height: 15vh
-
+.ModalImg {
+  // background-color: #5d5d5d;
+  // background-size: cover;
+  // textarea {
+  //   width: 700px;
+  //   height: 200px;
+  // }
+  input {
+    width: 700px;
+    height: 200px;
+  }
 }
 
 .Overlay {
@@ -18,7 +24,7 @@
 }
 
 .ModalWrap {
-  width: 600px;
+  width: auto;
   height: fit-content;
   border-radius: 15px;
   background-color: #fff;
@@ -82,8 +88,8 @@
     background-color: #fac2be;
   }
 }
-
 .ModalWrap {
+  // width: 800px;
   text-align: center;
   margin: 50px auto;
 }
