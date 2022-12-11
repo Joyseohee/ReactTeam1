@@ -27,26 +27,27 @@ export default function Mypage() {
         </Row>
         <Row>
           <Col md={1} lg={2} />
-
-          <Col md={10} lg={8}>
-            <Nav
-              className="navbar"
-              fill
-              justify
-              variant="tabs"
-              defaultActiveKey="/home"
+          <Col md={5} lg={4}>
+            {/* <Likes /> */}
+            <div
+              className="likes"
+              onClick={() => {
+                navigate(`/likes`);
+              }}
             >
-              <Nav.Item>
-                <Nav.Link href="/myreview">
-                  나의 리뷰 test
-                  {/* <MyReview /> */}
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/likes">좋아요{/* <Likes /> */}</Nav.Link>
-                {/* <Nav.Link eventKey="link-1">좋아요</Nav.Link> */}
-              </Nav.Item>
-            </Nav>
+              기대하는 영화
+            </div>
+          </Col>
+          <Col md={5} lg={4}>
+            {/* <MyReview /> */}
+            <div
+              className="myreviews"
+              onClick={() => {
+                navigate(`/myreview`);
+              }}
+            >
+              내가 쓴 리뷰
+            </div>
           </Col>
           <Col md={1} lg={2} />
         </Row>
