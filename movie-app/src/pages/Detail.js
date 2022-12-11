@@ -24,6 +24,7 @@ function Detail() {
 
      let id = useParams();
      const [movie, setMovie] = useState([]);
+     const [load, setLoad] = useState(null);
      const API_IMAGEURL = 'https://image.tmdb.org/t/p/w400';
     
     console.log(id.id);
@@ -52,8 +53,6 @@ function Detail() {
         tmdbAPI
           .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
           .then((res) => {
-            console.log(111212);
-            console.log(res.data.results);
             setVideo(res.data.results);
             setMoviekey(res.data.results[0].key);
           });
