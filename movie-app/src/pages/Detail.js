@@ -5,10 +5,7 @@ import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
-import Movie from "../components/Common/Movie";
 import { Nav } from "react-bootstrap";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../components/Review/Modal";
 import ReviewList from "../components/Review/ReviewList";
@@ -20,55 +17,69 @@ import { ReviewWrite } from "../store";
 import ReviewTestTemplate from "../components/ReviewTest/ReviewTestTemplate";
 import ReviewTestList from "../components/ReviewTest/ReviewTestList";
 import ReviewTestInsert from "../components/ReviewTest/ReviewTestInsert";
+
 function Detail() {
+  let id = useParams();
+  const [movie, setMovie] = useState([]);
+  const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-     let id = useParams();
-     const [movie, setMovie] = useState([]);
-     const API_IMAGEURL = 'https://image.tmdb.org/t/p/w400';
-    
-    console.log(id.id);
+  const [video, setVideo] = useState([]);
+  const [movieKey, setMoviekey] = useState();
+  const navigate = useNavigate();
+  const [load, setLoad] = useState(null);
 
-    const [video, setVideo] = useState([]);
-    const [movieKey, setMoviekey] = useState();
-    const navigate = useNavigate();
-
-    const getDetailmv = async () => {
-        setLoad(true); // 로딩 시작
-        const res = await tmdbAPI.get(`movie/${id.id}`);
-        if (res.data) { setMovie(res.data); // console.log(res.data);
-        } else {
-            console.log("error");
-        }
-        setLoad(false); // 로딩 종료
+  const getDetailmv = async () => {
+    setLoad(true); // 로딩 시작
+    const res = await tmdbAPI.get(`movie/${id.id}`);
+    if (res.data) {
+      setMovie(res.data); // console.log(res.data);
+    } else {
     }
+    setLoad(false); // 로딩 종료
+  };
 
-    useEffect(()=>{
-        getDetailmv();
-    },[])
+  // 좋아요 저장 함수
+  let [recentId, setRecentId] = useState([]);
+  const storeLikes = () => {
+    let arr = localStorage.getItem("store");
+    // let checkId = Number(id.id);
+    let checkId = Number(id.id);
 
-    let [clickTab, setClickTab] = useState(0);
+    if (arr == null) {
+      localStorage.setItem("store", JSON.stringify([checkId]));
+      setRecentId([checkId]);
+    } else {
+      arr = JSON.parse(arr);
+      arr.push(checkId);
+      arr = new Set(arr);
+      arr = [...arr];
+      console.log(arr);
 
-    useEffect(() => {
-        tmdbAPI
-          .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
-          .then((res) => {
-            console.log(111212);
-            console.log(res.data.results);
-            setVideo(res.data.results);
-            setMoviekey(res.data.results[0].key);
-          });
-      }, []);
-      console.log("movieKey: " + movieKey);
+      localStorage.setItem("store", JSON.stringify(arr));
+      setRecentId(arr);
+    }
+  };
 
-      return (
+  useEffect(() => {
+    getDetailmv();
+  }, []);
 
-        <>
-        
-        {
+  let [clickTab, setClickTab] = useState(0);
 
-            load
-                ? <Loading />
-                :
+  useEffect(() => {
+    tmdbAPI
+      .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
+      .then((res) => {
+        setVideo(res.data.results);
+        setMoviekey(res.data.results[0].key);
+      });
+  }, []);
+
+  return (
+    <>
+      {load ? (
+        <Loading />
+      ) : (
         <div className={style.back}>
           <section>
             <img
@@ -81,7 +92,7 @@ function Detail() {
                 display: "flex",
               }}
               onClick={() => {
-                navigate(`/mypage/likes/${movie.id}`);
+                storeLikes(); // 클릭 시 좋아요
               }}
             >
               <ClickLikes />
@@ -134,32 +145,29 @@ function Detail() {
               </Nav.Link>
             </Nav.Item>
           </Nav>
-    
+
           <TabContent clickTab={clickTab} movies={movie} />
         </div>
-       
-        }
-        </>
-      );
-    }
-    
-    
-    function TabContent(props) {
-      console.log(props.clickTab);
-      if (props.clickTab == 0) {
-        return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
-      }
-      if (props.clickTab == 1) {
-        return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
-      }
-      if (props.clickTab == 2) {
-        return (
-          <div style={{ color: "white" }}>
-            {props.movies.production_companies[0].name}
-          </div>
-        );
-      }
-    }
-    
-    export default Detail;
-    
+      )}
+    </>
+  );
+}
+
+function TabContent(props) {
+  if (props.clickTab == 0) {
+    return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
+  }
+  if (props.clickTab == 1) {
+    return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
+  }
+  if (props.clickTab == 2) {
+    return (
+      <div style={{ color: "white" }}>
+        {props.movies.production_companies[0].name}
+      </div>
+    );
+  }
+}
+
+export default Detail;
+// export default TabContent;
