@@ -3,38 +3,28 @@ import { useParams, useNavigate } from "react-router-dom";
 import style from "./Detail.module.scss";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
-import Video from "./Video"
+import Video from "./Video";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../components/Review/Modal";
-import ReviewList from "../components/Review/ReviewList";
-import ReviewInsert from "../components/Review/ReviewInsert";
-import "../components/Review/ReviewInsert";
-import "../components/Review/Modal";
-import "../store";
-import { ReviewWrite } from "../store";
-import ReviewTestTemplate from "../components/ReviewTest/ReviewTestTemplate";
-import ReviewTestList from "../components/ReviewTest/ReviewTestList";
-import ReviewTestInsert from "../components/ReviewTest/ReviewTestInsert";
+import Review from "../components/Review/Review";
 
-import clock from '../images/clock.png';
-import percent from '../images/100-percent.png';
-import like from '../images/like.png';
+import clock from "../images/clock.png";
+import percent from "../images/100-percent.png";
+import like from "../images/like.png";
 
 function Detail() {
+  let id = useParams();
+  const [movie, setMovie] = useState([]);
+  const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-     let id = useParams();
-     const [movie, setMovie] = useState([]);
-     const API_IMAGEURL = 'https://image.tmdb.org/t/p/w400';
-    
-    console.log(id.id);
+  console.log(id.id);
 
-    const [load, setLoad] = useState(null);
-    const [video, setVideo] = useState([]);
-    const [movieKey, setMoviekey] = useState();
-    const navigate = useNavigate();
+  const [load, setLoad] = useState(null);
+  const [video, setVideo] = useState([]);
+  const [movieKey, setMoviekey] = useState();
+  const navigate = useNavigate();
 
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
@@ -74,30 +64,29 @@ function Detail() {
 
   let [clickTab, setClickTab] = useState(0);
 
-    useEffect(() => {
-        tmdbAPI
-          .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
-          .then((res) => {
-            console.log(111212);
-            console.log(res.data.results);
-            setVideo(res.data.results);
-            setMoviekey(res.data.results[0].key);
-          });
-      }, []);
-      console.log("movieKey: " + movieKey);
+  useEffect(() => {
+    tmdbAPI
+      .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
+      .then((res) => {
+        console.log(111212);
+        console.log(res.data.results);
+        setVideo(res.data.results);
+        setMoviekey(res.data.results[0].key);
+      });
+  }, []);
+  console.log("movieKey: " + movieKey);
 
-      const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-      const onClickButton = () => {
-        setIsOpen(!isOpen);
-      };
+  const onClickButton = () => {
+    setIsOpen(!isOpen);
+  };
 
-      return (
-        <>
-        {
-            load
-                ? <Loading />
-                :
+  return (
+    <>
+      {load ? (
+        <Loading />
+      ) : (
         <div className={style.back}>
             <div className={style.header}>
               <section className={style.inner}>
@@ -149,40 +138,60 @@ function Detail() {
           
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
-              <Nav.Link onClick={() => { setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(0);
+                }}
+                eventKey="link-0"
+              >
+                상세정보
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">관련소식</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(1);
+                }}
+                eventKey="link-1"
+              >
+                관련소식
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(2);}} eventKey="link-2">실관람평</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(2);
+                }}
+                eventKey="link-2"
+              >
+                실관람평
+              </Nav.Link>
             </Nav.Item>
           </Nav>
 
           <TabContent clickTab={clickTab} movies={movie} />
         </div>
-        }
-        </>
-      );
-    }
-    
-    function TabContent(props) {
-      console.log(props.clickTab);
-      if (props.clickTab == 0) {
-        return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
-      }
-      if (props.clickTab == 1) {
-        return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
-      }
-      if (props.clickTab == 2) {
-        return (<div style={{ color: "white" }}>
-            {props.movies.production_companies[0].name}
-            <ReviewList></ReviewList>
-          </div>
-        );
-      }
-    }
-    
+      )}
+    </>
+  );
+}
 
-    export default Detail;
-    
+function TabContent(props) {
+  console.log(props.clickTab);
+  if (props.clickTab == 0) {
+    return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
+  }
+  if (props.clickTab == 1) {
+    return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
+  }
+  if (props.clickTab == 2) {
+    return (
+      <div style={{ color: "white" }}>
+        {props.movies.production_companies[0].name}
+        <Review></Review>
+      </div>
+    );
+  }
+}
+
+export default Detail;
