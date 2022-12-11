@@ -38,7 +38,7 @@ export default function Mypage() {
             >
               <Nav.Item>
                 <Nav.Link href="/myreview">
-                  나의 리뷰
+                  나의 리뷰 test
                   {/* <MyReview /> */}
                 </Nav.Link>
               </Nav.Item>
