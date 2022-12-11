@@ -88,98 +88,54 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-          <div className={style.header}>
-            <section className={style.inner}>
-              <img
-                className={style.background}
-                src={`${API_IMAGEURL}${movie.backdrop_path}`}
-              />
-              <div className={style.img_wrapper}>
-                <div className={style.box}>
-                  <img
-                    className={style.img}
-                    src={`${API_IMAGEURL}${movie.poster_path}`}
-                  />
-                  <div
-                    style={{
-                      backgroundColor: "white",
-                      display: "flex",
+            <div className={style.header}>
+              <section className={style.inner}>
+                <img className={style.background} src={`${API_IMAGEURL}${movie.backdrop_path}`} />
+                    <div className={style.img_wrapper}>
+                        <div className={style.box}>
+                            <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
+                            <div
+              style={{
+                backgroundColor: "white",
+                display: "flex",
+              }}
+              onClick={() => {
+                storeLikes(); // 클릭 시 좋아요
+              }}
+            >
+              <ClickLikes />
+            </div>
+                            <span className={style.text}
+                            onClick={onClickButton}>{isOpen?"닫기":"트레일러 보기"}{isOpen&&<Video open={isOpen} movieKey={movieKey}
+                            style={style}
+                            onClose={() => {
+                              setIsOpen(false);
+                            }}/>}</span>
+                        </div>
+                        <section className={style.info_wrapper}>
+                            
+                                <span className={style.title}>{movie.title}</span><span>{movie.release_date}</span><br /><br />
+                                <span><img src={clock} className={style.runtime_img} /> </span><span className={style.runtime}>{movie.runtime} 분</span>
+                                <span><img src={percent} className={style.vote_average_img} /> </span><span className={style.vote_average}>{movie.vote_average}</span>
+                                <span><img src={like} className={style.vote_count_img} /> </span><span className={style.vote_count}>{movie.vote_count}</span><br /><br />
+                                <span className={style.tagline}>{movie.tagline}</span><br /><br />
+                                <span className={style.overview}>{movie.overview}</span>
+                            
+                        </section>
+                    </div>
+                </section>
+            </div>
+                    <div style={{
+                        backgroundColor: "white",
+                        display: "flex",
                     }}
                     onClick={() => {
-                      storeLikes(); // 클릭 시 좋아요
+                        navigate(`/mypage/likes/${movie.id}`);
                     }}
-                  >
+                    >
                     <ClickLikes />
-                  </div>
-                  <span className={style.text} onClick={onClickButton}>
-                    {isOpen ? "닫기" : "트레일러 보기"}
-                    {isOpen && (
-                      <Video
-                        open={isOpen}
-                        movieKey={movieKey}
-                        style={style}
-                        onClose={() => {
-                          setIsOpen(false);
-                        }}
-                      />
-                    )}
-                  </span>
-                </div>
-                <section className={style.info_wrapper}>
-                  <span className={style.title}>{movie.title}</span>
-                  <span>{movie.release_date}</span>
-                  <br />
-                  <br />
-                  <span>
-                    <img src={clock} className={style.runtime_img} />{" "}
-                  </span>
-                  <span className={style.runtime}>{movie.runtime} 분</span>
-                  <span>
-                    <img src={percent} className={style.vote_average_img} />{" "}
-                  </span>
-                  <span className={style.vote_average}>
-                    {movie.vote_average}
-                  </span>
-                  <span>
-                    <img src={like} className={style.vote_count_img} />{" "}
-                  </span>
-                  <span className={style.vote_count}>{movie.vote_count}</span>
-                  <br />
-                  <br />
-                  <span className={style.tagline}>{movie.tagline}</span>
-                  <br />
-                  <br />
-                  <span className={style.overview}>{movie.overview}</span>
-                </section>
-              </div>
-            </section>
-
-            {/* <div className="player-wrapper">
-                <ReactPlayer
-                    className="react-player"
-                    url={`https://www.youtu.be/${movieKey}`} // 플레이어 url
-                    width="800px" // 플레이어 크기 (가로)
-                    height="500px" // 플레이어 크기 (세로)
-                    playing={true} // 자동 재생 on
-                    muted={true} // 자동 재생 on
-                    controls={true} // 플레이어 컨트롤 노출 여부
-                    light={false} // 플레이어 모드
-                    pip={true} // pip 모드 설정 여부
-                />
-                </div> */}
-          </div>
-          <div
-            style={{
-              backgroundColor: "white",
-              display: "flex",
-            }}
-            onClick={() => {
-              navigate(`/mypage/likes/${movie.id}`);
-            }}
-          >
-            <ClickLikes />
-          </div>
-
+                    </div>
+          
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link

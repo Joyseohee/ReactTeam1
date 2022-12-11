@@ -11,8 +11,8 @@ function Video(props){
                 <ReactPlayer
                     className={props.style.react_player}
                     url={`https://www.youtu.be/${props.movieKey}`} // 플레이어 url
-                    width="800px" // 플레이어 크기 (가로)
-                    height="500px" // 플레이어 크기 (세로)
+                    width="1200px" // 플레이어 크기 (가로)
+                    height="900px" // 플레이어 크기 (세로)
                     playing={true} // 자동 재생 on
                     muted={true} // 자동 재생 on
                     controls={true} // 플레이어 컨트롤 노출 여부
