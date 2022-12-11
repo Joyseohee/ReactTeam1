@@ -40,7 +40,6 @@ function Detail() {
   let [recentId, setRecentId] = useState([]);
   const storeLikes = () => {
     let arr = localStorage.getItem("store");
-    // let checkId = Number(id.id);
     let checkId = Number(id.id);
 
     if (arr == null) {
@@ -88,54 +87,73 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-            <div className={style.header}>
-              <section className={style.inner}>
-                <img className={style.background} src={`${API_IMAGEURL}${movie.backdrop_path}`} />
-                    <div className={style.img_wrapper}>
-                        <div className={style.box}>
-                            <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
-                            <div
-              style={{
-                backgroundColor: "white",
-                display: "flex",
-              }}
-              onClick={() => {
-                storeLikes(); // 클릭 시 좋아요
-              }}
-            >
-              <ClickLikes />
-            </div>
-                            <span className={style.text}
-                            onClick={onClickButton}>{isOpen?"닫기":"트레일러 보기"}{isOpen&&<Video open={isOpen} movieKey={movieKey}
-                            style={style}
-                            onClose={() => {
-                              setIsOpen(false);
-                            }}/>}</span>
-                        </div>
-                        <section className={style.info_wrapper}>
-                            
-                                <span className={style.title}>{movie.title}</span><span>{movie.release_date}</span><br /><br />
-                                <span><img src={clock} className={style.runtime_img} /> </span><span className={style.runtime}>{movie.runtime} 분</span>
-                                <span><img src={percent} className={style.vote_average_img} /> </span><span className={style.vote_average}>{movie.vote_average}</span>
-                                <span><img src={like} className={style.vote_count_img} /> </span><span className={style.vote_count}>{movie.vote_count}</span><br /><br />
-                                <span className={style.tagline}>{movie.tagline}</span><br /><br />
-                                <span className={style.overview}>{movie.overview}</span>
-                            
-                        </section>
-                    </div>
-                </section>
-            </div>
-                    <div style={{
-                        backgroundColor: "white",
-                        display: "flex",
+          <div className={style.header}>
+            <section className={style.inner}>
+              <img
+                className={style.background}
+                src={`${API_IMAGEURL}${movie.backdrop_path}`}
+              />
+              <div className={style.img_wrapper}>
+                <div className={style.box}>
+                  <img
+                    className={style.img}
+                    src={`${API_IMAGEURL}${movie.poster_path}`}
+                  />
+                  <div
+                    style={{
+                      backgroundColor: "white",
+                      display: "flex",
                     }}
                     onClick={() => {
-                        navigate(`/mypage/likes/${movie.id}`);
+                      storeLikes(); // 클릭 시 좋아요
                     }}
-                    >
+                  >
                     <ClickLikes />
-                    </div>
-          
+                  </div>
+                  <span className={style.text} onClick={onClickButton}>
+                    {isOpen ? "닫기" : "트레일러 보기"}
+                    {isOpen && (
+                      <Video
+                        open={isOpen}
+                        movieKey={movieKey}
+                        style={style}
+                        onClose={() => {
+                          setIsOpen(false);
+                        }}
+                      />
+                    )}
+                  </span>
+                </div>
+                <section className={style.info_wrapper}>
+                  <span className={style.title}>{movie.title}</span>
+                  <span>{movie.release_date}</span>
+                  <br />
+                  <br />
+                  <span>
+                    <img src={clock} className={style.runtime_img} />{" "}
+                  </span>
+                  <span className={style.runtime}>{movie.runtime} 분</span>
+                  <span>
+                    <img src={percent} className={style.vote_average_img} />{" "}
+                  </span>
+                  <span className={style.vote_average}>
+                    {movie.vote_average}
+                  </span>
+                  <span>
+                    <img src={like} className={style.vote_count_img} />{" "}
+                  </span>
+                  <span className={style.vote_count}>{movie.vote_count}</span>
+                  <br />
+                  <br />
+                  <span className={style.tagline}>{movie.tagline}</span>
+                  <br />
+                  <br />
+                  <span className={style.overview}>{movie.overview}</span>
+                </section>
+              </div>
+            </section>
+          </div>
+
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link

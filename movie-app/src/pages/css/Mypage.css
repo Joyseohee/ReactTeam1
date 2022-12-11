@@ -1,17 +1,8 @@
+.col {
+  color: aliceblue;
+  border: 2px solid snow;
+}
+
 .infoComp {
-  border: 2px solid red;
-  width: 882px;
-  height: 390px;
-  padding: 60px 40px 0 58px;
-  background: #f8f8f8 0 0;
-}
-
-.likes {
-  background-color: antiquewhite;
-  height: 100px;
-}
-
-.myreviews {
-  background-color: antiquewhite;
-  height: 100px;
+  padding: 0;
 }
