@@ -99,17 +99,7 @@ function Detail() {
                     className={style.img}
                     src={`${API_IMAGEURL}${movie.poster_path}`}
                   />
-                  <div
-                    style={{
-                      backgroundColor: "white",
-                      display: "flex",
-                    }}
-                    onClick={() => {
-                      storeLikes(); // 클릭 시 좋아요
-                    }}
-                  >
-                    <ClickLikes />
-                  </div>
+
                   <span className={style.text} onClick={onClickButton}>
                     {isOpen ? "닫기" : "트레일러 보기"}
                     {isOpen && (
@@ -140,7 +130,13 @@ function Detail() {
                     {movie.vote_average}
                   </span>
                   <span>
-                    <img src={like} className={style.vote_count_img} />{" "}
+                    <img
+                      src={like}
+                      className={style.vote_count_img}
+                      onClick={() => {
+                        storeLikes(); // 클릭 시 좋아요
+                      }}
+                    />{" "}
                   </span>
                   <span className={style.vote_count}>{movie.vote_count}</span>
                   <br />
