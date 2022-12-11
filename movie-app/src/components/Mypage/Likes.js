@@ -37,11 +37,8 @@ export default function Likes() {
 
   return (
     <>
-      <div>
-        <div>기대되는 영화</div>
-        <Movie />
-        <ShowLikes id={id} />
-      </div>
+      <div>Likes</div>
+      <ShowLikes />
     </>
   );
 }

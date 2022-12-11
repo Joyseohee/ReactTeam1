@@ -6,10 +6,7 @@ import tmdbAPI from "../tmdbAPI";
 import Video from "./Video"
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
-import Movie from "../components/Common/Movie";
 import { Nav } from "react-bootstrap";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../components/Review/Modal";
 import ReviewList from "../components/Review/ReviewList";
@@ -21,6 +18,7 @@ import { ReviewWrite } from "../store";
 import ReviewTestTemplate from "../components/ReviewTest/ReviewTestTemplate";
 import ReviewTestList from "../components/ReviewTest/ReviewTestList";
 import ReviewTestInsert from "../components/ReviewTest/ReviewTestInsert";
+
 import clock from '../images/clock.png';
 import percent from '../images/100-percent.png';
 import like from '../images/like.png';
@@ -38,22 +36,43 @@ function Detail() {
     const [movieKey, setMoviekey] = useState();
     const navigate = useNavigate();
 
-    const getDetailmv = async () => {
-        setLoad(true); // 로딩 시작
-        const res = await tmdbAPI.get(`movie/${id.id}`);
-        if (res.data) { setMovie(res.data); 
-             console.log(res.data);
-        } else {
-            console.log("error");
-        }
-        setLoad(false); // 로딩 종료
+  const getDetailmv = async () => {
+    setLoad(true); // 로딩 시작
+    const res = await tmdbAPI.get(`movie/${id.id}`);
+    if (res.data) {
+      setMovie(res.data); // console.log(res.data);
+    } else {
     }
+    setLoad(false); // 로딩 종료
+  };
 
-    useEffect(()=>{
-        getDetailmv();
-    },[])
+  // 좋아요 저장 함수
+  let [recentId, setRecentId] = useState([]);
+  const storeLikes = () => {
+    let arr = localStorage.getItem("store");
+    // let checkId = Number(id.id);
+    let checkId = Number(id.id);
 
-    let [clickTab, setClickTab] = useState(0);
+    if (arr == null) {
+      localStorage.setItem("store", JSON.stringify([checkId]));
+      setRecentId([checkId]);
+    } else {
+      arr = JSON.parse(arr);
+      arr.push(checkId);
+      arr = new Set(arr);
+      arr = [...arr];
+      console.log(arr);
+
+      localStorage.setItem("store", JSON.stringify(arr));
+      setRecentId(arr);
+    }
+  };
+
+  useEffect(() => {
+    getDetailmv();
+  }, []);
+
+  let [clickTab, setClickTab] = useState(0);
 
     useEffect(() => {
         tmdbAPI
@@ -86,6 +105,17 @@ function Detail() {
                     <div className={style.img_wrapper}>
                         <div className={style.box}>
                             <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
+                            <div
+              style={{
+                backgroundColor: "white",
+                display: "flex",
+              }}
+              onClick={() => {
+                storeLikes(); // 클릭 시 좋아요
+              }}
+            >
+              <ClickLikes />
+            </div>
                             <span className={style.text}
                             onClick={onClickButton}>{isOpen?"닫기":"트레일러 보기"}{isOpen&&<Video open={isOpen} movieKey={movieKey}
                             style={style}
@@ -142,7 +172,7 @@ function Detail() {
               <Nav.Link onClick={() => {setClickTab(2);}} eventKey="link-2">실관람평</Nav.Link>
             </Nav.Item>
           </Nav>
-    
+
           <TabContent clickTab={clickTab} movies={movie} />
         </div>
         }
