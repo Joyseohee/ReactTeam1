@@ -21,7 +21,7 @@ export default function Likes() {
       localStorage.setItem("store", JSON.stringify([checkId]));
       setRecentId([checkId]);
     } else {
-      let checkDuple = arr.filter((el, checkId) => arr.indexOf(el) === checkId);
+      // let checkDuple = arr.filter((el, checkId) => arr.indexOf(el) === checkId);
       // console.log("***");
       // console.log(arr);
       // console.log("여기");

@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import  AOS  from "aos";
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material"
 import "aos/dist/aos.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
 import Search from "../components/Search/Search";
