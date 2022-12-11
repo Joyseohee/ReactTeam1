@@ -5,17 +5,10 @@ import "aos/dist/aos.css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import {
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-} from "@mui/material";
 
 import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
-import Search from "../components/Search/Search";
+import Search from "./Search";
 import Loading from "../components/loading";
 import Header from "../components/header";
 import { Swiper, SwiperSlide } from "swiper/react";
