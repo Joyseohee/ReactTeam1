@@ -5,7 +5,6 @@ import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
-import Movie from "../components/Common/Movie";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../components/Review/Modal";
@@ -18,6 +17,7 @@ import { ReviewWrite } from "../store";
 import ReviewTestTemplate from "../components/ReviewTest/ReviewTestTemplate";
 import ReviewTestList from "../components/ReviewTest/ReviewTestList";
 import ReviewTestInsert from "../components/ReviewTest/ReviewTestInsert";
+
 function Detail() {
   let id = useParams();
   const [movie, setMovie] = useState([]);
@@ -36,6 +36,28 @@ function Detail() {
     } else {
     }
     setLoad(false); // 로딩 종료
+  };
+
+  // 좋아요 저장 함수
+  let [recentId, setRecentId] = useState([]);
+  const storeLikes = () => {
+    let arr = localStorage.getItem("store");
+    // let checkId = Number(id.id);
+    let checkId = Number(id.id);
+
+    if (arr == null) {
+      localStorage.setItem("store", JSON.stringify([checkId]));
+      setRecentId([checkId]);
+    } else {
+      arr = JSON.parse(arr);
+      arr.push(checkId);
+      arr = new Set(arr);
+      arr = [...arr];
+      console.log(arr);
+
+      localStorage.setItem("store", JSON.stringify(arr));
+      setRecentId(arr);
+    }
   };
 
   useEffect(() => {
@@ -70,7 +92,7 @@ function Detail() {
                 display: "flex",
               }}
               onClick={() => {
-                navigate(`/mypage/likes/${movie.id}`);
+                storeLikes(); // 클릭 시 좋아요
               }}
             >
               <ClickLikes />
@@ -148,3 +170,4 @@ function TabContent(props) {
 }
 
 export default Detail;
+// export default TabContent;
