@@ -27,9 +27,9 @@
 }
 
 .moviePoster {
-    width: 300px;
-    height: 450px;
-    /* border-radius: 10px; */
+    width: 260px;
+    height: 380px;
+    border-radius: 4px;
 }
 
 #fly {

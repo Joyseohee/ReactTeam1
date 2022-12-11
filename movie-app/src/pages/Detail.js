@@ -1,49 +1,61 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import style from "./Detail.module.css";
+import style from "./Detail.module.scss";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
+import Video from "./Video";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
-import Movie from "../components/Common/Movie";
 import { Nav } from "react-bootstrap";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../components/Review/Modal";
-import "../components/Review/ReviewInsert";
-import "../components/Review/Modal";
-import "../store";
-import { ReviewWrite } from "../store";
 import Review from "../components/Review/Review";
 
-// 테스트
-import { useLocation } from "react-router-dom";
-import R_List from "../components/Review/R_List";
+import clock from "../images/clock.png";
+import percent from "../images/100-percent.png";
+import like from "../images/like.png";
 
 function Detail() {
   let id = useParams();
   const [movie, setMovie] = useState([]);
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-  const location = useLocation();
-  const reviewtest = location.content;
-  console.log("location :" + { reviewtest });
-
   console.log(id.id);
+
   const [load, setLoad] = useState(null);
   const [video, setVideo] = useState([]);
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
+
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
     const res = await tmdbAPI.get(`movie/${id.id}`);
     if (res.data) {
       setMovie(res.data); // console.log(res.data);
     } else {
-      console.log("error");
     }
     setLoad(false); // 로딩 종료
+  };
+
+  // 좋아요 저장 함수
+  let [recentId, setRecentId] = useState([]);
+  const storeLikes = () => {
+    let arr = localStorage.getItem("store");
+    // let checkId = Number(id.id);
+    let checkId = Number(id.id);
+
+    if (arr == null) {
+      localStorage.setItem("store", JSON.stringify([checkId]));
+      setRecentId([checkId]);
+    } else {
+      arr = JSON.parse(arr);
+      arr.push(checkId);
+      arr = new Set(arr);
+      arr = [...arr];
+      console.log(arr);
+
+      localStorage.setItem("store", JSON.stringify(arr));
+      setRecentId(arr);
+    }
   };
 
   useEffect(() => {
@@ -64,12 +76,10 @@ function Detail() {
   }, []);
   console.log("movieKey: " + movieKey);
 
-  // ------------------- 테스트 -------------
-
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickButton = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -78,51 +88,98 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-          <section>
-            <img
-              className={style.img}
-              src={`${API_IMAGEURL}${movie.poster_path}`}
-            />
-            <div
-              style={{
-                backgroundColor: "white",
-                display: "flex",
-              }}
-              onClick={() => {
-                navigate(`/mypage/likes/${movie.id}`);
-              }}
-            >
-              <ClickLikes />
-            </div>
-            <div className="player-wrapper">
-              <ReactPlayer
-                className="react-player"
-                url={`https://www.youtu.be/${movieKey}`} // 플레이어 url
-                width="800px" // 플레이어 크기 (가로)
-                height="500px" // 플레이어 크기 (세로)
-                playing={true} // 자동 재생 on
-                muted={true} // 자동 재생 on
-                controls={true} // 플레이어 컨트롤 노출 여부
-                light={false} // 플레이어 모드
-                pip={true} // pip 모드 설정 여부
+          <div className={style.header}>
+            <section className={style.inner}>
+              <img
+                className={style.background}
+                src={`${API_IMAGEURL}${movie.backdrop_path}`}
               />
-            </div>
-            <div style={{ color: "white" }}>{movie.title}</div>
-            <span style={{ color: "white" }}>{movie.overview}</span>
-          </section>
-          <div className="ModalWrap">
-            <button className="ModalButton" onClick={onClickButton}>
-              Click Me !
-            </button>
-            {isOpen && (
-              <Modal
-                open={isOpen}
-                onClose={() => {
-                  setIsOpen(false);
-                }}
-              />
-            )}
+              <div className={style.img_wrapper}>
+                <div className={style.box}>
+                  <img
+                    className={style.img}
+                    src={`${API_IMAGEURL}${movie.poster_path}`}
+                  />
+                  <div
+                    style={{
+                      backgroundColor: "white",
+                      display: "flex",
+                    }}
+                    onClick={() => {
+                      storeLikes(); // 클릭 시 좋아요
+                    }}
+                  >
+                    <ClickLikes />
+                  </div>
+                  <span className={style.text} onClick={onClickButton}>
+                    {isOpen ? "닫기" : "트레일러 보기"}
+                    {isOpen && (
+                      <Video
+                        open={isOpen}
+                        movieKey={movieKey}
+                        style={style}
+                        onClose={() => {
+                          setIsOpen(false);
+                        }}
+                      />
+                    )}
+                  </span>
+                </div>
+                <section className={style.info_wrapper}>
+                  <span className={style.title}>{movie.title}</span>
+                  <span>{movie.release_date}</span>
+                  <br />
+                  <br />
+                  <span>
+                    <img src={clock} className={style.runtime_img} />{" "}
+                  </span>
+                  <span className={style.runtime}>{movie.runtime} 분</span>
+                  <span>
+                    <img src={percent} className={style.vote_average_img} />{" "}
+                  </span>
+                  <span className={style.vote_average}>
+                    {movie.vote_average}
+                  </span>
+                  <span>
+                    <img src={like} className={style.vote_count_img} />{" "}
+                  </span>
+                  <span className={style.vote_count}>{movie.vote_count}</span>
+                  <br />
+                  <br />
+                  <span className={style.tagline}>{movie.tagline}</span>
+                  <br />
+                  <br />
+                  <span className={style.overview}>{movie.overview}</span>
+                </section>
+              </div>
+            </section>
+
+            {/* <div className="player-wrapper">
+                <ReactPlayer
+                    className="react-player"
+                    url={`https://www.youtu.be/${movieKey}`} // 플레이어 url
+                    width="800px" // 플레이어 크기 (가로)
+                    height="500px" // 플레이어 크기 (세로)
+                    playing={true} // 자동 재생 on
+                    muted={true} // 자동 재생 on
+                    controls={true} // 플레이어 컨트롤 노출 여부
+                    light={false} // 플레이어 모드
+                    pip={true} // pip 모드 설정 여부
+                />
+                </div> */}
           </div>
+          <div
+            style={{
+              backgroundColor: "white",
+              display: "flex",
+            }}
+            onClick={() => {
+              navigate(`/mypage/likes/${movie.id}`);
+            }}
+          >
+            <ClickLikes />
+          </div>
+
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link
@@ -175,7 +232,6 @@ function TabContent(props) {
     return (
       <div style={{ color: "white" }}>
         {props.movies.production_companies[0].name}
-        {/* <ReviewList></ReviewList> */}
         <Review></Review>
       </div>
     );
