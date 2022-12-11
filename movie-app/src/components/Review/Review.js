@@ -5,20 +5,12 @@ import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./Review.scss";
 
-// 테스트
-import { useLocation } from "react-router-dom";
-
 function Review() {
   let id = useParams();
   const [load, setLoad] = useState(null);
   const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
   // location test
-  const location = useLocation();
-  const reviewtest = location.content;
-
-  console.log("location :" + { reviewtest });
-  //const [rate, setRate] = React.useState(1);
 
   const getReview = async () => {
     setLoad(true); // 로딩 시작
