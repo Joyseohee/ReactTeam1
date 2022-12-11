@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import  AOS  from "aos";
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material"
 import "aos/dist/aos.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
-import Search from "../components/Search/Search";
+import Search from "./Search";
 import Loading from "../components/loading";
 import Header from "../components/header";
 
@@ -71,7 +69,6 @@ function MainMoive() {
         <>
             {/* 헤더 */}
             <Header />
-            {Search(setData)}
 
             {/* 영화렌더링 영역 */}
             <div className={style.container}>
@@ -127,8 +124,8 @@ function MainMoive() {
 
 
                                     <div key={i}>
-                                        <div className={style.movieCard}>
-                                            <img data-aos="slide-up" className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`detail/${movie.id}`) }} />
+                                        <div className={style.movieCard} data-aos="fade-up">
+                                            <img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`detail/${movie.id}`) }} />
                                             <div className={style.title}><h5>{movie.title}</h5></div>
                                             <div className={style.release_date}>{movie.release_date}</div>
                                         </div>

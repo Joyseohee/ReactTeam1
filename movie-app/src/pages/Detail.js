@@ -27,7 +27,7 @@ function Detail() {
      const API_IMAGEURL = 'https://image.tmdb.org/t/p/w400';
     
     console.log(id.id);
-
+    const [load, setLoad] = useState(null);
     const [video, setVideo] = useState([]);
     const [movieKey, setMoviekey] = useState();
     const navigate = useNavigate();
@@ -61,7 +61,6 @@ function Detail() {
       console.log("movieKey: " + movieKey);
 
       return (
-
         <>
         
         {

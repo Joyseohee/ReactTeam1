@@ -11,7 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
-import Search from "../Search/Search";
+import Search from "../../pages/Search";
 
 export default function Movie() {
   let id = useParams();
