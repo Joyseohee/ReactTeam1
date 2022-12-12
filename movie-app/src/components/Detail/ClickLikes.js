@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ClickLikes(props) {
   let id = props.id;
@@ -8,7 +8,7 @@ export default function ClickLikes(props) {
   // 좋아요
   let [recentId, setRecentId] = useState([]);
   let [likeMovie, setLikeMovie] = useState(0);
-  let [opacityLikes, setOpacityLikes] = useState();
+  let [opacityLikes, setOpacityLikes] = useState("100");
 
   // 좋아요 버튼 클릭
   const clickLikes = () => {
@@ -29,7 +29,7 @@ export default function ClickLikes(props) {
     let arr = localStorage.getItem("likestore");
     let checkId = Number(id.id);
     setLikeMovie(likeMovie + 1);
-    setOpacityLikes("100%");
+    setOpacityLikes("30%");
     localStorage.setItem(`checkLike${checkId}`, likeMovie);
     if (arr == null) {
       localStorage.setItem("likestore", JSON.stringify([checkId]));
@@ -50,7 +50,7 @@ export default function ClickLikes(props) {
     arr = JSON.parse(arr);
     let checkId = Number(id.id);
     setLikeMovie(likeMovie - 1);
-    setOpacityLikes("30%");
+    setOpacityLikes("100%");
     localStorage.removeItem(`checkLike${checkId}`, likeMovie);
     let filtered = arr.filter((element) => element !== checkId);
     arr = [...filtered];
