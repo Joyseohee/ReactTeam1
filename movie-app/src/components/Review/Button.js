@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './scss/button.module.scss';
-
+import React from "react";
+import styles from "./scss/Reviewbutton.module.scss";
 
 const buttonTypes = {
-  primary: 'primary',
-  secondary: 'secondary',
+  primary: "primary",
+  secondary: "secondary",
 };
 
-function Button({ type, variant = 'primary', children, ...rest }) {
+function Button({ type, variant = "primary", children, ...rest }) {
   return (
     <button
-      type={type === 'submit' ? 'submit' : 'button'}
+      type={type === "submit" ? "submit" : "button"}
       // className={getClasses([
       //   styles.button,
       //   styles[`button--${buttonTypes[variant]}`],
@@ -22,11 +21,24 @@ function Button({ type, variant = 'primary', children, ...rest }) {
   );
 }
 
-function SelectButton({ children, id, ...rest }) {
+function SelectButton({
+  children,
+  id,
+  authorid,
+  authorNick,
+  movie_id,
+  rate,
+  content,
+  ...rest
+}) {
   return (
     <select
       id={id}
-      // className={getClasses([styles.button, styles.button__select])}
+      authorid={authorid}
+      authorNick={authorid}
+      movie_id={authorid}
+      rate={rate}
+      content={content}
       {...rest}
     >
       {children}

@@ -5,7 +5,6 @@ import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./scss/Review.scss";
 
-
 function Review() {
   let id = useParams();
   const [load, setLoad] = useState(null);

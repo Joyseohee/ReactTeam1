@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./scss/Modal.scss";
 
-
 function Modal({ onClose }) {
   const handleClose = () => {
     onClose?.();
@@ -16,7 +15,6 @@ function Modal({ onClose }) {
           {/* <div className="ModalImg" onInsert={onInsert}> */}
           <form>
             <div className="ModalImg">
-              <ModalInsert></ModalInsert>
               <button type="submit" className="ModalPageButton">
                 <i
                   className="fa-solid fa-xmark"

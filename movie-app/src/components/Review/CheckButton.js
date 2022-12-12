@@ -1,10 +1,10 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import React from 'react';
-import styles from './scss/todoItem.module.scss';
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import React from "react";
+import styles from "./scss/ItemReview.module.scss";
 
 const checkVariants = {
   initial: {
-    color: '#fff',
+    color: "#fff",
   },
   checked: { pathLength: 1 },
   unchecked: { pathLength: 0 },
@@ -12,10 +12,10 @@ const checkVariants = {
 
 const boxVariants = {
   checked: {
-    background: 'var(--primaryPurple)',
+    background: "var(--primaryPurple)",
     transition: { duration: 0.1 },
   },
-  unchecked: { background: 'var(--gray-2)', transition: { duration: 0.1 } },
+  unchecked: { background: "var(--gray-2)", transition: { duration: 0.1 } },
 };
 
 function CheckButton({ checked, handleCheck }) {
@@ -24,7 +24,7 @@ function CheckButton({ checked, handleCheck }) {
 
   return (
     <motion.div
-      animate={checked ? 'checked' : 'unchecked'}
+      animate={checked ? "checked" : "unchecked"}
       className={styles.svgBox}
       variants={boxVariants}
       onClick={() => handleCheck()}
@@ -37,7 +37,7 @@ function CheckButton({ checked, handleCheck }) {
       >
         <motion.path
           variants={checkVariants}
-          animate={checked ? 'checked' : 'unchecked'}
+          animate={checked ? "checked" : "unchecked"}
           style={{ pathLength, opacity }}
           fill="none"
           strokeMiterlimit="10"
