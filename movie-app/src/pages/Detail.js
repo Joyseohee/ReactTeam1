@@ -13,6 +13,7 @@ import ReviewMain from "./ReviewMain";
 import clock from "../images/clock.png";
 import percent from "../images/100-percent.png";
 import like from "../images/like.png";
+import Top from "../components/Common/top";
 
 function Detail() {
   let id = useParams();
@@ -24,7 +25,6 @@ function Detail() {
   const [video, setVideo] = useState([]);
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
-
 
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
@@ -100,6 +100,7 @@ function Detail() {
             </div>
           </div>
           <div className={style.nav}>
+
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link onClick={() => {setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
@@ -113,12 +114,13 @@ function Detail() {
           </Nav>
 
           <TabContent clickTab={clickTab} movies={movie} />
+
           </div>
+          <Top></Top>
         </div>
       )}
     </>
   );
-  
 }
 
 function TabContent(props) {
@@ -126,12 +128,12 @@ function TabContent(props) {
   console.log(props.clickTab);
   const movieId = props.movies.id;
 
-  console.log("movieId"+ props.movies.id)
+  console.log("movieId" + props.movies.id);
 
   if (props.clickTab == 0) {
     return (
       <>
-        <DetailContent movieId={movieId}/>
+        <DetailContent movieId={movieId} />
       </>
     );
   }

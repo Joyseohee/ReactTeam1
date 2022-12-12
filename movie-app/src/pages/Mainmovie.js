@@ -66,21 +66,17 @@ function MainMoive() {
         setLoad(false); // 로딩 종료
     }, [page]);
 
-    const setData = (movie) => {
-        setMovie(movie);
-    };
-
     // upcoming 영화 출력
     const getUpcoming = async () => {
         const comovie = await tmdbAPI.get('movie/upcoming', { params: { page: 1 } });
         setComing(comovie.data.results)
     }
 
-    return (
-        <>
-            {/* 헤더 */}
-            <Header />
-            {Search(setData)}
+  return (
+    <>
+      {/* 헤더 */}
+      <Header />
+      {Search()}
 
             {/* upcoming */}
             <div className={style.upcoming}>

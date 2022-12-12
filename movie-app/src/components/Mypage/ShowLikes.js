@@ -17,11 +17,9 @@ export default function ShowLikes() {
     setRecentId(arr);
   }, []);
 
-  console.log(recentId);
-
   return (
-    <div>
-      <div style={{ color: "red" }}>추가 가능</div>
+    <div style={{ color: "white" }}>
+      <div>추가 가능</div>
       {recentId === null
         ? null
         : recentId.map((LikesId) => {

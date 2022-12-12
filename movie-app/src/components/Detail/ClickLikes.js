@@ -29,7 +29,6 @@ export default function ClickLikes(props) {
     let checkId = Number(id.id);
     setLikeMovie(likeMovie + 1);
     localStorage.setItem(`checkLike${checkId}`, likeMovie);
-    console.log(likeMovie);
     if (arr == null) {
       localStorage.setItem("likestore", JSON.stringify([checkId]));
       setRecentId([checkId]);
