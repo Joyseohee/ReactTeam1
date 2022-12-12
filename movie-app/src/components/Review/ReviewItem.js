@@ -45,7 +45,7 @@ function ReviewItem({ review }) {
 
   const handleDelete = () => {
     dispatch(deleteReview(review.id));
-    toast.success("review Deleted Successfully");
+    toast.success("리뷰가 삭제되었습니다.");
   };
 
   const handleUpdate = () => {
