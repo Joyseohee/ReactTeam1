@@ -4,6 +4,7 @@ import style from "./Search.module.css";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css"
+import { GoSearch } from "react-icons/go";
 
 function Search() {
 
@@ -26,15 +27,23 @@ function Search() {
             movdata = res.data.result;
         })
     }, [count])
+
+    // 검색 버튼 클릭 시 input 팝업
+    const [showinput, setShowinput] = useState(false);
+    useEffect(()=>{
+
+    },[showinput])
+
     return (
         <div>
             <div className={style.header}>
-                <input type="text" id="search" className={style.inputform}></input>
-                <button onClick={(() => {
-                    SearchName();
-                    RecommendMovie();
-                })}>검색</button>
+                {
+                    showinput ? <input type="text" id="search" className={style.inputform} /> : <input type="hidden" id="search" className={style.inputform} />
+                }
+                <GoSearch color="#fff" size="30" onClick={()=>{SearchName(); RecommendMovie(); setShowinput(true);
+                }}/>
             </div>
+            
             <div className={style.container}>
 
                 {movie.length > 0 ?
@@ -178,9 +187,9 @@ function Search() {
         }
         setMyRecommendMovie(recommendMovie);
         setRecommendFirstMovie(firstMovie);
-        console.log(recommendMovie);
-        console.log(MyrecommendMovie);
-        console.log(firstMovie);
+        // console.log(recommendMovie);
+        // console.log(MyrecommendMovie);
+        // console.log(firstMovie);
     }
 }
 
