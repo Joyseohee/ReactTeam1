@@ -11,12 +11,9 @@ export default function MyReviewDetail({ show, setShow, review }) {
     tmdbAPI.get(`movie/${review.movie_id}`).then((res) => {
       setMovieTitle(res.data.title);
     });
-    console.log(show);
   }, [show]);
 
-  useEffect(() => {
-    console.log(show);
-  }, [show]);
+  useEffect(() => {}, [show]);
   const handleClose = () => setShow(false);
 
   return (

@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import tmdbAPI from "../tmdbAPI";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import MyReviewTd from "../components/Mypage/MyReviewTd";
-import { Modal, Button } from "react-bootstrap";
 
 export default function MyReview() {
   const reviewList = useSelector((state) => state.review.reviewList);
@@ -17,6 +15,10 @@ export default function MyReview() {
     }
     return item.status === filterStatus;
   });
+
+  let [myReviewCount, setMyReviewCount] = useState(0);
+
+  useEffect(() => {}, [myReviewCount]);
 
   return (
     <>
@@ -33,10 +35,14 @@ export default function MyReview() {
                 </tr>
               </thead>
               <tbody>
-                {ItemReviewList.map((review) => {
+                {ItemReviewList.map((review, i) => {
                   return (
                     <>
-                      <MyReviewTd review={review} />
+                      <MyReviewTd
+                        review={review}
+                        index={i}
+                        key={review.movie_id}
+                      />
                     </>
                   );
                 })}

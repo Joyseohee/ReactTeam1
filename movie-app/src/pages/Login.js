@@ -1,8 +1,9 @@
-import "./css/Mypage.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import Join from "./Join";
+import LoginButton from "../components/Login/LoginButton";
+import MoveToJoin from "../components/Login/MoveToJoin";
+import LoginIdInput from "../components/Login/LoginIdInput";
+import LoginPwdInput from "../components/Login/LoginPwdInput";
 
 export default function Mypage() {
   const navigate = useNavigate();
@@ -56,32 +57,12 @@ export default function Mypage() {
         </div>
         <div className="row id justify-content-center">
           <div className="col-lg-10">
-            <input
-              type="text"
-              className="form-control id"
-              name="user_id"
-              placeholder="아이디"
-              required
-              autocomplete="off"
-              onBlur={(e) => {
-                loginInputId(e.target.value);
-              }}
-            />
+            <LoginIdInput loginInputId={loginInputId} />
           </div>
         </div>
         <div className="row pwd justify-content-center">
           <div className="col-lg-10">
-            <input
-              type="password"
-              className="form-control pwd"
-              name="user_password"
-              placeholder="비밀번호"
-              required
-              autocomplete="off"
-              onBlur={(e) => {
-                loginInputPwd(e.target.value);
-              }}
-            />
+            <LoginPwdInput loginInputPwd={loginInputPwd} />
           </div>
           <div className="row error justify-content-center">
             <div className="col-lg-10"></div>
@@ -89,24 +70,12 @@ export default function Mypage() {
         </div>
         <div className="row button justify-content-center">
           <div className="col-lg-10">
-            <button
-              className="w-100 btn btn-lg btn-dark"
-              type="submit"
-              onClick={(e) => {
-                Login(e.target.value);
-              }}
-            >
-              로그인
-            </button>
+            <LoginButton Login={Login} />
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-lg-10">
-            <span>
-              <a className="link" href="/join">
-                회원가입
-              </a>
-            </span>
+            <MoveToJoin />
           </div>
         </div>
       </div>
