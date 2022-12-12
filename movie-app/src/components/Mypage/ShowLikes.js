@@ -10,7 +10,7 @@ export default function ShowLikes() {
   let [recentId, setRecentId] = useState([]);
 
   useEffect(() => {
-    let arr = localStorage.getItem("store");
+    let arr = localStorage.getItem("likestore");
     arr = JSON.parse(arr);
     arr = new Set(arr);
     arr = [...arr];
