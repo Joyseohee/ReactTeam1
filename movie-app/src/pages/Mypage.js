@@ -8,7 +8,7 @@ export default function Mypage() {
 
   return (
     <>
-      <div>
+      <div style={{ color: "white" }}>
         <MypgHeader />
         <div className="container-fluid text-center">
           <div className="row">

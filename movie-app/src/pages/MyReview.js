@@ -23,7 +23,7 @@ export default function MyReview() {
       <div class="container text-center">
         <div class="row">
           <div class="col">
-            <table class="table">
+            <table class="table" style={{ color: "white" }}>
               <thead>
                 <tr>
                   <th>글번호</th>
