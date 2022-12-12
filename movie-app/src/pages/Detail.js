@@ -71,7 +71,7 @@ function Detail() {
             <div
               className={style.inner}
               style={{
-                backgroundImage: `url(${API_IMAGEURL}${movie.backdrop_path})`,
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
