@@ -1,23 +1,16 @@
 
-.back{
-    background-color:  #20232a;
-}
-
-.background{
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-}
 
 .inner{
     color: #fff;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 12%;
+    margin-right: 12%; 
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .img_wrapper{
     width: 100%;
     display: flex;
+    
 }
 
 .info_wrapper{
@@ -56,11 +49,6 @@
     border-bottom: 1px solid var(--primaryColor);
     background-position: left calc((50vw - 170px) - 340px) top;
     background-size: cover;
-}
-
-
-.wrapper{
-    display: flex;
 }
 
 .title{
@@ -106,8 +94,4 @@
 .vote_count_img{
     width: 50px;
     height: 50px;
-}
-
-.player_wrapper{
-    position: absolute;
 }

@@ -1,33 +1,26 @@
-.profile {
-  display: flex;
-  background-color: antiquewhite;
+.col,
+.row {
+  color: aliceblue;
+  border: 2px solid snow;
 }
 
-Image {
-  border: 1px solid salmon;
+.photo {
+  border-radius: 50%;
+  left: 0;
+  top: 0;
   display: block;
-  position: absolute;
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 50px auto;
   background: url(http://img.cgv.co.kr/R2014/images/common/default_profile.gif)
     0 0 no-repeat;
 }
 
-.photoWrap {
-  width: 300px;
-  height: 300px;
-  background-color: brown;
-}
-
-.Info {
-  width: 100%;
-  background-color: yellow;
-}
-
 .accountName {
-  height: 100px;
-  background-color: green;
+  height: 140px;
 }
 
 .accountDetail {
-  height: 200px;
-  background-color: yellowgreen;
+  height: 140px;
 }

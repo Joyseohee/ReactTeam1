@@ -1,13 +1,7 @@
 import "./css/Mypage.css";
 import { useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import MyReview from "../components/Mypage/MyReview";
-import Likes from "../components/Mypage/Likes";
 import MypgHeader from "../components/Mypage/MypgHeader";
 import MyInfo from "../components/Mypage/MyInfo";
-import { Button, Nav } from "react-bootstrap";
 
 export default function Mypage() {
   const navigate = useNavigate();
@@ -15,43 +9,35 @@ export default function Mypage() {
   return (
     <>
       <MypgHeader />
-      <Container>
-        <Row>
-          <Col md={1} lg={2} />
-          <Col md={10} lg={8}>
-            <div className="infoComp">
-              <MyInfo />
-            </div>
-          </Col>
-          <Col md={1} lg={2} />
-        </Row>
-        <Row>
-          <Col md={1} lg={2} />
-          <Col md={5} lg={4}>
-            {/* <Likes /> */}
-            <div
-              className="likes"
-              onClick={() => {
-                navigate(`/likes`);
-              }}
-            >
-              기대하는 영화
-            </div>
-          </Col>
-          <Col md={5} lg={4}>
-            {/* <MyReview /> */}
-            <div
-              className="myreviews"
-              onClick={() => {
-                navigate(`/myreview`);
-              }}
-            >
-              내가 쓴 리뷰
-            </div>
-          </Col>
-          <Col md={1} lg={2} />
-        </Row>
-      </Container>
+      <div className="container-fluid text-center">
+        <div className="row">
+          <div className="col col-lg-2 col-sm-1"></div>
+          <div className="infoComp col col-lg-8 col-sm-10">
+            <MyInfo />
+          </div>
+          <div className="col col-lg-2 col-sm-1"></div>
+        </div>
+        <div className="row">
+          <div className="col col-lg-2 col-sm-1"></div>
+          <div
+            className="likes col col-lg-4 col-sm-5 "
+            onClick={() => {
+              navigate(`/likes`);
+            }}
+          >
+            기대하는 영화
+          </div>
+          <div
+            className="myreviews col col-lg-4 col-sm-5 "
+            onClick={() => {
+              navigate(`/myreview`);
+            }}
+          >
+            내가 쓴 리뷰
+          </div>
+          <div className="col col-lg-2 col-sm-1"></div>
+        </div>
+      </div>
     </>
   );
 }
