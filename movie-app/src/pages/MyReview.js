@@ -1,47 +1,51 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MyReview() {
+  const reviewList = useSelector((state) => state.review.reviewList);
+  const filterStatus = useSelector((state) => state.review.filterStatus);
+
+  const sortedReviewList = [...reviewList];
+  sortedReviewList.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+  const ItemReviewList = sortedReviewList.filter((item) => {
+    if (filterStatus === "all") {
+      return true;
+    }
+    return item.status === filterStatus;
+  });
+
+  let [movieTitle, setMovieTitle] = useState();
+  useEffect(() => {}, []);
+
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
-            <Table striped>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <table class="table">
               <thead>
                 <tr>
                   <th>글번호</th>
                   <th>영화 제목</th>
                   <th>작성일</th>
-                  <th>Last Name</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Larry the Bird</td>
-                  <td>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {ItemReviewList.map((review) => {
+                  return (
+                    <tr>
+                      <td>1</td>
+                      <td>{review.movie_id}</td>
+                      <td>{review.date}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+            </table>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

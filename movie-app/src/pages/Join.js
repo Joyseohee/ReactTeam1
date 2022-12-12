@@ -1,8 +1,6 @@
 import "./css/Mypage.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import JoinButton from "../components/JoinButton";
 
 export default function Join() {
   const navigate = useNavigate();
@@ -10,15 +8,6 @@ export default function Join() {
   let [loginId, setLoginId] = useState();
   let [loginPwd, setLoginPwd] = useState();
   let [loginNick, setLoginNick] = useState();
-
-  //   const Login = () => {
-  //     localStorage.setItem("accountId", "team1");
-  //     localStorage.setItem("accountPwd", "0000");
-  //     localStorage.setItem("accountNick", "1팀");
-  //     setLoginId(localStorage.getItem("accountId"));
-  //     setLoginPwd(localStorage.getItem("accountPwd"));
-  //     setLoginNick(localStorage.getItem("accountNick"));
-  //   };
 
   const Join = () => {
     localStorage.setItem("accountId", loginId);
