@@ -11,8 +11,6 @@ export default function Mypage() {
   let [loginPwd, setLoginPwd] = useState();
 
   const Login = () => {
-    console.log(loginIdOk);
-    console.log(loginPwdOk);
     if (loginIdOk && loginPwdOk) {
       alert("로그인에 성공했습니다");
       navigate("/");

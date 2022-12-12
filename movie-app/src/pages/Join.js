@@ -77,9 +77,6 @@ export default function Join() {
     setLoginId(loginId);
     setLoginPwd(loginPwd);
     setLoginNick(loginNick);
-    console.log("여기" + loginId);
-    console.log(loginPwd);
-    console.log(loginNick);
   });
 
   return (

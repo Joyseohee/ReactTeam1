@@ -17,8 +17,6 @@ export default function ShowLikes() {
     setRecentId(arr);
   }, []);
 
-  console.log(recentId);
-
   return (
     <div style={{ color: "white" }}>
       <div>추가 가능</div>
