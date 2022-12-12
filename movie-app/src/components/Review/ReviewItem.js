@@ -54,7 +54,7 @@ function ReviewItem({ review }) {
 
   return (
     <>
-      {id.id === review.movie_id ? (
+      {id.id === review.movie_id ? ( // 조건부 (원하는 )
         <div className="review-test">
           <motion.div className={styles.item} variants={child}>
             <div className={styles.todoDetails}>
