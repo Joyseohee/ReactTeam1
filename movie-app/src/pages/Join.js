@@ -21,9 +21,9 @@ export default function Join() {
   //   };
 
   const Join = () => {
-    localStorage.setItem("accountId", "team1");
-    localStorage.setItem("accountPwd", "0000");
-    localStorage.setItem("accountNick", "1팀");
+    localStorage.setItem("accountId", loginId);
+    localStorage.setItem("accountPwd", loginPwd);
+    localStorage.setItem("accountNick", loginNick);
     setLoginId(localStorage.getItem("accountId"));
     setLoginPwd(localStorage.getItem("accountPwd"));
     setLoginNick(localStorage.getItem("accountNick"));
@@ -39,6 +39,10 @@ export default function Join() {
     setLoginId(formInputId);
   };
 
+  const inputNick = (nickName) => {
+    setLoginNick(nickName);
+  };
+
   let [inputPwd, setInputPwd] = useState();
   let [isPwdOk, setIsPwdOk] = useState("is-invalid");
   const pwdCheck = (formInputPwd) => {
@@ -51,7 +55,7 @@ export default function Join() {
   let [isPwd2Valid, setIsPwd2Valid] = useState(false);
   const pwdCheckProper = (formInputPwd) => {
     setIsPwd2Valid(formInputPwd == inputPwd);
-    setLoginPwd();
+    setLoginPwd(inputPwd);
   };
 
   let [disabledJoinBtn, setDisabledJoinBtn] = useState(false);
@@ -131,8 +135,8 @@ export default function Join() {
               placeholder="닉네임"
               required
               autocomplete="off"
-              onChange={(e) => {
-                // inputNick(e.target.value);
+              onBlur={(e) => {
+                inputNick(e.target.value);
               }}
             />
           </div>

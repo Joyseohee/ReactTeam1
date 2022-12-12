@@ -9,15 +9,39 @@ export default function Mypage() {
 
   let [loginId, setLoginId] = useState();
   let [loginPwd, setLoginPwd] = useState();
-  let [loginNick, setLoginNick] = useState();
 
   const Login = () => {
-    localStorage.setItem("accountId", "team1");
-    localStorage.setItem("accountPwd", "0000");
-    localStorage.setItem("accountNick", "1팀");
+    console.log(loginIdOk);
+    console.log(loginPwdOk);
+    if (loginIdOk && loginPwdOk) {
+      alert("로그인에 성공했습니다");
+      navigate("/");
+    } else {
+      alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요");
+    }
+  };
+
+  useEffect(() => {
     setLoginId(localStorage.getItem("accountId"));
     setLoginPwd(localStorage.getItem("accountPwd"));
-    setLoginNick(localStorage.getItem("accountNick"));
+  });
+
+  let [loginIdOk, setloginIdOk] = useState(false);
+  let [loginPwdOk, setloginPwdOk] = useState(false);
+
+  const loginInputId = (inputId) => {
+    if (loginId == inputId) {
+      setloginIdOk(true);
+    } else {
+      setloginIdOk(false);
+    }
+  };
+  const loginInputPwd = (inputPwd) => {
+    if (loginPwd == inputPwd) {
+      setloginPwdOk(true);
+    } else {
+      setloginPwdOk(false);
+    }
   };
 
   return (
@@ -39,6 +63,9 @@ export default function Mypage() {
               placeholder="아이디"
               required
               autocomplete="off"
+              onBlur={(e) => {
+                loginInputId(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -51,17 +78,13 @@ export default function Mypage() {
               placeholder="비밀번호"
               required
               autocomplete="off"
+              onBlur={(e) => {
+                loginInputPwd(e.target.value);
+              }}
             />
           </div>
           <div className="row error justify-content-center">
-            <div className="col-lg-10">
-              {/* <c:if test="${param.error != null}">
-               <p>아이디와 비밀번호를 확인해주세요</p>
-               ${prevPage}
-            </c:if>
-            <c:if test="${param.error == null}">
-            </c:if> */}
-            </div>
+            <div className="col-lg-10"></div>
           </div>
         </div>
         <div className="row button justify-content-center">
@@ -69,8 +92,8 @@ export default function Mypage() {
             <button
               className="w-100 btn btn-lg btn-dark"
               type="submit"
-              onClick={() => {
-                Login();
+              onClick={(e) => {
+                Login(e.target.value);
               }}
             >
               로그인
