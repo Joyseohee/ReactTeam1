@@ -45,10 +45,10 @@ function Review() {
         .reverse()
         .map((movie, i) => {
           return (
-            <div className="Review-box">
+            <div className="Review-box" text-align="initial">
               <Alert variant="light">
-                <Alert.Heading>
-                  {movie.author}
+                <Alert.Heading className="wantFlex">
+                  &nbsp; {movie.author} &nbsp;&nbsp; 평점 :{" "}
                   <Rating
                     // setRate={setRate}
                     rate={movie.author_details.rating / 2}
@@ -56,7 +56,7 @@ function Review() {
                 </Alert.Heading>
                 <p>{movie.content}</p>
                 <hr />
-                <p className="mb-0">작성일 : {movie.created_at}</p>
+                <p className="mb-0">&nbsp;작성일 : {movie.created_at}</p>
               </Alert>
             </div>
           );
