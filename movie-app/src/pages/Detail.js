@@ -4,6 +4,7 @@ import style from "./Detail.module.scss";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
 import Video from "./Video";
+import DetailContent from "./DetailContent";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
@@ -20,11 +21,11 @@ function Detail() {
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   console.log(id.id);
-
   const [load, setLoad] = useState(null);
   const [video, setVideo] = useState([]);
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
+
 
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
@@ -39,6 +40,7 @@ function Detail() {
 
   useEffect(() => {
     getDetailmv();
+    //getActor();
   }, []);
 
   let [clickTab, setClickTab] = useState(0);
@@ -47,7 +49,6 @@ function Detail() {
     tmdbAPI
       .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
       .then((res) => {
-        console.log(111212);
         console.log(res.data.results);
         setVideo(res.data.results);
         setMoviekey(res.data.results[0].key);
@@ -55,8 +56,18 @@ function Detail() {
   }, []);
   console.log("movieKey: " + movieKey);
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [actor,setActor] = useState([]);
+  // const getActor = async () => {
+  //   setLoad(true); // 로딩 시작
+  //   const res = await tmdbAPI.get(`movie/${id.id}/credits`, { params: { language: "en-US" } });
+  //   if (res.data) {
+  //     setActor(res.data.cast);
+  //   } else {
+  //   }
+  //   setLoad(false); // 로딩 종료
+  // };
 
+  const [isOpen, setIsOpen] = useState(false);
   const onClickButton = () => {
     setIsOpen(!isOpen);
   };
@@ -67,6 +78,7 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
+
           <div className={style.header}>
             <div
               className={style.inner}
@@ -125,7 +137,7 @@ function Detail() {
               </div>
             </div>
           </div>
-
+          <div className={style.nav}>
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link
@@ -159,17 +171,27 @@ function Detail() {
             </Nav.Item>
           </Nav>
           <TabContent clickTab={clickTab} movies={movie} />
+          </div>
         </div>
       )}
     </>
   );
+  
 }
 
 function TabContent(props) {
   const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
   console.log(props.clickTab);
+  const movieId = props.movies.id;
+
+  console.log("movieId"+ props.movies.id)
+
   if (props.clickTab == 0) {
-    return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
+    return (
+      <>
+        <DetailContent movieId={movieId}/>
+      </>
+    );
   }
   if (props.clickTab == 1) {
     return <div style={{ color: "white" }}>{props.movies.tagline}</div>;

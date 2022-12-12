@@ -1,4 +1,10 @@
 .player_wrapper{
-    /* background-position: top; */
+    text-align: right;
     position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close{
+    width: 65px;
+    height: 65px;
 }
