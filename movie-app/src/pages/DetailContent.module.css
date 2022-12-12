@@ -1,17 +1,3 @@
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
 
 .swiper {
   width: 100%;
@@ -38,12 +24,12 @@ body {
   align-items: center;
 }
 
-/* .swiper-slide img {
+.swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-} */
+}
 
 .container {
     display: flex;
@@ -52,6 +38,19 @@ body {
     align-items: center;
     margin: 0 6%;
 }
-.movieCard {
-    height: 525px;
+
+.actor{
+    width: 150px;
+    height: 220px;
+    border-radius: 10%;
+    box-shadow: 5px 5px 8px grey;
+}
+
+.actor:hover{
+    transform: scale(1.1);
+}
+
+.profile{
+    width: 150px;
+    height: 200px;
 }
