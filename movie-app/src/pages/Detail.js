@@ -4,12 +4,12 @@ import style from "./Detail.module.scss";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
 import Video from "./Video";
+import DetailContent from "./DetailContent";
 import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Review from "../components/Review/Review";
-
+import ReviewMain from "./ReviewMain";
 import clock from "../images/clock.png";
 import percent from "../images/100-percent.png";
 import like from "../images/like.png";
@@ -20,46 +20,26 @@ function Detail() {
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   console.log(id.id);
-
   const [load, setLoad] = useState(null);
   const [video, setVideo] = useState([]);
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
 
+
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
     const res = await tmdbAPI.get(`movie/${id.id}`);
     if (res.data) {
-      setMovie(res.data); // console.log(res.data);
+      setMovie(res.data);
+      console.log(res.data);
     } else {
     }
     setLoad(false); // 로딩 종료
   };
 
-  // 좋아요 저장 함수
-  let [recentId, setRecentId] = useState([]);
-  const storeLikes = () => {
-    let arr = localStorage.getItem("store");
-    // let checkId = Number(id.id);
-    let checkId = Number(id.id);
-
-    if (arr == null) {
-      localStorage.setItem("store", JSON.stringify([checkId]));
-      setRecentId([checkId]);
-    } else {
-      arr = JSON.parse(arr);
-      arr.push(checkId);
-      arr = new Set(arr);
-      arr = [...arr];
-      console.log(arr);
-
-      localStorage.setItem("store", JSON.stringify(arr));
-      setRecentId(arr);
-    }
-  };
-
   useEffect(() => {
     getDetailmv();
+    //getActor();
   }, []);
 
   let [clickTab, setClickTab] = useState(0);
@@ -68,7 +48,6 @@ function Detail() {
     tmdbAPI
       .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
       .then((res) => {
-        console.log(111212);
         console.log(res.data.results);
         setVideo(res.data.results);
         setMoviekey(res.data.results[0].key);
@@ -76,8 +55,18 @@ function Detail() {
   }, []);
   console.log("movieKey: " + movieKey);
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [actor,setActor] = useState([]);
+  // const getActor = async () => {
+  //   setLoad(true); // 로딩 시작
+  //   const res = await tmdbAPI.get(`movie/${id.id}/credits`, { params: { language: "en-US" } });
+  //   if (res.data) {
+  //     setActor(res.data.cast);
+  //   } else {
+  //   }
+  //   setLoad(false); // 로딩 종료
+  // };
 
+  const [isOpen, setIsOpen] = useState(false);
   const onClickButton = () => {
     setIsOpen(!isOpen);
   };
@@ -88,31 +77,24 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
+
           <div className={style.header}>
-            <section className={style.inner}>
-              <img
-                className={style.background}
-                src={`${API_IMAGEURL}${movie.backdrop_path}`}
-              />
+            <div
+              className={style.inner}
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            >
               <div className={style.img_wrapper}>
                 <div className={style.box}>
                   <img
                     className={style.img}
                     src={`${API_IMAGEURL}${movie.poster_path}`}
                   />
-                  <div
-                    style={{
-                      backgroundColor: "white",
-                      display: "flex",
-                    }}
-                    onClick={() => {
-                      storeLikes(); // 클릭 시 좋아요
-                    }}
-                  >
-                    <ClickLikes />
-                  </div>
                   <span className={style.text} onClick={onClickButton}>
-                    {isOpen ? "닫기" : "트레일러 보기"}
+                    트레일러 보기
                     {isOpen && (
                       <Video
                         open={isOpen}
@@ -141,9 +123,9 @@ function Detail() {
                     {movie.vote_average}
                   </span>
                   <span>
-                    <img src={like} className={style.vote_count_img} />{" "}
+                    <ClickLikes id={id} like={like} style={style} />
                   </span>
-                  <span className={style.vote_count}>{movie.vote_count}</span>
+                  <span className={style.vote_count}>좋아요</span>
                   <br />
                   <br />
                   <span className={style.tagline}>{movie.tagline}</span>
@@ -152,34 +134,9 @@ function Detail() {
                   <span className={style.overview}>{movie.overview}</span>
                 </section>
               </div>
-            </section>
-
-            {/* <div className="player-wrapper">
-                <ReactPlayer
-                    className="react-player"
-                    url={`https://www.youtu.be/${movieKey}`} // 플레이어 url
-                    width="800px" // 플레이어 크기 (가로)
-                    height="500px" // 플레이어 크기 (세로)
-                    playing={true} // 자동 재생 on
-                    muted={true} // 자동 재생 on
-                    controls={true} // 플레이어 컨트롤 노출 여부
-                    light={false} // 플레이어 모드
-                    pip={true} // pip 모드 설정 여부
-                />
-                </div> */}
+            </div>
           </div>
-          <div
-            style={{
-              backgroundColor: "white",
-              display: "flex",
-            }}
-            onClick={() => {
-              navigate(`/mypage/likes/${movie.id}`);
-            }}
-          >
-            <ClickLikes />
-          </div>
-
+          <div className={style.nav}>
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
               <Nav.Link
@@ -214,16 +171,27 @@ function Detail() {
           </Nav>
 
           <TabContent clickTab={clickTab} movies={movie} />
+          </div>
         </div>
       )}
     </>
   );
+  
 }
 
 function TabContent(props) {
+  const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
   console.log(props.clickTab);
+  const movieId = props.movies.id;
+
+  console.log("movieId"+ props.movies.id)
+
   if (props.clickTab == 0) {
-    return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
+    return (
+      <>
+        <DetailContent movieId={movieId}/>
+      </>
+    );
   }
   if (props.clickTab == 1) {
     return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
@@ -232,7 +200,7 @@ function TabContent(props) {
     return (
       <div style={{ color: "white" }}>
         {props.movies.production_companies[0].name}
-        <Review></Review>
+        <ReviewMain></ReviewMain>
       </div>
     );
   }
