@@ -5,6 +5,10 @@
     margin-top: 6rem;
     border-radius: 4px;
     overflow: hidden;
+    background: ivory;
+    color :black;
+    
+
 }
 
 .ReviewList-title{
@@ -20,22 +24,4 @@
 .ReviewList-ListTable{
     background: rgb(246, 246, 246);
     padding: 3rem;
-}
-
-.ReviewList-name{
-    font-size: 2rem;
-    display: inline-block;
-    font-display: initial;
-   // text-align: left;
-}
-
-.ReviewList-content{
-    font-size: 2rem;
-    //text-align: center;
-}
-
-.ReviewList-count{
-    font-size: 2rem;
-    //display: flex;
-    //text-align: right;
 }

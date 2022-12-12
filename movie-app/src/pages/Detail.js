@@ -8,8 +8,7 @@ import ReactPlayer from "react-player";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Review from "../components/Review/Review";
-
+import ReviewMain from "./ReviewMain";
 import clock from "../images/clock.png";
 import percent from "../images/100-percent.png";
 import like from "../images/like.png";
@@ -167,6 +166,7 @@ function Detail() {
 }
 
 function TabContent(props) {
+  const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
   console.log(props.clickTab);
   if (props.clickTab == 0) {
     return <div style={{ color: "white" }}>{props.movies.original_title}</div>;
@@ -178,7 +178,7 @@ function TabContent(props) {
     return (
       <div style={{ color: "white" }}>
         {props.movies.production_companies[0].name}
-        <Review></Review>
+        <ReviewMain></ReviewMain>
       </div>
     );
   }
