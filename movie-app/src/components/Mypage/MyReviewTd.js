@@ -2,7 +2,6 @@ import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyReviewDetail from "./MyReviewDetail";
-import { Modal, Button } from "react-bootstrap";
 
 export default function MyReviewTd({ review, index }) {
   let [movieTitle, setMovieTitle] = useState();

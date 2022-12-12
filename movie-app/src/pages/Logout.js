@@ -1,14 +1,8 @@
-import "./css/Mypage.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import Join from "./Join";
 
 export default function Mypage() {
   const navigate = useNavigate();
-
-  let [loginId, setLoginId] = useState();
-  let [loginPwd, setLoginPwd] = useState();
 
   const Logout = () => {
     localStorage.setItem("loginCheck", 0);

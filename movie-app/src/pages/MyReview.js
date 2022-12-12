@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import tmdbAPI from "../tmdbAPI";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import MyReviewTd from "../components/Mypage/MyReviewTd";
-import { Modal, Button } from "react-bootstrap";
 
 export default function MyReview() {
   const reviewList = useSelector((state) => state.review.reviewList);

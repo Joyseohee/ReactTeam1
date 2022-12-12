@@ -1,9 +1,4 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Movie from "../Common/Movie";
 
 export default function ShowLikes() {
