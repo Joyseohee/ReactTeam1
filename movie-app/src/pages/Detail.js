@@ -37,27 +37,6 @@ function Detail() {
     setLoad(false); // 로딩 종료
   };
 
-  // 좋아요 저장 함수
-  let [recentId, setRecentId] = useState([]);
-  const storeLikes = () => {
-    let arr = localStorage.getItem("store");
-    let checkId = Number(id.id);
-
-    if (arr == null) {
-      localStorage.setItem("store", JSON.stringify([checkId]));
-      setRecentId([checkId]);
-    } else {
-      arr = JSON.parse(arr);
-      arr.push(checkId);
-      arr = new Set(arr);
-      arr = [...arr];
-      console.log(arr);
-
-      localStorage.setItem("store", JSON.stringify(arr));
-      setRecentId(arr);
-    }
-  };
-
   useEffect(() => {
     getDetailmv();
   }, []);
@@ -88,53 +67,95 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-            <div className={style.header}>
-            <div className={style.inner} style={{backgroundImage: `url(${API_IMAGEURL}${movie.backdrop_path})`, backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
-                    <div className={style.img_wrapper}>
-                        <div className={style.box}>
-                            <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
-                            <span className={style.text}
-                        onClick={onClickButton}>트레일러 보기{isOpen&&<Video open={isOpen} movieKey={movieKey}
+          <div className={style.header}>
+            <div
+              className={style.inner}
+              style={{
+                backgroundImage: `url(${API_IMAGEURL}${movie.backdrop_path})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+            >
+              <div className={style.img_wrapper}>
+                <div className={style.box}>
+                  <img
+                    className={style.img}
+                    src={`${API_IMAGEURL}${movie.poster_path}`}
+                  />
+                  <span className={style.text} onClick={onClickButton}>
+                    트레일러 보기
+                    {isOpen && (
+                      <Video
+                        open={isOpen}
+                        movieKey={movieKey}
                         style={style}
                         onClose={() => {
                           setIsOpen(false);
-                        }}/>}
-                      </span>
-                        </div>
-                        <section className={style.info_wrapper}>
-                            
-                                <span className={style.title}>{movie.title}</span><span>{movie.release_date}</span><br /><br />
-                                <span><img src={clock} className={style.runtime_img} /> </span><span className={style.runtime}>{movie.runtime} 분</span>
-                                <span><img src={percent} className={style.vote_average_img} /> </span><span className={style.vote_average}>{movie.vote_average}</span>
-                                <span><img src={like} className={style.vote_count_img} onClick={() => {
-                        storeLikes(); // 클릭 시 좋아요
-                      }}/> </span><span className={style.vote_count}>{movie.vote_count}</span><br /><br />
-                                <span className={style.tagline}>{movie.tagline}</span><br /><br />
-                                <span className={style.overview}>{movie.overview}</span>
-                            
-                        </section>
-                    </div>
+                        }}
+                      />
+                    )}
+                  </span>
                 </div>
+                <section className={style.info_wrapper}>
+                  <span className={style.title}>{movie.title}</span>
+                  <span>{movie.release_date}</span>
+                  <br />
+                  <br />
+                  <span>
+                    <img src={clock} className={style.runtime_img} />{" "}
+                  </span>
+                  <span className={style.runtime}>{movie.runtime} 분</span>
+                  <span>
+                    <img src={percent} className={style.vote_average_img} />{" "}
+                  </span>
+                  <span className={style.vote_average}>
+                    {movie.vote_average}
+                  </span>
+                  <span>
+                    <ClickLikes id={id} like={like} style={style} />
+                  </span>
+                  <span className={style.vote_count}>좋아요</span>
+                  <br />
+                  <br />
+                  <span className={style.tagline}>{movie.tagline}</span>
+                  <br />
+                  <br />
+                  <span className={style.overview}>{movie.overview}</span>
+                </section>
+              </div>
             </div>
-                    <div style={{
-                        backgroundColor: "white",
-                        display: "flex",
-                    }}
-                    onClick={() => {
-                        navigate(`/mypage/likes/${movie.id}`);
-                    }}
-                    >
-                    <ClickLikes />
-                    </div>
-          
+          </div>
+
           <Nav fill variant="tabs" defaultActiveKey="link-0">
             <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
-            </Nav.Item>
-            <Nav.Item><Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">관련소식</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(0);
+                }}
+                eventKey="link-0"
+              >
+                상세정보
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(2);}}eventKey="link-2">실관람평</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(1);
+                }}
+                eventKey="link-1"
+              >
+                관련소식
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setClickTab(2);
+                }}
+                eventKey="link-2"
+              >
+                실관람평
+              </Nav.Link>
             </Nav.Item>
           </Nav>
 
