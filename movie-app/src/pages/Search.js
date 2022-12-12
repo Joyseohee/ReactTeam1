@@ -54,15 +54,15 @@ function Search() {
                     recommendFirstMovie.map((firstMovie, i) => {
                         return (
                             <>
-                                <div className={style.recommendMovieList}> <h2>{firstMovie.title}과 비슷한 장르</h2>
+                                <div className={style.recommendMovieList}> <h2>{firstMovie.original_title}과 비슷한 장르</h2>
                                     <div className={style.firstMovieCard} data-aos="fade-up">
-                                        <img className={style.moviePoster}
+                                        <img className={style.firstmoviePoster}
                                             src={`${API_IMAGEURL}${firstMovie.poster_path}`}
                                             onClick={() => { navigate(`/detail/${firstMovie.id}`) }} />
                                         <div className={style.recommendcontainer}>
                                         {MyrecommendMovie[i].map((recommendmovie, i) => { //2차원 배열을 맵으로 돌리기 위해
                                             return (
-                                                <div className={style.recommendmovieCard} data-aos="fade-right">
+                                                <div className={style.recommendmovieCard} data-aos="slide-right">
                                                     <img className={style.moviePoster}
                                                         src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
                                                 </div>
@@ -157,6 +157,8 @@ function Search() {
 
         //console.log(Object.keys(recommendMovieInfo[130]))
 
+        console.log(recommendMovieInfo[0][movietitle[0]].id);
+        console.log(firstMovie[0].id);
         for (let i = 0; i < movietitle.length; i++) {
             randommovie = [];
             random2 = [];
@@ -164,7 +166,8 @@ function Search() {
                 let random = Math.floor(Math.random() * recommendMovieInfo.length);
                 if (!random2.includes(random)) { // 같은 영화 추천을 하지 않기 위해서
                     random2.push(random);
-                    if (Object.keys(recommendMovieInfo[random])[0] !== movietitle[i]) {
+                    if ((Object.keys(recommendMovieInfo[random])[0] !== movietitle[i]) || 
+                    recommendMovieInfo[random][movietitle[i]].id === firstMovie[i].id) { // 같은 장르가 아니거나, 같은 아이디(같은 영화가 들어갔을 때)
                         j--;
                     }
                     else {
@@ -178,9 +181,7 @@ function Search() {
         }
         setMyRecommendMovie(recommendMovie);
         setRecommendFirstMovie(firstMovie);
-        console.log(recommendMovie);
-        console.log(MyrecommendMovie);
-        console.log(firstMovie);
+        
     }
 }
 
