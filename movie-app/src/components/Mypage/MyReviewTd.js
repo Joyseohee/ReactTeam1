@@ -1,20 +1,22 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Movie from "../Common/Movie";
+import { useNavigate } from "react-router-dom";
+import MyReviewDetail from "./MyReviewDetail";
+import { Modal, Button } from "react-bootstrap";
 
-export default function MyReviewTd(review) {
+export default function MyReviewTd({ review }) {
   let [movieTitle, setMovieTitle] = useState();
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    tmdbAPI.get(`movie/${review.review.movie_id}`).then((res) => {
+    tmdbAPI.get(`movie/${review.movie_id}`).then((res) => {
       setMovieTitle(res.data.title);
     });
-  }, []);
+    console.log(show);
+  }, [show]);
+
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -22,20 +24,21 @@ export default function MyReviewTd(review) {
         <td>1</td>
         <td
           onClick={() => {
-            navigate(`/detail/${review.review.movie_id}`);
+            navigate(`/detail/${review.movie_id}`);
           }}
         >
           {movieTitle}
         </td>
         <td
           onClick={() => {
-            navigate(`/detail/${review.review.movie_id}`);
+            handleShow();
           }}
         >
-          {review.review.content}
+          {review.content}
         </td>
-        <td>{review.review.date}</td>
+        <td>{review.date}</td>
       </tr>
+      <MyReviewDetail show={show} setShow={setShow} review={review} />
     </>
   );
 }
