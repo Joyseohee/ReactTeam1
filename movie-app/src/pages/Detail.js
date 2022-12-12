@@ -36,27 +36,6 @@ function Detail() {
     setLoad(false); // 로딩 종료
   };
 
-  // 좋아요 저장 함수
-  let [recentId, setRecentId] = useState([]);
-  const storeLikes = () => {
-    let arr = localStorage.getItem("store");
-    let checkId = Number(id.id);
-
-    if (arr == null) {
-      localStorage.setItem("store", JSON.stringify([checkId]));
-      setRecentId([checkId]);
-    } else {
-      arr = JSON.parse(arr);
-      arr.push(checkId);
-      arr = new Set(arr);
-      arr = [...arr];
-      console.log(arr);
-
-      localStorage.setItem("store", JSON.stringify(arr));
-      setRecentId(arr);
-    }
-  };
-
   useEffect(() => {
     getDetailmv();
   }, []);
@@ -91,7 +70,7 @@ function Detail() {
             <div
               className={style.inner}
               style={{
-                backgroundImage: `url(${API_IMAGEURL}${movie.backdrop_path})`,
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
@@ -132,15 +111,9 @@ function Detail() {
                     {movie.vote_average}
                   </span>
                   <span>
-                    <img
-                      src={like}
-                      className={style.vote_count_img}
-                      onClick={() => {
-                        storeLikes(); // 클릭 시 좋아요
-                      }}
-                    />{" "}
+                    <ClickLikes id={id} like={like} style={style} />
                   </span>
-                  <span className={style.vote_count}>{movie.vote_count}</span>
+                  <span className={style.vote_count}>좋아요</span>
                   <br />
                   <br />
                   <span className={style.tagline}>{movie.tagline}</span>
@@ -150,17 +123,6 @@ function Detail() {
                 </section>
               </div>
             </div>
-          </div>
-          <div
-            style={{
-              backgroundColor: "white",
-              display: "flex",
-            }}
-            onClick={() => {
-              navigate(`/mypage/likes/${movie.id}`);
-            }}
-          >
-            <ClickLikes />
           </div>
 
           <Nav fill variant="tabs" defaultActiveKey="link-0">
