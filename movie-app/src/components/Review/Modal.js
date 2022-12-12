@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import "./Modal.scss";
-import { useSelector } from "react-redux";
-import ModalInsert from "./ModalInsert";
+import "./scss/Modal.scss";
 
 function Modal({ onClose }) {
   const handleClose = () => {
@@ -17,10 +15,6 @@ function Modal({ onClose }) {
           {/* <div className="ModalImg" onInsert={onInsert}> */}
           <form>
             <div className="ModalImg">
-              {/* <textarea>안녕</textarea> */}
-              {/* <button className="ModalPageButton" onClick={Insert}> */}
-              {/* <input type="text" id="content" content=""></input> */}
-              <ModalInsert></ModalInsert>
               <button type="submit" className="ModalPageButton">
                 <i
                   className="fa-solid fa-xmark"

@@ -1,46 +1,93 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-// npm install @reduxjs/toolkit react-redux
+const getInitialReview = () => {
+  // getting todo list
+  const localReviewList = window.localStorage.getItem("reviewList");
+  // if todo list is not empty
+  if (localReviewList) {
+    return JSON.parse(localReviewList);
+  }
+  window.localStorage.setItem("reviewList", []);
+  return [];
+};
 
-let ReviewText = createSlice({
-  name: "ReviewText", // 상태변수 이름
-  initialState: [
-    // 초기값
-    {
-      id: 0,
-      name: "승민팤",
-      content: "세상을 뒤집을 영화",
-      date: "2022-05-10",
-      count: 1, // 좋아요 수(마지막에 추가)
-    },
-    {
-      id: 1,
-      name: "성낙현",
-      content: "심금을 울리는 영화",
-      date: "2022-08-10",
-      count: 1,
-    },
-    {
-      id: 2,
-      name: "오라클",
-      content: "미래에서 왔어요 영화 좋아요",
-      date: "2022-12-10",
-      count: 3,
-    },
-  ],
+const initialValue = {
+  filterStatus: "all",
+  reviewList: getInitialReview(),
+};
+
+export const review = createSlice({
+  name: "review",
+  initialState: initialValue,
   reducers: {
-    //  변경함수 등록부분
-    // increasebtn(이전 상태값, 파라미터 )
-  },
-  ReviewWrite(state, action) {
-    state.push(action.payload);
+    addReview: (state, action) => {
+      state.reviewList.push(action.payload);
+      const reviewList = window.localStorage.getItem("reviewList");
+      if (reviewList) {
+        const ReviewListArr = JSON.parse(reviewList);
+        ReviewListArr.push({
+          ...action.payload,
+        });
+        window.localStorage.setItem(
+          "reviewList",
+          JSON.stringify(ReviewListArr)
+        );
+      } else {
+        window.localStorage.setItem(
+          "reviewList",
+          JSON.stringify([
+            {
+              ...action.payload,
+            },
+          ])
+        );
+      }
+    },
+    updateReview: (state, action) => {
+      const reviewList = window.localStorage.getItem("reviewList");
+      if (reviewList) {
+        const ReviewListArr = JSON.parse(reviewList);
+        ReviewListArr.forEach((review) => {
+          if (review.id === action.payload.id) {
+            review.rate = action.payload.rate;
+            review.content = action.payload.content;
+            //수정하기
+          }
+        });
+        window.localStorage.setItem(
+          "reviewList",
+          JSON.stringify(ReviewListArr)
+        );
+        state.reviewList = [...ReviewListArr];
+      }
+    },
+    deleteReview: (state, action) => {
+      const reviewList = window.localStorage.getItem("reviewList");
+      if (reviewList) {
+        const ReviewListArr = JSON.parse(reviewList);
+        ReviewListArr.forEach((review, index) => {
+          if (review.id === action.payload) {
+            ReviewListArr.splice(index, 1);
+          }
+        });
+        window.localStorage.setItem(
+          "reviewList",
+          JSON.stringify(ReviewListArr)
+        );
+        state.reviewList = ReviewListArr;
+      }
+    },
+    updateFilterStatus: (state, action) => {
+      state.filterStatus = action.payload;
+    },
   },
 });
-export let { ReviewWrite } = ReviewText.actions;
 
-export default configureStore({
+export const { addReview, updateReview, deleteReview, updateFilterStatus } =
+  review.actions;
+
+export const store = configureStore({
   reducer: {
-    // user createSlice를 등록해 줌
-    ReviewText: ReviewText.reducer,
+    review: review.reducer,
   },
 });
