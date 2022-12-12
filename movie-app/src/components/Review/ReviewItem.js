@@ -58,6 +58,8 @@ function ReviewItem({ review }) {
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleCheck} />
           <div className={styles.texts}>
+            <p>{review.content}</p>
+            <br></br>
             <p>{review.authorNick}</p>
             <Rating
               // setRate={setRate}

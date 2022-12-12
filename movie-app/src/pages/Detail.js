@@ -12,6 +12,7 @@ import ReviewMain from "./ReviewMain";
 import clock from "../images/clock.png";
 import percent from "../images/100-percent.png";
 import like from "../images/like.png";
+import Top from "../components/Common/top";
 
 function Detail() {
   let id = useParams();
@@ -157,7 +158,6 @@ function Detail() {
               </Nav.Link>
             </Nav.Item>
           </Nav>
-
           <TabContent clickTab={clickTab} movies={movie} />
         </div>
       )}
@@ -179,6 +179,7 @@ function TabContent(props) {
       <div style={{ color: "white" }}>
         {props.movies.production_companies[0].name}
         <ReviewMain></ReviewMain>
+        <Top></Top>
       </div>
     );
   }
