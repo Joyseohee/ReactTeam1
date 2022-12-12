@@ -12,9 +12,11 @@ export default function Mypage() {
 
   const Login = () => {
     if (loginIdOk && loginPwdOk) {
+      localStorage.setItem("loginCheck", 1);
       alert("로그인에 성공했습니다");
       navigate("/");
     } else {
+      localStorage.setItem("loginCheck", 0);
       alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요");
     }
   };
