@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import tmdbAPI from "../tmdbAPI";
+import profile from "../images/profile.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -36,27 +37,26 @@ function DetailContent(props){
       return(
         <>
             <h1 style={{color: "white"}}>등장인물</h1>
-            <Swiper slidesPerView={5} spaceBetween={30} slidesPerGroup={5} loop={true}
+            <Swiper slidesPerView={8} spaceBetween={10} slidesPerGroup={8} loop={true}
                         loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">
-      <SwiperSlide><div className={style.container}>
+            
+        <div className={style.container}>
             {actor.map((actor, i) => {
               return (
-                  <div key={i}>
-                  
+                  <SwiperSlide key={i}>
                     {
                         actor.profile_path == null ?
-                        <><div>이미지 없음</div><h5 style={{ color: "white" }}>{actor.name}</h5></>:
+                        <><img src={profile} className={style.profile} /><h5 style={{ color: "white" }}>{actor.name}</h5></>:
                         <div className={style.movieCard}>
                             <img src={`https://www.themoviedb.org/t/p/w138_and_h175_face/${actor.profile_path}`} className={style.actor}/> 
                             <h5 style={{color: "white"}}>{actor.name}</h5>
                         </div>
                     }
-                  
-                </div>
+                </SwiperSlide>
               );
             })}
-            </div></SwiperSlide></Swiper>
+            </div></Swiper>
         </>
       )
 }
