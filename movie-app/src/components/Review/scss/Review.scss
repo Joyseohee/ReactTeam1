@@ -1,0 +1,33 @@
+.Review-container {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #20232a;
+  color: black;
+
+  textarea {
+    margin: 50px auto;
+    width: 1200px;
+    height: 150px;
+    resize: none; // 사이즈 고정
+    padding: 5px;
+  }
+}
+
+.Reviewpage {
+  width: 1200px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+
+  textarea {
+    margin: 50px auto;
+    width: 1200px;
+    height: 150px;
+    resize: none; // 사이즈 고정
+    padding: 5px;
+  }
+}

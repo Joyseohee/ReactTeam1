@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
-import "./Review.scss";
+import "./scss/Review.scss";
+
 
 function Review() {
   let id = useParams();
   const [load, setLoad] = useState(null);
   const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
-  // location test
 
   const getReview = async () => {
     setLoad(true); // 로딩 시작
@@ -39,7 +39,7 @@ function Review() {
   return (
     <div className="Review-container">
       <div>
-        <textarea> 글 작성 할 자리 </textarea>
+        <p></p>
       </div>
       {movie
         .slice(0)
@@ -54,7 +54,6 @@ function Review() {
                     // setRate={setRate}
                     rate={movie.author_details.rating / 2}
                   />
-                  {/* {movie.author_details.rating} */}
                 </Alert.Heading>
                 <p>{movie.content}</p>
                 <hr />
