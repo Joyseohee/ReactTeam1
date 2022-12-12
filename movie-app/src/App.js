@@ -1,4 +1,4 @@
-import "./App.module.css";
+import "./App.css";
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";

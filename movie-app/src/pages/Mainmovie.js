@@ -5,6 +5,7 @@ import { EffectCoverflow, Navigation, Mousewheel } from "swiper";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "swiper/css";
+import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 
 import style from "./Mainmovie.module.css";
@@ -12,23 +13,24 @@ import tmdbAPI from "../tmdbAPI";
 import Search from "./Search";
 import Loading from "../components/loading";
 import Header from "../components/header";
+import Top from "../components/Common/top"
 
 function MainMoive() {
     const API_IMAGEURL = "https://image.tmdb.org/t/p/w300"; // 영화 이미지 baseURL
     const navigate = useNavigate();
     const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
+    const [coming, setComing] = useState([]);
 
     const [page, setPage] = useState(1); // axios param전달해줄 페이지
     const [load, setLoad] = useState(false); // 로딩 성공/실패
     const preventRef = useRef(true); // 중복 실행 방지
     const observerRef = useRef(null); // observer Element(옵저버 타겟 대상 담을 곳)
 
-    useEffect(() => {
-        AOS.init();
-    }, []);
 
     // 옵저버 생성 및 타겟(div) 지정
     useEffect(() => {
+        AOS.init();
+        getUpcoming();
         const observer = new IntersectionObserver(obCallback, { threshold: 0.5 });
         if (observerRef.current) observer.observe(observerRef.current);
         return () => {
@@ -50,7 +52,7 @@ function MainMoive() {
         getMovie();
     }, [page]);
 
-    // 영화 출력 함수
+    // popular 영화 출력
     const getMovie = useCallback(async () => {
         setLoad(true); // 로딩 시작
         const movies = await tmdbAPI.get('movie/popular', { params: { page: `${page}` } });
@@ -68,14 +70,22 @@ function MainMoive() {
         setMovie(movie);
     };
 
+    // upcoming 영화 출력
+    const getUpcoming = async () => {
+        const comovie = await tmdbAPI.get('movie/upcoming', { params: { page: 1 } });
+        setComing(comovie.data.results)
+    }
 
-  return (
-    <>
-      {/* 헤더 */}
-      <Header />
-      {Search(setData)}
+    return (
+        <>
+            {/* 헤더 */}
+            <Header />
+            {Search(setData)}
 
-            {/* 중간이미지 */}
+            {/* upcoming */}
+            <div className={style.upcoming}>
+                <h4>Upcoming</h4>
+            </div>
             <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -86,33 +96,34 @@ function MainMoive() {
                     stretch: 0,
                     depth: 100, // 깊이감도
                     modifier: 2, // 
-                    slideShadows: true,//선택한 부분 밝게 나머지는 그늘지게 해준다.
+                    slideShadows: true,//선택한 부분 밝게 나머지는 그늘지게
                 }}
                 navigation={true} // 내비게이션 버튼
                 mousewheel={true} // 마우스 휠
                 modules={[EffectCoverflow, Mousewheel, Navigation]}
-                className={style.mySwiper}
+                className="mySwiper"
             >
-                <div className={style.swipercontainer}>
-                  
-                        {
-                            movie.map((movie, i) =>
-                            <SwiperSlide>
-                                <div>
-                                    <img src={`${API_IMAGEURL}${movie.poster_path}`} />
-                                    <h4>{movie.title}</h4>
+
+                <div className="container">
+                    {
+                        coming &&
+                        coming.map((coming, i) =>
+                            <SwiperSlide key={i}>
+                                <div className={style.swipercard}>
+                                    <img src={`https://image.tmdb.org/t/p/w500${coming.poster_path}`} onClick={() => { navigate(`detail/${coming.id}`) }} />
+                                    <div className={style.swiperTitle}>{coming.title}</div>
                                 </div>
                             </SwiperSlide>
-                            )
-                        }
-                    
+                        )
+                    }
+
                 </div>
             </Swiper>
 
-            {/* 영화렌더링 영역 */}
+            {/* popular */}
             <div className={style.container}>
                 <div className={style.popular}>
-                    <h4 style={{ color: "white" }}>Popular</h4>
+                    <h4>Popular</h4>
                 </div>
 
                 {
@@ -124,7 +135,7 @@ function MainMoive() {
                                     <div key={i}>
                                         <div className={style.movieCard}>
                                             <img data-aos="slide-up" className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`detail/${movie.id}`) }} />
-                                            <div className={style.title}><h5>{movie.title}</h5></div>
+                                            <div className={style.title}><div>{movie.title}</div></div>
                                             {/* <div className={style.release_date}>{movie.release_date}</div> */}
                                         </div>
                                     </div>
@@ -138,11 +149,12 @@ function MainMoive() {
                 {
                     load ? <Loading /> : <></>
                 }
+                        
                 <div>
                     <div ref={observerRef} className="Observer"></div>
                 </div>
             </div>
-
+            <Top/>
         </>
     );
 
