@@ -15,6 +15,7 @@
     background: gray;
 }
 
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -47,3 +48,6 @@
     transform: scale(1.1);
 }
 
+.recommendcontainer{
+    display: flex;
+}

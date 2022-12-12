@@ -7,7 +7,6 @@ import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
 import Likes from "./components/Mypage/Likes";
 import MyReview from "./components/Mypage/MyReview";
-
 import Search from "./pages/Search";
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
           <Route path="/myreview" element={<MyReview />} />
           <Route path="/likes" element={<Likes />} />
           <Route path="/mypage/likes/:id" element={<Likes />} />
-          <Route path= "/search" element={<Search/>}/>
+          <Route path="/search" element={<Search/>}/>
         </Routes>
       </div>
     </>

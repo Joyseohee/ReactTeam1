@@ -82,7 +82,7 @@ function MainMoive() {
     <>
       {/* 헤더 */}
       <Header />
-      {Search(setData)}
+      {Search()}
 
       {/* 중간이미지 */}
       {/* <Swiper
@@ -121,7 +121,6 @@ function MainMoive() {
         <div className={style.popular}>
           <h4 style={{ color: "white" }}>Popular</h4>
         </div>
-
         {movie && (
           <>
             {movie.map((movie, i) => {
