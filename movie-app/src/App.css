@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-color:  #20232a;
+  /* background-color:  #20232a; */
+  background-color: black;
 }
 
  @font-face {
