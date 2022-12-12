@@ -18,6 +18,10 @@ export default function MyReview() {
     return item.status === filterStatus;
   });
 
+  let [myReviewCount, setMyReviewCount] = useState(0);
+
+  useEffect(() => {}, [myReviewCount]);
+
   return (
     <>
       <div class="container text-center" style={{ color: "white" }}>
@@ -33,10 +37,14 @@ export default function MyReview() {
                 </tr>
               </thead>
               <tbody>
-                {ItemReviewList.map((review) => {
+                {ItemReviewList.map((review, i) => {
                   return (
                     <>
-                      <MyReviewTd review={review} />
+                      <MyReviewTd
+                        review={review}
+                        index={i}
+                        key={review.movie_id}
+                      />
                     </>
                   );
                 })}
