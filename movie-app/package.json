@@ -30,6 +30,7 @@
     "reactstrap": "^9.1.5",
     "redux": "^4.2.0",
     "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
     "stars-rating": "^1.1.0",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.5",

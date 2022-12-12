@@ -45,3 +45,7 @@
 .moviePoster:hover {
   transform: scale(1.1);
 }
+
+.recommendcontainer {
+  display: flex;
+}
