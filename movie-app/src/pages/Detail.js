@@ -26,7 +26,6 @@ function Detail() {
   const [movieKey, setMoviekey] = useState();
   const navigate = useNavigate();
 
-
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
     const res = await tmdbAPI.get(`movie/${id.id}`);
@@ -78,7 +77,6 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-
           <div className={style.header}>
             <div
               className={style.inner}
@@ -138,45 +136,45 @@ function Detail() {
             </div>
           </div>
           <div className={style.nav}>
-          <Nav fill variant="tabs" defaultActiveKey="link-0">
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setClickTab(0);
-                }}
-                eventKey="link-0"
-              >
-                상세정보
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setClickTab(1);
-                }}
-                eventKey="link-1"
-              >
-                관련소식
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setClickTab(2);
-                }}
-                eventKey="link-2"
-              >
-                실관람평
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <TabContent clickTab={clickTab} movies={movie} />
+            <Nav fill variant="tabs" defaultActiveKey="link-0">
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(0);
+                  }}
+                  eventKey="link-0"
+                >
+                  상세정보
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(1);
+                  }}
+                  eventKey="link-1"
+                >
+                  관련소식
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(2);
+                  }}
+                  eventKey="link-2"
+                >
+                  실관람평
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <TabContent clickTab={clickTab} movies={movie} />
           </div>
+          <Top></Top>
         </div>
       )}
     </>
   );
-  
 }
 
 function TabContent(props) {
@@ -184,12 +182,12 @@ function TabContent(props) {
   console.log(props.clickTab);
   const movieId = props.movies.id;
 
-  console.log("movieId"+ props.movies.id)
+  console.log("movieId" + props.movies.id);
 
   if (props.clickTab == 0) {
     return (
       <>
-        <DetailContent movieId={movieId}/>
+        <DetailContent movieId={movieId} />
       </>
     );
   }
@@ -201,7 +199,6 @@ function TabContent(props) {
       <div style={{ color: "white" }}>
         {props.movies.production_companies[0].name}
         <ReviewMain></ReviewMain>
-        <Top></Top>
       </div>
     );
   }
