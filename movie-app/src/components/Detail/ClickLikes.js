@@ -51,7 +51,7 @@ export default function ClickLikes(props) {
     let checkId = Number(id.id);
     setLikeMovie(likeMovie - 1);
     setOpacityLikes("100%");
-    localStorage.removeItem(`checkLike${checkId}`, likeMovie);
+    localStorage.removeItem(`checkLike${checkId}`);
     let filtered = arr.filter((element) => element !== checkId);
     arr = [...filtered];
     localStorage.setItem("likestore", JSON.stringify(arr));

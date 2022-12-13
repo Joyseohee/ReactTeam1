@@ -7,7 +7,8 @@ export default function MyReview() {
   const filterStatus = useSelector((state) => state.review.filterStatus);
 
   const sortedReviewList = [...reviewList];
-  sortedReviewList.sort((a, b) => new Date(b.time) - new Date(a.time));
+  sortedReviewList.sort((a, b) => new Date(b.date) - new Date(a.date));
+  console.log(sortedReviewList[0].date);
 
   const ItemReviewList = sortedReviewList.filter((item) => {
     if (filterStatus === "all") {
@@ -22,10 +23,10 @@ export default function MyReview() {
 
   return (
     <>
-      <div class="container text-center" style={{ color: "white" }}>
-        <div class="row">
-          <div class="col">
-            <table class="table" style={{ color: "white" }}>
+      <div className="container text-center" style={{ color: "white" }}>
+        <div className="row">
+          <div className="col">
+            <table className="table" style={{ color: "white" }}>
               <thead>
                 <tr>
                   <th>글번호</th>
@@ -35,17 +36,19 @@ export default function MyReview() {
                 </tr>
               </thead>
               <tbody>
-                {ItemReviewList.map((review, i) => {
-                  return (
-                    <>
-                      <MyReviewTd
-                        review={review}
-                        index={i}
-                        key={review.movie_id}
-                      />
-                    </>
-                  );
-                })}
+                {ItemReviewList.slice(0)
+                  .reverse()
+                  .map((review, i) => {
+                    return (
+                      <>
+                        <MyReviewTd
+                          review={review}
+                          index={i}
+                          key={review.movie_id}
+                        />
+                      </>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
