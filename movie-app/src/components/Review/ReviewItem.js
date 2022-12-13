@@ -60,14 +60,13 @@ function ReviewItem({ review }) {
             <div className={styles.todoDetails}>
               <CheckButton checked={checked} handleCheck={handleCheck} />
               <div className={styles.texts}>
-                <p>{review.content}</p>
-                <hr />
                 <p>{review.authorNick}</p>
                 <Rating
                   // setRate={setRate}
                   rate={review.rate / 2}
                 />
                 <p>{review.content}</p>
+                <hr />
                 <p>{review.date}</p>
               </div>
             </div>
