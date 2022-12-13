@@ -1,6 +1,6 @@
 import "./css/Mypage.css";
 import { useNavigate } from "react-router-dom";
-import MypgHeader from "../components/Mypage/MypgHeader";
+import Header from "../components/Common/header";
 import MyInfo from "../components/Mypage/MyInfo";
 
 export default function Mypage() {
@@ -9,7 +9,7 @@ export default function Mypage() {
   return (
     <>
       <div style={{ color: "white" }}>
-        <MypgHeader />
+        <Header />
         <div className="container-fluid text-center">
           <div className="row">
             <div className="col col-lg-2 col-sm-1"></div>
