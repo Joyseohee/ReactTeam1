@@ -40,7 +40,7 @@ function Search() {
                 {
                     showinput ? <input type="text" id="search" className={style.inputform} /> : <input type="hidden" id="search" className={style.inputform} />
                 }
-                <GoSearch color="#fff" size="30" onClick={()=>{SearchName(); RecommendMovie(); setShowinput(true);
+                <GoSearch color="#fff" size="20" onClick={()=>{SearchName(); RecommendMovie(); setShowinput(true);
                 }}/>
             </div>
             
