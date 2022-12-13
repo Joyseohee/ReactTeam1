@@ -71,7 +71,7 @@ function ReviewItem({ review }) {
                 <p>{review.date}</p>
               </div>
             </div>
-            <div className={styles.todoActions}>
+            {/* <div className={styles.todoActions}> // 수정, 삭제기능
               <div
                 className={styles.icon}
                 onClick={() => handleDelete()}
@@ -90,14 +90,14 @@ function ReviewItem({ review }) {
               >
                 <MdEdit />
               </div>
-            </div>
+            </div> */}
           </motion.div>
-          <ReviewModal
+          {/* <ReviewModal /> // 수정기능 있을 때 같이 있어야함
             type="update"
             modalOpen={updateModalOpen}
             setModalOpen={setUpdateModalOpen}
             review={review}
-          />
+          /> */}
         </div>
       ) : (
         <></>
