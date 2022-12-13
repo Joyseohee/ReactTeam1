@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./scss/Review.scss";
+import AOS from "aos";
 
 function Review() {
   let id = useParams();
@@ -35,6 +36,10 @@ function Review() {
     getReview();
   }, []);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="Review-container">
       <div>
@@ -46,9 +51,13 @@ function Review() {
         .map((movie, i) => {
           return (
             <div className="Review-box">
-              <Alert variant="light">
+              <Alert
+                variant="light"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
                 <Alert.Heading className="wantFlex">
-                  &nbsp; {movie.author} &nbsp;&nbsp; 평점 :{" "}
+                  &nbsp; {movie.author} &nbsp;&nbsp;
                   <Rating rate={movie.author_details.rating / 2} />
                 </Alert.Heading>
                 <p>{movie.content}</p>

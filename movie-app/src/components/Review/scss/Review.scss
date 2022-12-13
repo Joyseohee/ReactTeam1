@@ -5,7 +5,7 @@
   margin-top: 6rem;
   border-radius: 4px;
   overflow: hidden;
-  background: #20232a;
+  // background: #20232a;
   color: black;
   text-align: -webkit-left;
 
@@ -19,6 +19,7 @@
 }
 
 .Reviewpage {
+  background: mintcream;
   width: 1200px;
   display: inline-block;
   margin-left: auto;
@@ -37,5 +38,6 @@
   text-align: initial;
   .wantFlex {
     display: flex;
+    margin: inherit;
   }
 }

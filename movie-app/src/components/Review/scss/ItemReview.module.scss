@@ -48,8 +48,10 @@
 }
 .texts {
   display: flex;
-  width: 750px;
+  // width: 750px;
+  width: 100%;
   flex-direction: column;
+  flex-wrap: wrap;
   overflow: hidden;
   hr {
     width: auto;
