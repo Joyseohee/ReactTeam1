@@ -1,6 +1,7 @@
 .header {
     display: flex;
     justify-content: center;
+    margin: 40px 0px 40px 0px;
 }
 
 .inputform {
@@ -59,9 +60,7 @@
 }
 
 .recommendcontainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    display:flex;
 }
 
 .firstMovieCard {
