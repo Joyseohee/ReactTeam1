@@ -33,6 +33,13 @@ function Search() {
         })
     }, [count])
     
+
+    // 검색 버튼 클릭 시 input 팝업
+    const [showinput, setShowinput] = useState(false);
+    useEffect(()=>{
+
+    },[showinput])
+
     return (
         <div>
             <div className={style.header}>
@@ -42,6 +49,11 @@ function Search() {
                     RecommendMovie();
                 })}>검색</button>
                 <button onClick = {() => timesort ? Newest(): Oldest()}>날짜순</button>
+                {
+                    showinput ? <input type="text" id="search" className={style.inputform} /> : <input type="hidden" id="search" className={style.inputform} />
+                }
+                <GoSearch color="#fff" size="20" onClick={()=>{SearchName(); RecommendMovie(); setShowinput(true);
+                }}/>
             </div>
             <div className={style.container}>
 
