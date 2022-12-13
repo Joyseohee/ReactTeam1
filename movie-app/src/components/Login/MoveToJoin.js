@@ -1,8 +1,8 @@
-export default function MoveToJoin({ Login }) {
+export default function MoveToJoin() {
   return (
     <>
       <span>
-        <a className="link" href="/join">
+        <a className="joinLink" href="/join">
           회원가입
         </a>
       </span>

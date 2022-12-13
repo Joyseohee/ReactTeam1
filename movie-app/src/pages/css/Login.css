@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap");
+
+.logo {
+  margin-top: 50px;
+}
+
+.loginBackground {
+  margin-top: 0;
+  width: 100%;
+  height: 1080px;
+  background-image: url(../../../public/images/loginBgImg.jpeg);
+  background-repeat: no-repeat;
+  background-color: rgba(34, 34, 34, 0.9);
+  background-size: 100% auto;
+}
+
+/* .loginBackground::before {
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #000;
+} */
+
+.TopMargin {
+  height: 5px;
+}
+
+.ConMargin {
+  height: 150px;
+}
+
+.topLogo {
+  color: #f8f8f8;
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.containerLog {
+  margin-top: 0;
+}
+
+.loginBox {
+  background-color: rgba(34, 34, 34, 0.8);
+  display: block;
+  margin: auto;
+  margin-top: 150px;
+  padding: 50px 10px;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 40px #343a40;
+}
+
+.btn {
+  backgroud-color: #fff;
+
+  color: #fff;
+}
+
+.containerLog a:link,
+.containerLog a:visited,
+.containerLog a:active {
+  text-decoration: none;
+  color: #f8f8f8;
+}
+
+.containerLog a:hover {
+  text-decoration: none;
+  color: #888888;
+}
+
+.containerLog .row {
+  /* margin-bottom: 10px; */
+}
+
+.error {
+  margin-bottom: 0;
+  height: 30px;
+  color: red;
+}
+
+.containerLog .id {
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 0;
+}
+.containerLog .pwd {
+  border-radius: 0 0 5px 5px;
+  border-top: 0;
+}
+
+.containerLog .form-control {
+  height: 50px;
+}
+
+.containerLog .joinLink {
+  margin-top: 20px;
+}
