@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/Join.css";
+import Header from "../components/Common/header";
 import IdInput from "../components/Join/IdInput";
 import PwdInput from "../components/Join/PwdInput";
 import PwdInput2 from "../components/Join/PwdInput2";
@@ -101,6 +102,7 @@ export default function Join() {
         <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
         <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
       </div> */}
+      <Header />
       <Container className="join">
         <Row className="row logo align-items-end justify-content-center">
           <Col className="col-md-6 col-lg-4 marginTop"></Col>

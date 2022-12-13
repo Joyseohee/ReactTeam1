@@ -8,12 +8,16 @@
   margin-top: 0;
   width: 100%;
   height: 1080px;
-  background-image: url(../../../public/images/loginBgImg.jpeg);
+  background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/ac9aedf1-a687-4c5d-965c-2fc3eac84aea/17d27220-3eb7-4e8f-aad7-978843af0588/KR-ko-20221206-popsignuptwoweeks-perspective_alpha_website_large.jpg);
   background-repeat: no-repeat;
-  background-color: rgba(34, 34, 34, 0.9);
+  /* background-color: rgba(34, 34, 34, 0.5); */
   background-size: 100% auto;
 }
-
+.loginOpacity {
+  width: 100%;
+  height: 1080px;
+  background-color: rgba(34, 34, 34, 0.5);
+}
 /* .loginBackground::before {
   content: "";
   opacity: 0.5;
