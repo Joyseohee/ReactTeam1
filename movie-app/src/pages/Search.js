@@ -4,7 +4,12 @@ import style from "./Search.module.css";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css"
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 function Search() {
 
     useEffect(() => {
@@ -25,7 +30,7 @@ function Search() {
     let [data, setData] = useState(TVJSONFILE);
     useEffect(() => {
         tvmovie ? setData(MOVIEJSONFILE) : setData(TVJSONFILE);
-        console.log("data = " + data);
+        setCount(count+1);
     }, [tvmovie])
 
     useEffect(() => {
