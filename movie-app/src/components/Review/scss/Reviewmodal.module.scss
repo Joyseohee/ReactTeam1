@@ -23,13 +23,13 @@
 }
 .closeButton {
   position: absolute;
-  top: -10px;
+  top: -20px;
   right: 0;
   transform: translateY(-100%);
   font-size: 2.5rem;
   padding: 0.5rem;
   border-radius: 4px;
-  background-color: var(--gray-1);
+  background-color: darkred;
   color: var(--black-2);
   display: flex;
   align-items: center;
@@ -46,16 +46,25 @@
   color: var(--black-1);
   font-size: 2rem;
   font-weight: 600;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   text-transform: capitalize;
+  padding: 20px;
 }
 .form {
-  width: 100%;
+  // width: 100%;
   background: ivory;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 10vh;
+  padding-right: 10vh;
   label {
     font-size: 1.6rem;
     color: var(--black-1);
+    padding: 10px;
+    width: max-content;
     input,
+    textarea,
     select {
       margin-top: 0.5rem;
       margin-bottom: 2rem;
@@ -64,15 +73,21 @@
       border: none;
       // background-color: var(--white);
       background-color: var(--black-1);
-      font-size: 1.6rem;
-      background: #eebeee;
+      font-size: 0.5em;
+      background: rgb(247, 247, 247);
     }
   }
 }
+.reviewTextarea {
+  width: auto;
+  height: 150px;
+  resize: none; /* 크기고정 */
+}
 .buttonContainer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin-top: 2rem;
   gap: 1rem;
+  padding-bottom: 10px;
 }
