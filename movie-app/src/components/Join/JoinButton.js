@@ -9,7 +9,7 @@ export default function JoinButton({ disabledJoinBtn, Join }) {
         <div className="col-md-6 col-lg-4">
           <button
             type="button"
-            className="w-100 btn btn-lg btn-log"
+            className="w-100 btn btn-secondary btn-lg"
             value="회원가입"
             disabled={disabledJoinBtn}
             onClick={() => {
