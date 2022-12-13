@@ -1,5 +1,4 @@
 import "./css/Mypage.css";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Common/header";
 import MyInfo from "../components/Mypage/MyInfo";
 import Container from "react-bootstrap/Container";
@@ -7,9 +6,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MyLikesTab from "../components/Mypage/MyLikesTab";
 import MyReviewTab from "../components/Mypage/MyReviewTab";
+import { useEffect, useState } from "react";
+import ShowSelect from "../components/Mypage/ShowSelect";
 
 export default function Mypage() {
-  const navigate = useNavigate();
+  let [mpClickTab, setMpClickTab] = useState(0);
+
+  useEffect(() => {}, [mpClickTab]);
 
   return (
     <>
@@ -28,7 +31,7 @@ export default function Mypage() {
             <Col
               className="likes col "
               onClick={() => {
-                navigate(`/likes`);
+                setMpClickTab(1);
               }}
             >
               <MyLikesTab />
@@ -37,7 +40,7 @@ export default function Mypage() {
             <Col
               className="myreviews col"
               onClick={() => {
-                navigate(`/myreview`);
+                setMpClickTab(2);
               }}
             >
               <MyReviewTab />
@@ -47,14 +50,7 @@ export default function Mypage() {
           <Row>
             <Col lg={2} sm={1}></Col>
             <Col>
-              <div className="dividedMain"></div>
-            </Col>
-            <Col lg={2} sm={1}></Col>
-          </Row>
-          <Row>
-            <Col lg={2} sm={1}></Col>
-            <Col>
-              <div className="dividedMain"></div>
+              <ShowSelect mpClickTab={mpClickTab} />
             </Col>
             <Col lg={2} sm={1}></Col>
           </Row>
