@@ -10,14 +10,14 @@ const ReviewTemplate = () => {
   return (
     <>
       <div className="ReviewList-Template">
-        <ReviewPageTitle>작품 리뷰 & 평점</ReviewPageTitle>
+        <ReviewPageTitle>실시간 반응 및 리뷰</ReviewPageTitle>
         <div className={styles.app__wrapper}>
           <ReviewHeader />
           <ReviewContent />
         </div>
       </div>
       <Toaster
-        position="bottom-right"
+        position="top-center"
         toastOptions={{
           style: {
             fontSize: "1.4rem",

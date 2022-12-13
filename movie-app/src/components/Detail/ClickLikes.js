@@ -8,7 +8,17 @@ export default function ClickLikes(props) {
   // 좋아요
   let [recentId, setRecentId] = useState([]);
   let [likeMovie, setLikeMovie] = useState(0);
-  let [opacityLikes, setOpacityLikes] = useState("100");
+  let [opacityLikes, setOpacityLikes] = useState();
+
+  useEffect(() => {
+    let checkId = Number(id.id);
+    // setLikeMovie(localStorage.getItem(`checkLike${checkId}`));
+    if (localStorage.getItem(`checkLike${checkId}`) != null) {
+      setOpacityLikes("30%");
+    } else {
+      setOpacityLikes("100%");
+    }
+  }, [opacityLikes, likeMovie]);
 
   // 좋아요 버튼 클릭
   const clickLikes = () => {

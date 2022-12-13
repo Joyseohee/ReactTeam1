@@ -8,24 +8,13 @@ import { updateFilterStatus } from "../../store";
 
 function ReviewHeader() {
   const [modalOpen, setModalOpen] = useState(false);
-  // const initialFilterStatus = useSelector((state) => state.todo.filterStatus);
-  // const [filterStatus, setFilterStatus] = useState(initialFilterStatus);
   const dispatch = useDispatch();
-
-  // const updateFilter = (e) => { // 업데이트 수정 필요
-  //   setFilterStatus(e.target.value);
-  //   dispatch(updateFilterStatus(e.target.value));
-  // };
 
   return (
     <div className={styles.appHeader}>
       <Button variant="primary" onClick={() => setModalOpen(true)}>
-        리뷰 입력
+        리뷰 등록
       </Button>
-      {/* <SelectButton
-        onChange={(e) => updateFilter(e)}
-        value={filterStatus}
-      ></SelectButton> */}
       <ReviewModal
         type="add"
         modalOpen={modalOpen}

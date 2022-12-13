@@ -4,7 +4,7 @@ import StarsRating from "stars-rating";
 function Rating({ rate, setRate }) {
   const ratingChanged = (value) => setRate(value);
   return (
-    <div>
+    <div className="rate">
       <StarsRating
         count={5}
         onChange={ratingChanged}

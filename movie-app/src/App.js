@@ -1,5 +1,4 @@
 import "./App.css";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Main from "./pages/Main";
@@ -12,11 +11,13 @@ import Join from "./pages/Join";
 import MyReview from "./pages/MyReview";
 import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
+import styled, { createGlobalStyle } from "styled-components";
 import ResultSearch from "./components/Search/ResultSearch";
 
 function App() {
   return (
     <>
+      <GlobalStyle></GlobalStyle>
       <div className="App">
         <Routes>
           <Route path="/" element={<Main />} />
@@ -35,5 +36,16 @@ function App() {
     </>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #000000;
+  }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default App;
