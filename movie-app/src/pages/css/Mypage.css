@@ -2,6 +2,89 @@
   border: 2px solid white;
 } */
 
+.MypageWrapper {
+  margin-top: 80px;
+}
+
 .infoComp {
   padding: 0;
+}
+
+/* .col,
+.row {
+  border: 2px solid white;
+} */
+
+.photo {
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  display: block;
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 50px auto;
+  background: url(http://img.cgv.co.kr/R2014/images/common/default_profile.gif)
+    0 0 no-repeat;
+}
+.wrapperAccountName {
+  margin: 0;
+  padding: 0;
+}
+.accountName.align-end {
+  text-align: left;
+}
+
+.InfoMargin {
+  height: 80px;
+}
+.DetailMargin {
+  height: 10px;
+}
+
+.DetailMargin.btline {
+  width: 200px;
+  border-bottom: 1px solid rgba(206, 206, 206, 0.8);
+}
+
+.align-end {
+  vertical-align: bottom;
+  margin: 0;
+}
+
+.LoginId {
+  font-size: 30px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.LoginNick {
+  font-size: 15px;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.accountDetail {
+  height: 50px;
+}
+
+.MypageWrapper {
+  text-align: left;
+}
+/* 
+.MypageWrapper .row,
+.MypageWrapper .col {
+  border: 1px white solid;
+} */
+
+.likeMovieTab,
+.likeReviewTab {
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.6);
+}
+
+.mgClickBox {
+  margin-top: 50px;
 }

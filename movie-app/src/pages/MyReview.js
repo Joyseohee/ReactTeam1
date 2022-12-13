@@ -8,7 +8,6 @@ export default function MyReview() {
 
   const sortedReviewList = [...reviewList];
   sortedReviewList.sort((a, b) => new Date(b.date) - new Date(a.date));
-  console.log(sortedReviewList[0].date);
 
   const ItemReviewList = sortedReviewList.filter((item) => {
     if (filterStatus === "all") {

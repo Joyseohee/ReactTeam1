@@ -1,44 +1,60 @@
 import "./css/Mypage.css";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Common/header";
 import MyInfo from "../components/Mypage/MyInfo";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import MyLikesTab from "../components/Mypage/MyLikesTab";
+import MyReviewTab from "../components/Mypage/MyReviewTab";
+import { useEffect, useState } from "react";
+import ShowSelect from "../components/Mypage/ShowSelect";
 
 export default function Mypage() {
-  const navigate = useNavigate();
+  let [mpClickTab, setMpClickTab] = useState(0);
+
+  useEffect(() => {}, [mpClickTab]);
 
   return (
     <>
       <div style={{ color: "white" }}>
         <Header />
-        <div className="container-fluid text-center">
-          <div className="row">
-            <div className="col col-lg-2 col-sm-1"></div>
-            <div className="infoComp col col-lg-8 col-sm-10">
+        <Container fluid className="MypageWrapper">
+          <Row>
+            <Col lg={2} sm={1}></Col>
+            <Col className="infoComp">
               <MyInfo />
-            </div>
-            <div className="col col-lg-2 col-sm-1"></div>
-          </div>
-          <div className="row">
-            <div className="col col-lg-2 col-sm-1"></div>
-            <div
-              className="likes col col-lg-4 col-sm-5 "
+            </Col>
+            <Col lg={2} sm={1}></Col>
+          </Row>
+          <Row>
+            <Col lg={2} sm={1}></Col>
+            <Col
+              className="likes col "
               onClick={() => {
-                navigate(`/likes`);
+                setMpClickTab(1);
               }}
             >
-              기대하는 영화
-            </div>
-            <div
-              className="myreviews col col-lg-4 col-sm-5 "
+              <MyLikesTab />
+            </Col>
+
+            <Col
+              className="myreviews col"
               onClick={() => {
-                navigate(`/myreview`);
+                setMpClickTab(2);
               }}
             >
-              내가 쓴 리뷰
-            </div>
-            <div className="col col-lg-2 col-sm-1"></div>
-          </div>
-        </div>
+              <MyReviewTab />
+            </Col>
+            <Col lg={2} sm={1}></Col>
+          </Row>
+          <Row>
+            <Col lg={2} sm={1}></Col>
+            <Col>
+              <ShowSelect mpClickTab={mpClickTab} />
+            </Col>
+            <Col lg={2} sm={1}></Col>
+          </Row>
+        </Container>
       </div>
     </>
   );
