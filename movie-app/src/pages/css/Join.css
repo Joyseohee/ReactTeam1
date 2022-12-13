@@ -1,23 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap");
-
 .join {
-  margin: auto;
-  margin-top: 150px;
+  color: #f8f8f8;
+  height: 100%;
+  width: 100%;
 }
 
-.logo,
-.submit {
+.join .marginTop {
+  height: 200px;
+}
+
+.join .signUp {
+  font-size: 30px;
+}
+
+.join a:link,
+.join a:visited,
+.join a:active {
+  text-decoration: none;
+  color: #f8f8f8;
+}
+
+.join a:hover {
+  text-decoration: none;
+  color: #888888;
+}
+
+.join .logo,
+.join .submit {
   text-align: center;
 }
 
-.btn-dark {
+.join .btn-dark {
   background-color: #fff;
 }
 
-.row {
+.join .row {
   margin-bottom: 10px;
 }
 
-.btn {
+.join .btn {
   margin-top: 20px;
 }
