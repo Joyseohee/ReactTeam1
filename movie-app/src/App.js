@@ -12,6 +12,7 @@ import Join from "./pages/Join";
 import MyReview from "./pages/MyReview";
 import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
+import Info from "./components/Common/FooterCommon/Info";
 import styled, { createGlobalStyle } from "styled-components";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/join" element={<Join />} />
           <Route path="/search" element={<Search />} />
           <Route path="/ReviewMain" element={<ReviewMain />} />
+          <Route path="/Info" element={<Info />} />
         </Routes>
       </div>
     </>

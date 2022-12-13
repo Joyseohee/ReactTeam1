@@ -5,6 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./scss/Review.scss";
 import AOS from "aos";
+import { Modal } from "react-bootstrap";
 
 function Review() {
   let id = useParams();
