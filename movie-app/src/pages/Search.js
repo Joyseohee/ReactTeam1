@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css"
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Pagination, Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -30,7 +30,7 @@ function Search() {
     let [data, setData] = useState(TVJSONFILE);
     useEffect(() => {
         tvmovie ? setData(MOVIEJSONFILE) : setData(TVJSONFILE);
-        setCount(count+1);
+        setCount(count + 1);
     }, [tvmovie])
 
     useEffect(() => {
@@ -99,19 +99,37 @@ function Search() {
                                                 onClick={() => { navigate(`/detail/${firstMovie.id}`) }} />
                                             <h5>{firstMovie.title}</h5>
                                         </div>
+                                    </div>
+                                    </div>
+                                    <Swiper
+                                        slidesPerView={5}
+                                        spaceBetween={30}
+                                        slidesPerGroup={5}
+                                        loop={true}
+                                        loopFillGroupWithBlank={true}
+                                        pagination={{
+                                            clickable: true,
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+                                        className="mySwiper"
+                                    >
                                         <div className={style.recommendcontainer}>
                                             {MyrecommendMovie[i].map((recommendmovie, i) => { //2차원 배열을 맵으로 돌리기 위해
                                                 return (
-                                                    <div className={style.recommendmovieCard} data-aos="slide-right">
-                                                        <img className={style.moviePoster}
-                                                            src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
-                                                        <h5>{recommendmovie[firstMovie.title].title}</h5>
-                                                    </div>
+                                                    <SwiperSlide>
+                                                        <div className={style.recommendmovieCard} data-aos="slide-right">
+                                                            <img className={style.moviePoster}
+                                                                src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
+                                                            <h5>{recommendmovie[firstMovie.title].title}</h5>
+                                                        </div>
+                                                    </SwiperSlide>
                                                 )
                                             })}
                                         </div>
-                                    </div>
-                                </div>
+                                    </Swiper>
+                                
+
                             </>
                         )
                     })
@@ -213,7 +231,7 @@ function Search() {
         for (let i = 0; i < movietitle.length; i++) {
             randommovie = [];
             random2 = [];
-            for (let j = 1; j <= 4; j++) { //첫영화 제외하고 4개 (한줄에 다섯개의 영화가 있기 때문에)
+            for (let j = 1; j <= 30; j++) { //첫영화 제외하고 4개 (한줄에 다섯개의 영화가 있기 때문에)
                 let random = Math.floor(Math.random() * recommendMovieInfo.length);
                 if (!random2.includes(random)) { // 같은 영화 추천을 하지 않기 위해서
                     random2.push(random);
@@ -257,14 +275,14 @@ function Search() {
             movie.sort((a, b) => {
                 return new Date(b.release_date) - new Date(a.release_date);
             })
-            
+
         }
         if (data === "tvdata.json") {
             setTimeSort(false);
             movie.sort((a, b) => {
                 return new Date(b.first_air_date) - new Date(a.first_air_date);
             })
-            
+
         }
 
         setMovie(movie);
