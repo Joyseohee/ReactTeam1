@@ -28,11 +28,11 @@ export default function MyReview() {
             <table className="table" style={{ color: "white" }}>
               <thead>
                 <tr>
-                  <th>글번호</th>
-                  <th>영화 제목</th>
-                  <th>내 리뷰</th>
-                  <th>별점</th>
-                  <th>작성일</th>
+                  <th className="col-lg-1">글번호</th>
+                  <th className="col-lg-2">영화 제목</th>
+                  <th className="col-lg-4">내 리뷰</th>
+                  <th className="col-lg-2">별점</th>
+                  <th className="col-lg-3">작성일</th>
                 </tr>
               </thead>
               <tbody>
