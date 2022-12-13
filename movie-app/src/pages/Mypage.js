@@ -1,61 +1,15 @@
 import "./css/Mypage.css";
-import Header from "../components/Common/header";
-import MyInfo from "../components/Mypage/MyInfo";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import MyLikesTab from "../components/Mypage/MyLikesTab";
-import MyReviewTab from "../components/Mypage/MyReviewTab";
 import { useEffect, useState } from "react";
-import ShowSelect from "../components/Mypage/ShowSelect";
+import MypageReal from "../components/Mypage/MyPageReal";
 
 export default function Mypage() {
-  let [mpClickTab, setMpClickTab] = useState(0);
+  let [loginCheck, setLoginCheck] = useState(0);
 
-  useEffect(() => {}, [mpClickTab]);
+  useEffect(() => {
+    setLoginCheck(localStorage.getItem("loginCheck"));
+  }, [loginCheck]);
 
   return (
-    <>
-      <div style={{ color: "white" }}>
-        <Header />
-        <Container fluid className="MypageWrapper">
-          <Row>
-            <Col lg={2} sm={1}></Col>
-            <Col className="infoComp">
-              <MyInfo />
-            </Col>
-            <Col lg={2} sm={1}></Col>
-          </Row>
-          <Row>
-            <Col lg={2} sm={1}></Col>
-            <Col
-              className="likes col "
-              onClick={() => {
-                setMpClickTab(1);
-              }}
-            >
-              <MyLikesTab />
-            </Col>
-
-            <Col
-              className="myreviews col"
-              onClick={() => {
-                setMpClickTab(2);
-              }}
-            >
-              <MyReviewTab />
-            </Col>
-            <Col lg={2} sm={1}></Col>
-          </Row>
-          <Row>
-            <Col lg={2} sm={1}></Col>
-            <Col>
-              <ShowSelect mpClickTab={mpClickTab} />
-            </Col>
-            <Col lg={2} sm={1}></Col>
-          </Row>
-        </Container>
-      </div>
-    </>
+    <>{loginCheck === 0 ? <div>로그인을 해주세요</div> : <MypageReal />}</>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginButton() {
@@ -21,7 +21,6 @@ export default function LoginButton() {
     if (loginCheck == 1) {
       Logout();
     }
-
     if (loginCheck == 0) {
       navigate("/login");
     }
@@ -35,7 +34,7 @@ export default function LoginButton() {
 
   return (
     <Button
-      color="black"
+      color="inherit"
       onClick={() => {
         chooseWhatToDo();
       }}
