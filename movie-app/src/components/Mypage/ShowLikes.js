@@ -14,12 +14,13 @@ export default function ShowLikes() {
 
   return (
     <div style={{ color: "white" }}>
-      <div>추가 가능</div>
-      {recentId === null
-        ? null
-        : recentId.map((LikesId) => {
-            return <Movie id={LikesId} />;
-          })}
+      {recentId === null ? (
+        <div>기대하고 있는 영화가 없습니다</div>
+      ) : (
+        recentId.map((LikesId) => {
+          return <Movie id={LikesId} />;
+        })
+      )}
     </div>
   );
 }
