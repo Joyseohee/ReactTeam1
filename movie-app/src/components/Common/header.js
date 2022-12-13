@@ -13,6 +13,7 @@ import { Search as SearchIcon, AccountCircle } from "@mui/icons-material";
 
 import TemporaryDrawer from "./drawer";
 import Search from "../../pages/Search";
+import LoginButton from "./LoginButton";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -108,14 +109,17 @@ const Header = () => {
           >
             <AccountCircle />
           </IconButton>
-          <Button
+
+          {}
+          <LoginButton />
+          {/* <Button
             color="inherit"
             onClick={() => {
               navigate("/login");
             }}
           >
             Login
-          </Button>
+          </Button> */}
         </Toolbar>
       </AppBar>
     </Box>
