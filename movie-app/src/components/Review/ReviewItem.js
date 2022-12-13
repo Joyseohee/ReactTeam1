@@ -45,7 +45,7 @@ function ReviewItem({ review }) {
 
   const handleDelete = () => {
     dispatch(deleteReview(review.id));
-    toast.success("review Deleted Successfully");
+    toast.success("리뷰가 삭제되었습니다.");
   };
 
   const handleUpdate = () => {
@@ -54,46 +54,54 @@ function ReviewItem({ review }) {
 
   return (
     <>
-      <motion.div className={styles.item} variants={child}>
-        <div className={styles.todoDetails}>
-          <CheckButton checked={checked} handleCheck={handleCheck} />
-          <div className={styles.texts}>
-            <p>{review.authorNick}</p>
-            <Rating
-              // setRate={setRate}
-              rate={review.rate / 2}
-            />
-            <p>{review.content}</p>
-            <p>{review.date}</p>
-          </div>
+      {id.id === review.movie_id ? ( // 조건부 (원하는 )
+        <div className="review-test">
+          <motion.div className={styles.item} variants={child}>
+            <div className={styles.todoDetails}>
+              <CheckButton checked={checked} handleCheck={handleCheck} />
+              <div className={styles.texts}>
+                <p>{review.content}</p>
+                <hr />
+                <p>{review.authorNick}</p>
+                <Rating
+                  // setRate={setRate}
+                  rate={review.rate / 2}
+                />
+                <p>{review.content}</p>
+                <p>{review.date}</p>
+              </div>
+            </div>
+            {/* <div className={styles.todoActions}> // 수정, 삭제기능
+              <div
+                className={styles.icon}
+                onClick={() => handleDelete()}
+                onKeyDown={() => handleDelete()}
+                tabIndex={0}
+                role="button"
+              >
+                <MdDelete />
+              </div>
+              <div
+                className={styles.icon}
+                onClick={() => handleUpdate()}
+                onKeyDown={() => handleUpdate()}
+                tabIndex={0}
+                role="button"
+              >
+                <MdEdit />
+              </div>
+            </div> */}
+          </motion.div>
+          {/* <ReviewModal /> // 수정기능 있을 때 같이 있어야함
+            type="update"
+            modalOpen={updateModalOpen}
+            setModalOpen={setUpdateModalOpen}
+            review={review}
+          /> */}
         </div>
-        <div className={styles.todoActions}>
-          <div
-            className={styles.icon}
-            onClick={() => handleDelete()}
-            onKeyDown={() => handleDelete()}
-            tabIndex={0}
-            role="button"
-          >
-            <MdDelete />
-          </div>
-          <div
-            className={styles.icon}
-            onClick={() => handleUpdate()}
-            onKeyDown={() => handleUpdate()}
-            tabIndex={0}
-            role="button"
-          >
-            <MdEdit />
-          </div>
-        </div>
-      </motion.div>
-      <ReviewModal
-        type="update"
-        modalOpen={updateModalOpen}
-        setModalOpen={setUpdateModalOpen}
-        review={review}
-      />
+      ) : (
+        <></>
+      )}
     </>
   );
 }

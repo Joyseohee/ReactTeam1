@@ -47,16 +47,13 @@ function Review() {
           return (
             <div className="Review-box">
               <Alert variant="light">
-                <Alert.Heading>
-                  {movie.author}
-                  <Rating
-                    // setRate={setRate}
-                    rate={movie.author_details.rating / 2}
-                  />
+                <Alert.Heading className="wantFlex">
+                  &nbsp; {movie.author} &nbsp;&nbsp; 평점 :{" "}
+                  <Rating rate={movie.author_details.rating / 2} />
                 </Alert.Heading>
                 <p>{movie.content}</p>
                 <hr />
-                <p className="mb-0">작성일 : {movie.created_at}</p>
+                <p className="mb-0">&nbsp;작성일 : {movie.created_at}</p>
               </Alert>
             </div>
           );

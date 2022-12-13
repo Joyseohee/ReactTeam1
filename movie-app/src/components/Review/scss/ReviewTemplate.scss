@@ -1,27 +1,25 @@
-.ReviewList-Template{
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 6rem;
-    border-radius: 4px;
-    overflow: hidden;
-    background: ivory;
-    color :black;
-    
-
+.ReviewList-Template {
+  // width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: ivory;
+  color: black;
 }
 
-.ReviewList-title{
-    background: #000000;
-    color: white;
-    height: 4rem;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.ReviewList-title {
+  background: #000000;
+  color: white;
+  height: 4rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.ReviewList-ListTable{
-    background: rgb(246, 246, 246);
-    padding: 3rem;
+.ReviewList-ListTable {
+  background: rgb(246, 246, 246);
+  padding: 3rem;
 }

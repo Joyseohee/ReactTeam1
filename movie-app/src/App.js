@@ -7,6 +7,8 @@ import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
 import Likes from "./pages/Likes";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import Join from "./pages/Join";
 import MyReview from "./pages/MyReview";
 import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
@@ -22,6 +24,8 @@ function App() {
           <Route path="/myreview" element={<MyReview />} />
           <Route path="/likes" element={<Likes />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/join" element={<Join />} />
           <Route path="/search" element={<Search />} />
           <Route path="/ReviewMain" element={<ReviewMain />} />
         </Routes>

@@ -1,9 +1,4 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import tmdbAPI from "../../tmdbAPI";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Movie from "../Common/Movie";
 
 export default function ShowLikes() {
@@ -17,11 +12,9 @@ export default function ShowLikes() {
     setRecentId(arr);
   }, []);
 
-  console.log(recentId);
-
   return (
-    <div>
-      <div style={{ color: "red" }}>추가 가능</div>
+    <div style={{ color: "white" }}>
+      <div>추가 가능</div>
       {recentId === null
         ? null
         : recentId.map((LikesId) => {
