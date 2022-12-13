@@ -15,9 +15,15 @@ function Search() {
     const navigate = useNavigate();
     let movdata = [];
     let [movie, setMovie] = useState([]);
+    let [timesort, setTimeSort] = useState(true);
     let [count, setCount] = useState(0);
     let [MyrecommendMovie, setMyRecommendMovie] = useState([]);
     let [recommendFirstMovie, setRecommendFirstMovie] = useState([]);
+    
+    useEffect(() => {
+        movdata = movie;
+    }, [timesort])
+    
     useEffect(() => {
         axios({
             method: 'get',
@@ -26,6 +32,7 @@ function Search() {
             movdata = res.data.result;
         })
     }, [count])
+    
     return (
         <div>
             <div className={style.header}>
@@ -34,6 +41,7 @@ function Search() {
                     SearchName();
                     RecommendMovie();
                 })}>검색</button>
+                <button onClick = {() => timesort ? Newest(): Oldest()}>날짜순</button>
             </div>
             <div className={style.container}>
 
@@ -56,15 +64,19 @@ function Search() {
                             <>
                                 <div className={style.recommendMovieList}> <h2>{firstMovie.original_title}과 비슷한 장르</h2>
                                     <div className={style.firstMovieCard} data-aos="fade-up">
+                                        <div>
                                         <img className={style.firstmoviePoster}
                                             src={`${API_IMAGEURL}${firstMovie.poster_path}`}
                                             onClick={() => { navigate(`/detail/${firstMovie.id}`) }} />
+                                            <h5>{firstMovie.title}</h5>
+                                        </div>
                                         <div className={style.recommendcontainer}>
                                         {MyrecommendMovie[i].map((recommendmovie, i) => { //2차원 배열을 맵으로 돌리기 위해
                                             return (
                                                 <div className={style.recommendmovieCard} data-aos="slide-right">
                                                     <img className={style.moviePoster}
                                                         src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
+                                                        <h5>{recommendmovie[firstMovie.title].title}</h5>
                                                 </div>
                                             )
                                         })}
@@ -84,7 +96,7 @@ function Search() {
     function SearchName() {
         let movies = []; // 검색한 영화 담는 배열
         const API_IMAGEURL = 'https://image.tmdb.org/t/p/w300';
-
+        setCount(count + 1);
         //검색값
         let search = document.getElementById('search').value;
 
@@ -99,7 +111,7 @@ function Search() {
             }
         }
         setMovie(movies);
-        setCount(count + 1);
+        
         // console.log("movie: " + movie);
     }
 
@@ -157,8 +169,8 @@ function Search() {
 
         //console.log(Object.keys(recommendMovieInfo[130]))
 
-        console.log(recommendMovieInfo[0][movietitle[0]].id);
-        console.log(firstMovie[0].id);
+        // console.log(recommendMovieInfo[0][movietitle[0]].id);
+        // console.log(firstMovie[0].id);
         for (let i = 0; i < movietitle.length; i++) {
             randommovie = [];
             random2 = [];
@@ -182,6 +194,21 @@ function Search() {
         setMyRecommendMovie(recommendMovie);
         setRecommendFirstMovie(firstMovie);
         
+    }
+
+    function Oldest() {
+        setTimeSort(true);
+        movdata.sort((a,b) => {
+            return new Date(a.release_date) - new Date(b.release_date);
+        })
+        setMovie(movie);
+    }
+    function Newest() {
+        setTimeSort(false);
+        movie.sort((a,b) => {
+            return new Date(b.release_date) - new Date(a.release_date);
+        })
+        setMovie(movie);
     }
 }
 

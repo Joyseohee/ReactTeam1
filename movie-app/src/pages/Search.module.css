@@ -28,7 +28,7 @@
 }
 
 .movieCard {
-    
+    display:block;
     height: 525px;
     width: 300px;
     text-align: center;
