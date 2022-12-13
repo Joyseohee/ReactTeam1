@@ -30,8 +30,8 @@ function DetailContent(props){
         //setLoad(false); // 로딩 종료
       };
 
-      console.log(actor);
-      console.log(actor[0]);
+      // console.log(actor);
+      // console.log(actor[0]);
       //console.log(actor[0].name);
 
       return(
