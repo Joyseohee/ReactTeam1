@@ -1,10 +1,32 @@
-import "./css/MyInfo.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import AccountName from "./AccountName";
+import AccountDetail from "./AccountDetail";
 
 export default function MyInfo() {
   return (
     <>
-      <div className="MyInfo profile container-fluid text-center">
+      <Container fluid>
+        <Row className="profileWrapper row">
+          <Col className="photoWrapper col">
+            <div className="photo"></div>
+          </Col>
+          <Col className="Info">
+            <Row className="InfoMargin" />
+            <Row className="accountName">
+              <AccountName />
+            </Row>
+            <div className="DetailMargin btline" />
+            <div className="DetailMargin" />
+            <Row className="accountDetail row">
+              <AccountDetail />
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <div className="MyInfo profile container-fluid text-center">
         <div className="profileWrapper row">
           <div className="photoWrapper col-4">
             <div className="photo"></div>
@@ -18,7 +40,7 @@ export default function MyInfo() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

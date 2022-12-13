@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./css/Join.css";
+import Header from "../components/Common/header";
 import IdInput from "../components/Join/IdInput";
 import PwdInput from "../components/Join/PwdInput";
 import PwdInput2 from "../components/Join/PwdInput2";
 import GenreInput from "../components/Join/GenreInput";
 import JoinButton from "../components/Join/JoinButton";
 import NickInput from "../components/Join/NickInput";
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function Join() {
   const navigate = useNavigate();
@@ -86,7 +89,7 @@ export default function Join() {
 
   return (
     <>
-      <div className="">
+      {/* <div className="join">
         <div className="row logo align-items-end justify-content-center">
           <div className="col-md-6 col-lg-4">
             <a href="${path}/">회원가입</a>
@@ -98,7 +101,26 @@ export default function Join() {
         <PwdInput2 isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
         <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
         <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
-      </div>
+      </div> */}
+      <Header />
+      <Container className="join">
+        <Row className="row logo align-items-end justify-content-center">
+          <Col className="col-md-6 col-lg-4 marginTop"></Col>
+        </Row>
+        <Row className="row logo align-items-end justify-content-center">
+          <Col className="col-md-6 col-lg-4">
+            <a className="signUp" href="/join">
+              회원가입
+            </a>
+          </Col>
+        </Row>
+        <IdInput isIdOk={isIdOk} idCheck={idCheck} />
+        <NickInput inputNick={inputNick} />
+        <PwdInput isPwdOk={isPwdOk} pwdCheck={pwdCheck} />
+        <PwdInput2 isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
+        <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
+        <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
+      </Container>
     </>
   );
 }

@@ -15,25 +15,57 @@ function Search() {
     const navigate = useNavigate();
     let movdata = [];
     let [movie, setMovie] = useState([]);
+    let [timesort, setTimeSort] = useState(true);
     let [count, setCount] = useState(0);
     let [MyrecommendMovie, setMyRecommendMovie] = useState([]);
     let [recommendFirstMovie, setRecommendFirstMovie] = useState([]);
+    let [tvmovie, setTvMovie] = useState(false);
+    const MOVIEJSONFILE = "data.json";
+    const TVJSONFILE = "tvdata.json";
+    let [data, setData] = useState(TVJSONFILE);
     useEffect(() => {
+        tvmovie ? setData(MOVIEJSONFILE) : setData(TVJSONFILE);
+        console.log("data = " + data);
+    }, [tvmovie])
+
+    useEffect(() => {
+        movdata = movie;
+    }, [timesort])
+
+    useEffect(() => {
+        console.log("data1 = " + data);
         axios({
             method: 'get',
-            url: 'https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/data.json',
+            url: `https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/${data}`,
         }).then(res => {
             movdata = res.data.result;
         })
     }, [count])
+
+
+    // 검색 버튼 클릭 시 input 팝업
+    const [showinput, setShowinput] = useState(false);
+    useEffect(() => {
+
+    }, [showinput])
+
     return (
         <div>
             <div className={style.header}>
+                <button onClick={() => {
+                    setTvMovie(!tvmovie);
+                }}>영화? 티비?</button>
                 <input type="text" id="search" className={style.inputform}></input>
                 <button onClick={(() => {
                     SearchName();
                     RecommendMovie();
                 })}>검색</button>
+                <button onClick={() => timesort ? Newest() : Oldest()}>날짜순</button>
+                {
+                    showinput ? <input type="text" id="search" className={style.inputform} /> : <input type="hidden" id="search" className={style.inputform} />
+                }
+                {/* <GoSearch color="#fff" size="20" onClick={()=>{SearchName(); RecommendMovie(); setShowinput(true);
+                }}/> */}
             </div>
             <div className={style.container}>
 
@@ -41,10 +73,10 @@ function Search() {
                     movie.map((movie, i) => {
                         return (
                             <div className={style.movieCard} data-aos="fade-up">
-                                <figure><img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`detail/${movie.id}`) }} />
+                                <figure><img className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`/detail/${movie.id}`) }} />
                                     <figcaption>
-                                        <h5>{movie.title}</h5>
-                                        <h6>{movie.release_date}</h6>
+                                        <h5>{movie.title}{movie.name}</h5>
+                                        <h6>{movie.release_date}{movie.first_air_date}</h6>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -54,20 +86,24 @@ function Search() {
                     recommendFirstMovie.map((firstMovie, i) => {
                         return (
                             <>
-                                <div className={style.recommendMovieList}> <h2>{firstMovie.title}과 비슷한 장르</h2>
+                                <div className={style.recommendMovieList}> <h2>{firstMovie.original_title}과 비슷한 장르</h2>
                                     <div className={style.firstMovieCard} data-aos="fade-up">
-                                        <img className={style.moviePoster}
-                                            src={`${API_IMAGEURL}${firstMovie.poster_path}`}
-                                            onClick={() => { navigate(`/detail/${firstMovie.id}`) }} />
+                                        <div>
+                                            <img className={style.firstmoviePoster}
+                                                src={`${API_IMAGEURL}${firstMovie.poster_path}`}
+                                                onClick={() => { navigate(`/detail/${firstMovie.id}`) }} />
+                                            <h5>{firstMovie.title}</h5>
+                                        </div>
                                         <div className={style.recommendcontainer}>
-                                        {MyrecommendMovie[i].map((recommendmovie, i) => { //2차원 배열을 맵으로 돌리기 위해
-                                            return (
-                                                <div className={style.recommendmovieCard} data-aos="fade-right">
-                                                    <img className={style.moviePoster}
-                                                        src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
-                                                </div>
-                                            )
-                                        })}
+                                            {MyrecommendMovie[i].map((recommendmovie, i) => { //2차원 배열을 맵으로 돌리기 위해
+                                                return (
+                                                    <div className={style.recommendmovieCard} data-aos="slide-right">
+                                                        <img className={style.moviePoster}
+                                                            src={`${API_IMAGEURL}${recommendmovie[firstMovie.title].poster_path}`} />
+                                                        <h5>{recommendmovie[firstMovie.title].title}</h5>
+                                                    </div>
+                                                )
+                                            })}
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +119,10 @@ function Search() {
     //검색
     function SearchName() {
         let movies = []; // 검색한 영화 담는 배열
-        const API_IMAGEURL = 'https://image.tmdb.org/t/p/w300';
+        console.log(movdata);
+        console.log(data);
 
+        setCount(count + 1);
         //검색값
         let search = document.getElementById('search').value;
 
@@ -92,14 +130,22 @@ function Search() {
         if (search.length !== 0) {
             search = search.charAt(0).toUpperCase() + search.slice(1);
         }
-
-        for (let i = 0; i < movdata.length; i++) {
-            if (movdata[i].title.includes(search) || movdata[i].original_title.includes(search)) {
-                movies[i] = movdata[i];
+        if (data === "data.json") {
+            for (let i = 0; i < movdata.length; i++) {
+                if (movdata[i].title.includes(search) || movdata[i].original_title.includes(search)) {
+                    movies[i] = movdata[i];
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < movdata.length; i++) {
+                if (movdata[i].name.includes(search) || movdata[i].original_name.includes(search)) {
+                    movies[i] = movdata[i];
+                }
             }
         }
         setMovie(movies);
-        setCount(count + 1);
+
         // console.log("movie: " + movie);
     }
 
@@ -157,6 +203,8 @@ function Search() {
 
         //console.log(Object.keys(recommendMovieInfo[130]))
 
+        // console.log(recommendMovieInfo[0][movietitle[0]].id);
+        // console.log(firstMovie[0].id);
         for (let i = 0; i < movietitle.length; i++) {
             randommovie = [];
             random2 = [];
@@ -164,7 +212,8 @@ function Search() {
                 let random = Math.floor(Math.random() * recommendMovieInfo.length);
                 if (!random2.includes(random)) { // 같은 영화 추천을 하지 않기 위해서
                     random2.push(random);
-                    if (Object.keys(recommendMovieInfo[random])[0] !== movietitle[i]) {
+                    if ((Object.keys(recommendMovieInfo[random])[0] !== movietitle[i]) ||
+                        recommendMovieInfo[random][movietitle[i]].id === firstMovie[i].id) { // 같은 장르가 아니거나, 같은 아이디(같은 영화가 들어갔을 때)
                         j--;
                     }
                     else {
@@ -178,12 +227,43 @@ function Search() {
         }
         setMyRecommendMovie(recommendMovie);
         setRecommendFirstMovie(firstMovie);
-        console.log(recommendMovie);
-        console.log(MyrecommendMovie);
-        console.log(firstMovie);
+
+    }
+
+    function Oldest() {
+        setTimeSort(true);
+        if (data === "data.json") {
+            movdata.sort((a, b) => {
+                return new Date(a.release_date) - new Date(b.release_date);
+            })
+        }
+        if (data === "tvdata.json") {
+            movdata.sort((a, b) => {
+                return new Date(a.first_air_date) - new Date(b.first_air_date);
+            })
+
+        }
+        setMovie(movie);
+    }
+    function Newest() {
+
+        if (data === "data.json") {
+            setTimeSort(false);
+            movie.sort((a, b) => {
+                return new Date(b.release_date) - new Date(a.release_date);
+            })
+            
+        }
+        if (data === "tvdata.json") {
+            setTimeSort(false);
+            movie.sort((a, b) => {
+                return new Date(b.first_air_date) - new Date(a.first_air_date);
+            })
+            
+        }
+
+        setMovie(movie);
     }
 }
-
-
 
 export default Search;
