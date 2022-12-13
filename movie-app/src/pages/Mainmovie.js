@@ -12,7 +12,7 @@ import style from "./Mainmovie.module.css";
 import tmdbAPI from "../tmdbAPI";
 import Search from "./Search";
 import Loading from "../components/loading";
-import Header from "../components/header";
+import Header from "../components/Common/header";
 import Top from "../components/Common/top"
 
 function MainMoive() {
@@ -76,7 +76,7 @@ function MainMoive() {
     <>
       {/* 헤더 */}
       <Header />
-      {Search()}
+      {/* {Search()} */}
 
             {/* upcoming */}
             <div className={style.upcoming}>
