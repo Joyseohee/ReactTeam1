@@ -14,7 +14,8 @@ function Video(props){
     return (
         <div className={style.back}>
             <div className={style.player_wrapper}>
-                <button className="ModalPageButton" onClick={handleClose}><img src={close} className={style.close} /></button>
+                <div>
+                    <button className="ModalPageButton" onClick={handleClose}><img src={close} className={style.close} /></button>
                 <ReactPlayer
                     className={style.react_player}
                     url={`https://www.youtu.be/${props.movieKey}`} // 플레이어 url
@@ -25,7 +26,7 @@ function Video(props){
                     controls={true} // 플레이어 컨트롤 노출 여부
                     light={false} // 플레이어 모드
                     pip={true} // pip 모드 설정 여부
-                />
+                /></div>
             </div>
         </div>
             

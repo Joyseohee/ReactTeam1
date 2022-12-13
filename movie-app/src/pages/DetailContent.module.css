@@ -40,8 +40,8 @@
 }
 
 .actor{
-    width: 150px;
-    height: 220px;
+    width: 60%;
+    height: 80%;
     border-radius: 10%;
     box-shadow: 5px 5px 8px grey;
 }
@@ -51,6 +51,6 @@
 }
 
 .profile{
-    width: 150px;
-    height: 200px;
+  width: 60%;
+  height: 80%;
 }
