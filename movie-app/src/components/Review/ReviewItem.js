@@ -11,6 +11,10 @@ import ReviewModal from "./ReviewModal";
 import Rating from "./Rating";
 import ReviewError from "./ReviewError";
 import { useParams } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const child = {
   hidden: { y: 20, opacity: 0 },
@@ -55,23 +59,51 @@ function ReviewItem({ review }) {
   return (
     <>
       {id.id === review.movie_id ? ( // 조건부 (원하는 )
-        <div className="review-test">
-          <motion.div className={styles.item} variants={child}>
-            <div className={styles.todoDetails}>
-              <CheckButton checked={checked} handleCheck={handleCheck} />
-              <div className={styles.texts}>
-                <p>{review.content}</p>
-                <hr />
-                <p>{review.authorNick}</p>
-                <Rating
-                  // setRate={setRate}
-                  rate={review.rate / 2}
-                />
-                <p>{review.content}</p>
-                <p>{review.date}</p>
-              </div>
-            </div>
-            {/* <div className={styles.todoActions}> // 수정, 삭제기능
+        <div className="review-test" data-aos="fade-down">
+          <Alert variant="light">
+            <Alert.Heading className="wantFlex">
+              <motion.div className={styles.item} variants={child}>
+                <div className={styles.todoDetails}>
+                  <CheckButton checked={checked} handleCheck={handleCheck} />
+                  {/* <div className={styles.texts}>
+                    {review.authorNick}
+                    <Rating
+                      // setRate={setRate}
+                      rate={review.rate / 2}
+                    />
+                    <p>{review.content}</p>
+                    <hr />
+                    <p>{review.date}</p>
+                  </div>
+                </div> */}
+
+                  <Container>
+                    <Row>
+                      <Col>
+                        {review.authorNick}
+                        <p></p>
+                      </Col>
+                      <Col>
+                        <Rating
+                          // setRate={setRate}
+                          rate={review.rate / 2}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <p>{review.content}</p>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <hr />
+                        <p>{review.date}</p>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+                {/*<div className={styles.todoActions}> // 수정, 삭제기능
               <div
                 className={styles.icon}
                 onClick={() => handleDelete()}
@@ -80,7 +112,8 @@ function ReviewItem({ review }) {
                 role="button"
               >
                 <MdDelete />
-              </div>
+                  </div>
+ 
               <div
                 className={styles.icon}
                 onClick={() => handleUpdate()}
@@ -91,7 +124,9 @@ function ReviewItem({ review }) {
                 <MdEdit />
               </div>
             </div> */}
-          </motion.div>
+              </motion.div>
+            </Alert.Heading>
+          </Alert>
           {/* <ReviewModal /> // 수정기능 있을 때 같이 있어야함
             type="update"
             modalOpen={updateModalOpen}
