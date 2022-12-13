@@ -1,7 +1,8 @@
-import tmdbAPI from "../../tmdbAPI";
+import tmdbAPI from "../../../tmdbAPI";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyReviewDetail from "./MyReviewDetail";
+import Rating from "../../Review/Rating";
 
 export default function MyReviewTd({ review, index }) {
   let [movieTitle, setMovieTitle] = useState();
@@ -33,6 +34,9 @@ export default function MyReviewTd({ review, index }) {
           }}
         >
           {review.content}
+        </td>
+        <td>
+          <Rating rate={review.rate / 2} />
         </td>
         <td>{review.date}</td>
       </tr>

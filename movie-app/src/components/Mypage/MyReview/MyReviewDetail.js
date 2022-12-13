@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import tmdbAPI from "../../tmdbAPI";
+import tmdbAPI from "../../../tmdbAPI";
 import toast from "react-hot-toast"; // review 등록, 수정, 삭제시 안내 창
 import { useDispatch } from "react-redux";
-import { deleteReview, updateReview } from "../../store";
+import { deleteReview } from "../../../store";
 import { MdDelete, MdEdit } from "react-icons/md";
-import styles from "../../components/Review/scss/ItemReview.module.scss";
-import ReviewModal from "../../components/Review/ReviewModal";
+import styles from "../../../components/Review/scss/ItemReview.module.scss";
+import ReviewModal from "../../../components/Review/ReviewModal";
 
 export default function MyReviewDetail({ show, setShow, review }) {
   let [movieTitle, setMovieTitle] = useState();
-  const navigate = useNavigate();
 
   useEffect(() => {
     tmdbAPI.get(`movie/${review.movie_id}`).then((res) => {

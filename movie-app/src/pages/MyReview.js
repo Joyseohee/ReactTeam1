@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import MyReviewTd from "../components/Mypage/MyReviewTd";
+import MyReviewTd from "../components/Mypage/MyReview/MyReviewTd";
 
 export default function MyReview() {
   const reviewList = useSelector((state) => state.review.reviewList);
@@ -32,6 +32,7 @@ export default function MyReview() {
                   <th>글번호</th>
                   <th>영화 제목</th>
                   <th>내 리뷰</th>
+                  <th>별점</th>
                   <th>작성일</th>
                 </tr>
               </thead>
