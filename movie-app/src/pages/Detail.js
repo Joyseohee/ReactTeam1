@@ -17,6 +17,7 @@ import like from "../images/like.png";
 import Top from "../components/Common/top";
 import Trailers from "./Trailers";
 import Similar from "./Similar";
+import Header from "../components/Common/header";
 
 function Detail() {
   let id = useParams();
@@ -37,7 +38,6 @@ function Detail() {
     if (res.data) {
       setMovie(res.data);
       console.log(res.data);
-    } else {
     }
     setLoad(false); // 로딩 종료
   };
@@ -91,6 +91,10 @@ function Detail() {
 
   return (
     <>
+      {/* 헤더 */}
+      <Header />
+
+      {/* Detail 내용 */}
       {load ? (
         <Loading />
       ) : (
