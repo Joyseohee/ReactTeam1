@@ -29,12 +29,13 @@ export default function TemporaryDrawer() {
     >
       <List>
         {['TV Series'].map((text, index) => (
+        
           <ListItem key={text} disablePadding >
             <ListItemButton >
               <ListItemIcon style={{color:'#fff'}} >
-                {index % 2 === 0 ? <LiveTvIcon onClick={()=>{navigate('/tv')}}/> : <CategoryIcon />}
+                {index % 2 === 0 ? <LiveTvIcon onClick={() => { navigate(`/tv`) }}/> : <CategoryIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} style={{color:'#fff'}} onClick={()=>{navigate('/tv')}}/>
+              <ListItemText primary={text} style={{color:'#fff'}} onClick={() => { navigate(`/tv`) }}/>
             </ListItemButton>
           </ListItem>
         ))}
