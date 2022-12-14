@@ -7,7 +7,7 @@ import Video from "../components/Detail/Video";
 import DetailContent from "../components/Detail/DetailContent";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
-import Header from "../components/Common/header"
+import Header from "../components/Common/header";
 
 import ReviewMain from "./ReviewMain";
 
@@ -18,6 +18,7 @@ import Similar from "../components/Detail/Similar";
 import clock from "./images/clock.png";
 import percent from "./images/100-percent.png";
 import like from "./images/like.png";
+import Footer from "../components/Common/Footer";
 
 function Detail() {
   let id = useParams();
@@ -100,7 +101,6 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-          <Header />
           <div className={style.header}>
             <div
               className={style.inner}
@@ -161,20 +161,25 @@ function Detail() {
                   <span>
                     <ClickLikes id={id} like={like} style={style} />
                   </span>
-                  <span className={style.vote_count}>좋아요</span> <br /><br />
-                  {
-                    movie.tagline == ""?
-                    <h3 style={{ color: "white" }}>NO Tagline</h3> :
+                  <span className={style.vote_count}>좋아요</span> <br />
+                  <br />
+                  {movie.tagline == "" ? (
+                    <h3 style={{ color: "white" }}>NO Tagline</h3>
+                  ) : (
                     <span className={style.tagline}>{movie.tagline}</span>
-                  }
-                  <br /><br />
-                  {
-                    movie.overview == ""?
-                    <h3 style={{ color: "white"}}>NO Overview</h3> :
+                  )}
+                  <br />
+                  <br />
+                  {movie.overview == "" ? (
+                    <h3 style={{ color: "white" }}>NO Overview</h3>
+                  ) : (
                     <span className={style.overview}>{movie.overview}</span>
-                  }
-                  <br /><br />
-                  <button className={style.playbutton} onClick={onClickButton}>트레일러 보기</button>
+                  )}
+                  <br />
+                  <br />
+                  <button className={style.playbutton} onClick={onClickButton}>
+                    트레일러 보기
+                  </button>
                   <div className={style.player}>
                     {isOpen && (
                       <Video
@@ -193,21 +198,43 @@ function Detail() {
           </div>
           <div className={style.nav}>
             <br />
-          <Nav fill variant="tabs" defaultActiveKey="link-0">
-            <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">관련소식</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(2);}} eventKey="link-2">실관람평</Nav.Link>
-            </Nav.Item>
-          </Nav>
+            <Nav fill variant="tabs" defaultActiveKey="link-0">
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(0);
+                  }}
+                  eventKey="link-0"
+                >
+                  상세정보
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(1);
+                  }}
+                  eventKey="link-1"
+                >
+                  관련소식
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => {
+                    setClickTab(2);
+                  }}
+                  eventKey="link-2"
+                >
+                  실관람평
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
 
             <TabContent clickTab={clickTab} movies={movie} company={company} />
           </div>
           <Top></Top>
+          <Footer></Footer>
         </div>
       )}
     </>

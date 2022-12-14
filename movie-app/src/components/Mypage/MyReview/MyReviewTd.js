@@ -21,35 +21,38 @@ export default function MyReviewTd({ review }) {
 
   return (
     <>
-      <div className="MyreviewWrapper">
-        <div className="moviePoster">
-          <Movie id={review.movie_id} width="200" />
-        </div>
-        <div>
+      <Row className="MyreviewWrapper">
+        <Col className="moviePoster col-lg-2 col-md-4">
+          <Movie id={review.movie_id} width="200" style="MyReviewBox" />
+        </Col>
+        <Col className="reviewDetail">
           {/* 영화 제목 */}
           <div
+            className="myReviewTitle"
             onClick={() => {
               navigate(`/detail/${review.movie_id}`);
             }}
           >
             {movieTitle}
           </div>
+          {/* 별점 */}
+          <div className="myReviewRates">
+            <Rating rate={review.rate / 2} />
+          </div>
           {/* 리뷰 내용 */}
           <div
+            className="myReviewContent"
             onClick={() => {
               handleShow();
             }}
           >
             {review.content}
           </div>
-          {/* 별점 */}
-          <div>
-            <Rating rate={review.rate / 2} />
-          </div>
+
           {/* 작성일 */}
-          <div>{review.date}</div>
-        </div>
-      </div>
+          <div className="myReviewDate">{review.date}</div>
+        </Col>
+      </Row>
       <MyReviewDetail show={show} setShow={setShow} review={review} />
     </>
   );

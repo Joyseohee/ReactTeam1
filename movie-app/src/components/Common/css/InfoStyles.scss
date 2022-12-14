@@ -86,6 +86,8 @@
 .InfoMap {
   text-align: center;
   color: antiquewhite;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   h1,
   h2,
@@ -111,7 +113,7 @@
   }
 
   p {
-    margin: 0 0 30px 0;
+    margin: 0 0 0 0;
     font-size: 18px;
     color: #fdfdfd;
   }
@@ -130,6 +132,7 @@
   display: inline;
   width: 100%;
   height: auto;
+  margin-bottom: 50px;
   //   margin: auto;
 }
 

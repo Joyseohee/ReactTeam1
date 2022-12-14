@@ -3,7 +3,6 @@ import Review from "../components/Review/Review";
 import ReviewTemplate from "../components/Review/ReviewTemplate";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Footer from "../components/Common/Footer";
 
 function ReviewMain() {
   return (
@@ -31,7 +30,6 @@ function ReviewMain() {
       <div className="ReviewPage">
         <Review></Review>
       </div> */}
-      <Footer></Footer>
     </div>
   );
 }

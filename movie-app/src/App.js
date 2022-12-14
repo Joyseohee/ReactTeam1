@@ -11,7 +11,6 @@ import DetailTV from "./pages/DetailTV";
 
 import Login from "./pages/Login";
 import Join from "./pages/Join";
-import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
 import Info from "./components/Common/FooterCommon/Info";
 import styled, { createGlobalStyle } from "styled-components";
@@ -33,7 +32,6 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          {/* <Route path="/search" element={<Search />} /> */}
           <Route path="/ReviewMain" element={<ReviewMain />} />
           <Route path="/Info" element={<Info />} />
           <Route path="/Policy" element={<Policy />} />

@@ -8,6 +8,7 @@ import GenreInput from "../components/Join/GenreInput";
 import JoinButton from "../components/Join/JoinButton";
 import NickInput from "../components/Join/NickInput";
 import { Col, Container, Row } from "react-bootstrap";
+import Footer from "../components/Common/Footer";
 
 export default function Join() {
   let [loginId, setLoginId] = useState();
@@ -105,6 +106,7 @@ export default function Join() {
         <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
         <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
       </Container>
+      <Footer></Footer>
     </>
   );
 }

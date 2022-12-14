@@ -1,23 +1,23 @@
-body {
-  --black: #111111;
-  --white: #fdfdfd;
-  --green: #22cc88;
-  --blue: #0055ff;
-  --purple: #8855ff;
-  --red: #ff0055;
-  --orange: #ee4444;
-  --yellow: #ffcc00;
-  --mustard: #ffaa00;
+// body {
+//   --black: #111111;
+//   --white: #fdfdfd;
+//   --green: #22cc88;
+//   --blue: #0055ff;
+//   --purple: #8855ff;
+//   --red: #ff0055;
+//   --orange: #ee4444;
+//   --yellow: #ffcc00;
+//   --mustard: #ffaa00;
 
-  --background: var(--white);
-  --accent: var(--black);
+//   --background: var(--white);
+//   --accent: var(--black);
 
-  margin: 0;
-  padding: 0;
-  background-color: var(--background);
-  color: var(--accent);
-  // padding-bottom: 100px;
-}
+//   margin: 0;
+//   padding: 0;
+//   background-color: var(--background);
+//   color: var(--accent);
+//   // padding-bottom: 100px;
+// }
 
 // * {
 //   font-family: sofia-pro, sans-serif;
@@ -25,10 +25,29 @@ body {
 //   font-style: normal;
 //   -webkit-font-smoothing: antialiased;
 // }
+.PolicyCard {
+  background-color: black;
+  margin: 50px 50px 50px 50px;
+}
+
+.PolicyListGroup {
+  margin: 50px 50px 50px 50px;
+}
+.list-group-flush {
+  > .list-group-item {
+    color: wheat;
+    background-color: black;
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+}
+
 .Policy-title {
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: sofia-pro, sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -51,7 +70,7 @@ body {
   p {
     margin: 0 0 30px 0;
     font-size: 18px;
-    color: #fdfdfd;
+    color: wheat;
   }
 }
 footer {
@@ -108,4 +127,8 @@ article {
   height: 10px;
   background: var(--red);
   transform-origin: 0%;
+}
+
+.LastUpdate {
+  color: white;
 }
