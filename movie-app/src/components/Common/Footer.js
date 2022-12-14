@@ -44,22 +44,23 @@ function Footer() {
         </Nav>
         <p
           className="text-center mt-4 mb-4"
+          color="white"
           onClick={() => {
             navigate("/");
           }}
         >
-          회사명을 입력해주세요...
+          <img src="/images/logo.png" width="100px" height="100px"></img>
           {/* main nav 설정완료*/}
         </p>
         <Nav className="justify-content-end" activeKey="/">
           <Nav.Item>
-            <Nav.Link href="/">Active</Nav.Link>
+            <Nav.Link href="/">법적고지</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
+            <Nav.Link eventKey="link-1">윤리경영</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
+            <Nav.Link eventKey="link-2">계열사</Nav.Link>
           </Nav.Item>
         </Nav>
       </div>
