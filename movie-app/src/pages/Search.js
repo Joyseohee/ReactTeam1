@@ -4,7 +4,12 @@ import style from "./Search.module.css";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 function Search() {
   useEffect(() => {
     AOS.init();
@@ -24,7 +29,7 @@ function Search() {
   let [data, setData] = useState(TVJSONFILE);
   useEffect(() => {
     tvmovie ? setData(MOVIEJSONFILE) : setData(TVJSONFILE);
-    console.log("data = " + data);
+    setCount(count + 1);
   }, [tvmovie]);
 
   useEffect(() => {
@@ -119,10 +124,26 @@ function Search() {
                         />
                         <h5>{firstMovie.title}</h5>
                       </div>
-                      <div className={style.recommendcontainer}>
-                        {MyrecommendMovie[i].map((recommendmovie, i) => {
-                          //2차원 배열을 맵으로 돌리기 위해
-                          return (
+                    </div>
+                  </div>
+                  <Swiper
+                    slidesPerView={5}
+                    spaceBetween={30}
+                    slidesPerGroup={5}
+                    loop={true}
+                    loopFillGroupWithBlank={true}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                  >
+                    <div className={style.recommendcontainer}>
+                      {MyrecommendMovie[i].map((recommendmovie, i) => {
+                        //2차원 배열을 맵으로 돌리기 위해
+                        return (
+                          <SwiperSlide>
                             <div
                               className={style.recommendmovieCard}
                               data-aos="slide-right"
@@ -135,11 +156,11 @@ function Search() {
                               />
                               <h5>{recommendmovie[firstMovie.title].title}</h5>
                             </div>
-                          );
-                        })}
-                      </div>
+                          </SwiperSlide>
+                        );
+                      })}
                     </div>
-                  </div>
+                  </Swiper>
                 </>
               );
             })}
@@ -245,7 +266,7 @@ function Search() {
     for (let i = 0; i < movietitle.length; i++) {
       randommovie = [];
       random2 = [];
-      for (let j = 1; j <= 4; j++) {
+      for (let j = 1; j <= 30; j++) {
         //첫영화 제외하고 4개 (한줄에 다섯개의 영화가 있기 때문에)
         let random = Math.floor(Math.random() * recommendMovieInfo.length);
         if (!random2.includes(random)) {

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import tmdbAPI from "../../tmdbAPI";
+import Col from "react-bootstrap/Col";
 
 export default function Movie(props) {
   const [movie, setMovie] = useState([]);
-  const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
+  const API_IMAGEURL = "https://image.tmdb.org/t/p/w300";
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,15 +15,14 @@ export default function Movie(props) {
   }, []);
 
   return (
-    <div>
-      <h3>{movie.title}</h3>
+    <Col className="col align-self-center">
       <img
-        className="img"
+        className="LikesMovieImg"
         src={`${API_IMAGEURL}${movie.poster_path}`}
         onClick={() => {
           navigate(`/detail/${movie.id}`);
         }}
       />
-    </div>
+    </Col>
   );
 }

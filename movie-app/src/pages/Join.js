@@ -89,19 +89,6 @@ export default function Join() {
 
   return (
     <>
-      {/* <div className="join">
-        <div className="row logo align-items-end justify-content-center">
-          <div className="col-md-6 col-lg-4">
-            <a href="${path}/">회원가입</a>
-          </div>
-        </div>
-        <IdInput isIdOk={isIdOk} idCheck={idCheck} />
-        <NickInput inputNick={inputNick} />
-        <PwdInput isPwdOk={isPwdOk} pwdCheck={pwdCheck} />
-        <PwdInput2 isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
-        <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
-        <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
-      </div> */}
       <Header />
       <Container className="join">
         <Row className="row logo align-items-end justify-content-center">

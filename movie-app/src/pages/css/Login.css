@@ -10,7 +10,6 @@
   height: 1080px;
   background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/ac9aedf1-a687-4c5d-965c-2fc3eac84aea/17d27220-3eb7-4e8f-aad7-978843af0588/KR-ko-20221206-popsignuptwoweeks-perspective_alpha_website_large.jpg);
   background-repeat: no-repeat;
-  /* background-color: rgba(34, 34, 34, 0.5); */
   background-size: 100% auto;
 }
 .loginOpacity {
@@ -18,16 +17,6 @@
   height: 1080px;
   background-color: rgba(34, 34, 34, 0.5);
 }
-/* .loginBackground::before {
-  content: "";
-  opacity: 0.5;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: #000;
-} */
 
 .TopMargin {
   height: 5px;
@@ -40,6 +29,7 @@
 .topLogo {
   color: #f8f8f8;
   text-align: left;
+  margin-top: 30px;
   margin-bottom: 30px;
   font-size: 30px;
 }
@@ -49,7 +39,7 @@
 }
 
 .loginBox {
-  background-color: rgba(34, 34, 34, 0.8);
+  background-color: rgba(34, 34, 34, 0.7);
   display: block;
   margin: auto;
   margin-top: 150px;
@@ -77,10 +67,6 @@
   color: #888888;
 }
 
-.containerLog .row {
-  /* margin-bottom: 10px; */
-}
-
 .error {
   margin-bottom: 0;
   height: 30px;
@@ -101,5 +87,7 @@
 }
 
 .containerLog .joinLink {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: right;
 }
