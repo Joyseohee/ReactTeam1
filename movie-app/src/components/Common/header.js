@@ -39,7 +39,11 @@ const Header = () => {
                 navigate("/");
               }}
             >
-              MUI
+              <img
+                src="/images/logo_header.png"
+                width="40px"
+                height="30px"
+              ></img>
             </a>
           </Typography>
 

@@ -147,3 +147,16 @@
   font-size: 12px;
   margin-bottom: 0;
 }
+
+.recommandContainer {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+.recommanBox {
+  margin: 0;
+}
+
+.recTitle {
+  margin: 10px;
+}

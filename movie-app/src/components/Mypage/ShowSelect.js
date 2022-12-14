@@ -1,6 +1,6 @@
 import MyReview from "./MyReview/MyReview";
 import Likes from "./MyLikes/Likes";
-import { useEffect } from "react";
+import Recommend from "./Recommend";
 
 export default function ShowSelect({ mpClickTab }) {
   if (mpClickTab == 1) {
@@ -11,6 +11,13 @@ export default function ShowSelect({ mpClickTab }) {
     );
   }
   if (mpClickTab == 2) {
+    return (
+      <div className="mgClickBox">
+        <Recommend />
+      </div>
+    );
+  }
+  if (mpClickTab == 3) {
     return (
       <div className="mgClickBox">
         <MyReview />

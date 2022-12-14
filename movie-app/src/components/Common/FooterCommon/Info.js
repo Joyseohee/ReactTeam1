@@ -87,7 +87,7 @@ function Info() {
                   <td>02-2188-6980</td>
                 </tr>
                 <tr>
-                  <td rowspan="4" text-align="center">
+                  <td rowspan="4" text-align="center" className="plzMove">
                     찾아오시는 길
                   </td>
                   <td>

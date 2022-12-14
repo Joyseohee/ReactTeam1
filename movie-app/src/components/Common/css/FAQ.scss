@@ -1,3 +1,29 @@
-.Policy_Container{
-    background: yellow;
+.FAQCard {
+  background-color: black;
+  margin: 50px 50px;
+}
+
+.FAQ_title {
+  color: yellow;
+  text-align: center;
+}
+
+.accordion {
+  //--bs-accordion-bg: black;
+  color: black;
+  @if (accordion-collapse collapse) {
+    --bs-accordion-bg: black;
+    .accordion-item {
+      color: yellow;
+    }
+  } @else {
+    --bs-accordion-bg: white;
+  }
+}
+
+.accordion-button {
+  color: yellow;
+  //   --bs-accordion-bg: black;
+  //   --bs-accordion-active-color: black;
+  //   --bs-accordion-active-bg: white;
 }
