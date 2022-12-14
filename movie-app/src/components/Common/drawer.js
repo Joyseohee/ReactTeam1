@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Box, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import { LiveTv as LiveTvIcon, Mail as MailIcon, Menu as MenuIcon, Category as CategoryIcon} from '@mui/icons-material';
-import './drawer.css';
 import { useNavigate } from 'react-router-dom';
+
+import './drawer.css';
 
 export default function TemporaryDrawer() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-//   style={{backgroundColor:'black'}}
+  
   const list = (anchor) => (
     <Box
       sx={{ width: 250 }}

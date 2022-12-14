@@ -16,43 +16,44 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--accent);
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
 }
 
-* {
-  // font-family: sofia-pro, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-}
+// * {
+//   font-family: sofia-pro, sans-serif;
+//   font-weight: 400;
+//   font-style: normal;
+//   -webkit-font-smoothing: antialiased;
+// }
+.Policy-title {
+  h1,
+  h2,
+  h3 {
+    font-family: sofia-pro, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: sofia-pro, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 100px 0 40px;
+  }
 
-h1 {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  line-height: 1.2;
-  text-align: center;
-  margin: 100px 0 40px;
-}
+  h2 {
+    font-weight: 400;
+    margin: 50px 0 10px;
+  }
 
-h2 {
-  font-weight: 400;
-  margin: 50px 0 10px;
+  p {
+    margin: 0 0 30px 0;
+    font-size: 18px;
+    color: #fdfdfd;
+  }
 }
-
-p {
-  margin: 0 0 30px 0;
-  font-size: 18px;
-}
-
 footer {
   position: fixed;
   bottom: 0;
@@ -91,12 +92,6 @@ footer svg {
 footer a {
   text-decoration: none;
   color: var(--accent);
-}
-
-code {
-  font-family: input-mono, monospace;
-  font-weight: 400;
-  font-style: normal;
 }
 
 article {

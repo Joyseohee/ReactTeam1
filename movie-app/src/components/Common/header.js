@@ -1,19 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { styled, alpha } from "@mui/material/styles";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  IconButton,
-  InputBase,
-  Button,
-} from "@mui/material";
-import { Search as SearchIcon, AccountCircle } from "@mui/icons-material";
+import { AppBar, Box, Toolbar, Typography, IconButton } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
 
 import TemporaryDrawer from "./drawer";
 import SearchHeader from "./searchHeader";
-import InputHeader from "../searchTest/InputHeader";
 import LoginButton from "./LoginButton";
 import MyPageButton from "./MyPageButton";
 
@@ -30,6 +20,7 @@ const Header = () => {
         style={{ backgroundColor: "black", boxShadow: "1px -20px 70px red" }}
       >
         <Toolbar>
+          {/* drawer 삽입 */}
           <TemporaryDrawer />
           <Typography
             variant="h6"
@@ -52,9 +43,8 @@ const Header = () => {
             </a>
           </Typography>
 
-          {/* search */}
-          {/* <SearchHeader /> */}
-          <InputHeader />
+          {/* 검색창 삽입 */}
+          <SearchHeader />
 
           {/* 이 부분 추후에 로그인 시 비교 값 가져와서 선택 출력 필요(마이페이지) */}
           <MyPageButton />
