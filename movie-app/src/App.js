@@ -3,8 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "./pages/css/App.scss";
 import MainMoive from "./pages/Mainmovie";
+import MainTV from "./pages/MainTV";
 import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
+import DetailTV from "./pages/DetailTV";
 import Likes from "./pages/Likes";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -21,7 +23,9 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainMoive />} />
+          <Route path="/tv" element={<MainTV />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/tv/detail/:id" element={<DetailTV />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/myreview" element={<MyReview />} />
           <Route path="/likes" element={<Likes />} />

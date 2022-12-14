@@ -2,8 +2,10 @@ import * as React from 'react';
 import { Box, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import { LiveTv as LiveTvIcon, Mail as MailIcon, Menu as MenuIcon, Category as CategoryIcon} from '@mui/icons-material';
 import './drawer.css';
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function TemporaryDrawer() {
+  const navigate = useNavigate();
   const [state, setState] = React.useState({
     left: false,
   });
@@ -25,13 +27,13 @@ export default function TemporaryDrawer() {
       style={{backgroundColor:'black'}}
     >
       <List>
-        {['TV Series', 'Genres'].map((text, index) => (
+        {['TV Series'].map((text, index) => (
           <ListItem key={text} disablePadding >
             <ListItemButton >
               <ListItemIcon style={{color:'#fff'}} >
-                {index % 2 === 0 ? <LiveTvIcon/> : <CategoryIcon />}
+                {index % 2 === 0 ? <LiveTvIcon onClick={() => { navigate(`/tv`) }}/> : <CategoryIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} style={{color:'#fff'}}/>
+              <ListItemText primary={text} style={{color:'#fff'}} onClick={() => { navigate(`/tv`) }}/>
             </ListItemButton>
           </ListItem>
         ))}

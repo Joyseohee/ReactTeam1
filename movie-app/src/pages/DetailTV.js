@@ -8,6 +8,11 @@ import DetailContent from "../components/Detail/DetailContent";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
 import Header from "../components/Common/header"
+import TVDetailPerson from "../components/Detail/TVDetailPerson"
+import TVSimilar from "../components/Detail/TVSimilar"
+import TVTrailers from "../components/Detail/TVTrailers"
+import TVVideo from "../components/Detail/TVVideo";
+import SeasonEpis from "../components/Detail/SeasonEpis";
 
 import ReviewMain from "./ReviewMain";
 
@@ -22,22 +27,24 @@ import like from "./images/like.png";
 
 function Detail() {
   let id = useParams();
-  const [movie, setMovie] = useState([]);
+  const [tv, setTv] = useState([]);
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   console.log(id.id);
   const [load, setLoad] = useState(null);
   const [video, setVideo] = useState([]);
-  const [movieKey, setMoviekey] = useState();
+  const [tvKey, setTvkey] = useState();
   const [genre, setGenre] = useState([]);
   const [company, setCompany] = useState([]);
+  const [country, setCountry] = useState([]);
   const navigate = useNavigate();
 
-  const getDetailmv = async () => {
+  // TV 디테일 받아오기
+  const getTvdetail = async () => {
     setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
+    const res = await tmdbAPI.get(`tv/${id.id}`);
     if (res.data) {
-      setMovie(res.data);
+      setTv(res.data);
       console.log(res.data);
     } else {
     }
@@ -47,9 +54,10 @@ function Detail() {
   // 장르 받아오기
   const getGenre = async () => {
     setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
+    const res = await tmdbAPI.get(`tv/${id.id}`);
     if (res.data) {
       setGenre(res.data.genres);
+      setCountry(res.data.production_countries)
       console.log(res.data.genres);
     } else {
     }
@@ -59,7 +67,7 @@ function Detail() {
   // 제작사 받아오기
   const getCompany = async () => {
     setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
+    const res = await tmdbAPI.get(`tv/${id.id}`);
     if (res.data) {
       setCompany(res.data.production_companies);
     } else {
@@ -68,23 +76,22 @@ function Detail() {
   };
 
   useEffect(() => {
-    getDetailmv();
     getGenre();
     getCompany();
+    getTvdetail();
   }, []);
 
   let [clickTab, setClickTab] = useState(0);
 
   useEffect(() => {
     tmdbAPI
-      .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
+      .get(`tv/${id.id}/videos`, { params: { language: "en-US" } })
       .then((res) => {
         console.log(res.data.results);
-        setVideo(res.data.results);
-        setMoviekey(res.data.results[0].key);
+        setTvkey(res.data.results[0].key);
       });
   }, []);
-  console.log("movieKey: " + movieKey);
+  console.log("tvKey: " + tvKey);
 
   const [isOpen, setIsOpen] = useState(false);
   const onClickButton = () => {
@@ -101,18 +108,18 @@ function Detail() {
           <div className={style.header}>
             <div className={style.inner}
               style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${tv.backdrop_path})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}>
               <div className={style.img_wrapper}>
                 <div className={style.box}>
-                  <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
+                  <img className={style.img} src={`${API_IMAGEURL}${tv.poster_path}`} />
                   
-                  <span className={style.text}><a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank" rel="noopener noreferrer">TMDB로 보기</a></span>
+                  <span className={style.text}><a href={`https://www.themoviedb.org/tv/${tv.id}`} target="_blank" rel="noopener noreferrer">TMDB로 보기</a></span>
                 </div>
                 <section className={style.info_wrapper}>
-                  <span className={style.title}>{movie.title}</span><span className={style.release_date}> ( {movie.release_date} ) </span><br />
+                  <span className={style.title}>{tv.name}</span><span className={style.release_date}> ( {tv.first_air_date} ~ ) </span><br />
                   <div>{genre.map((genre, i) => {
                     return (
                       <span key={i} className={style.genre}>
@@ -125,29 +132,41 @@ function Detail() {
                           );
                       })}
                   </div><br />
-                  <span><img src={clock} className={style.runtime_img} />{" "}</span><span className={style.runtime}>{movie.runtime} 분</span>
+                  <span className={style.seasons}>시즌 {tv.number_of_seasons} 개</span>
+                  <span className={style.seasons}> {tv.number_of_episodes} 개의 에피소드</span><br /><br />
                   <span><img src={percent} className={style.vote_average_img} />{" "}</span>
-                  <span className={style.vote_average}>{movie.vote_average}</span>
+                  <span className={style.vote_average}>{tv.vote_average}</span>
                   <span>
                     <ClickLikes id={id} like={like} style={style} />
                   </span>
                   <span className={style.vote_count}>좋아요</span> <br /><br />
                   {
-                    movie.tagline == ""?
+                    tv.origin_country == ""?
                     <h3 style={{ color: "white" }}>NO Tagline</h3> :
-                    <span className={style.tagline}>{movie.tagline}</span>
+                    <span className={style.tagline}>Country : <span>{country.map((country, i) => {
+                      return (
+                        <span key={i} className={style.genre}>
+                          {
+                              <span>
+                                  <span>{country.name}</span>
+                              </span>
+                          }
+                        </span>
+                            );
+                        })}
+                    </span></span>
                   }
                   <br /><br />
                   {
-                    movie.overview == ""?
+                    tv.overview == ""?
                     <h3 style={{ color: "white"}}>NO Overview</h3> :
-                    <span className={style.overview}>{movie.overview}</span>
+                    <span className={style.overview}>{tv.overview}</span>
                   }
                   <br /><br />
                   <button className={style.playbutton} onClick={onClickButton}>트레일러 보기</button>
                   <div className={style.player}>
                     {isOpen && (
-                      <Video open={isOpen} movieKey={movieKey} style={style}
+                      <TVVideo open={isOpen} tvKey={tvKey} style={style}
                         onClose={() => {
                           setIsOpen(false);}}/>
                     )}
@@ -163,14 +182,14 @@ function Detail() {
               <Nav.Link onClick={() => {setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">관련소식</Nav.Link>
+              <Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">시즌&에피소드</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link onClick={() => {setClickTab(2);}} eventKey="link-2">실관람평</Nav.Link>
             </Nav.Item>
           </Nav>
 
-          <TabContent clickTab={clickTab} movies={movie} company={company}/>
+          <TabContent clickTab={clickTab} tv={tv} company={company}/>
 
           </div>
           <Top></Top>
@@ -183,15 +202,15 @@ function Detail() {
 function TabContent(props) {
   const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
   console.log(props.clickTab);
-  const movieId = props.movies.id;
+  const tvId = props.tv.id;
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w200";
 
-  console.log("movieId" + props.movies.id);
+  console.log("movieId" + props.tv.id);
 
   if (props.clickTab == 0) {
     return (
       <>
-        <DetailContent movieId={movieId} />
+        <TVDetailPerson tvId={tvId} />
         <hr />
         <h2 style={{ color: "white" }}>제작사</h2>
         <div>{props.company.map((company, i) => {
@@ -212,23 +231,27 @@ function TabContent(props) {
             })}
         </div>
         <hr />
-        <h2 style={{ color: "white" }}>수익</h2>
-        <h2 style={{ color: "white" }}>${props.movies.revenue}</h2>
+        <h2 style={{ color: "white" }}>진행상황</h2>
+        <h2 style={{ color: "white" }}>{props.tv.status}</h2>
         <hr />
-        <Trailers movieId={movieId} />
+        <TVTrailers tvId={tvId}/>
         <hr />
-        <Similar movieId={movieId} />
+        <TVSimilar tvId={tvId} />
         <hr />
       </>
     );
   }
   if (props.clickTab == 1) {
-    return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
+    return (
+      <div>
+        <SeasonEpis SeasonEpis tvId={tvId} />
+      </div>
+    );
   }
   if (props.clickTab == 2) {
     return (
       <div style={{ color: "white" }}>
-        {props.movies.production_companies[0].name}
+        {props.tv.production_companies[0].name}
         <ReviewMain></ReviewMain>
       </div>
     );
