@@ -6,6 +6,16 @@
     height: 17%;
 }
 
+.img_poster{
+    width: 12%;
+    height: 17%;
+    border-radius: 7%;
+    margin: 20px;
+    border-radius: 2px;
+    border: 1px solid #d51438;
+    box-shadow: 1px 1px 20px rgba(228, 61, 61, 0.4);
+}
+
 .box{
     display: flex;
     margin-bottom: 15px;
@@ -13,6 +23,7 @@
 
 .info{
     margin: 15px;
+    margin-right: 100px;
 }
 
 .overview{
@@ -23,4 +34,49 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; */
+}
+
+.name{
+    color: rgb(237, 238, 184);
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+}
+
+.episode_count{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(161, 173, 240);
+}
+
+.air_date{
+    color: rgb(241, 154, 198);
+}
+
+.epibutton{
+    box-sizing: content-box;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid red;
+  border-radius: 0.3em;
+  color: rgb(245, 45, 45);
+  cursor: pointer;
+  align-self: center;
+  font-size: 12px;
+  line-height: 1;
+  margin: 1px;
+  padding: 0.9em 1.9em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.epibutton:hover{
+    color: #fff;
+    outline: 0;
+    box-shadow: 0 0 40px 40px rgb(41, 39, 39) inset;
+    /* filter: brightness(2); */
 }
