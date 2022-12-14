@@ -78,6 +78,7 @@ function Popular() {
                                         <div className={style.movieCard}>
                                             <img data-aos="slide-up" className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`/detail/${movie.id}`) }} />
                                             <div className={style.title}><div>{movie.title}</div></div>
+                                            <div className={style.release_date}>{movie.release_date}</div>
                                         </div>
                                     </div>
                                 );

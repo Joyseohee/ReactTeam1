@@ -217,11 +217,13 @@ const ResultSearch = () => {
       </div>
       <div className={style.container}>
         {movie.length > 0
-
-          ? movie.map((movie, i) => {
+          ?
+            movie.map((movie, i) => {
             return (
               <div className={style.movieCard} data-aos="fade-up" key={i}>
                 <figure>
+                  { data == "data.json"
+                  ? 
                   <img
                     className={style.moviePoster}
                     src={`${API_IMAGEURL}${movie.poster_path}`}
@@ -229,6 +231,14 @@ const ResultSearch = () => {
                       navigate(`/detail/${movie.id}`);
                     }}
                   />
+                  : <img
+                  className={style.moviePoster}
+                  src={`${API_IMAGEURL}${movie.poster_path}`}
+                  onClick={() => {
+                    navigate(`/tv/detail/${movie.id}`);
+                  }}
+                  />
+                  }
                   <figcaption>
                     {movie.title ? (
                       <h5>{movie.title}</h5>
