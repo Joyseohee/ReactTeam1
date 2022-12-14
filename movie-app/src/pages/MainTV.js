@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 
-import style from "./Mainmovie.module.css";
+ import style from "./Search.module.css";
 import tmdbAPI from "../tmdbAPI";
 import Search from "./Search";
 import Loading from "../components/loading";

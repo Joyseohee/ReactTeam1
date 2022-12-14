@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
@@ -34,6 +34,7 @@ const dropIn = {
 
 function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   let id = useParams();
+  console.log("id 파람 : " + id);
   const dispatch = useDispatch();
   const [authorid, setAuthorid] = useState(localStorage.getItem("accountId")); // 유저 아이디 값 삽입
   const [authorNick, setAuthorNick] = useState(
@@ -44,6 +45,8 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   const [movie_id, setMovie_id] = useState(id.id); // 영화 선택 -> id 값 삽입
   const [rate, setRate] = useState("");
   const [content, setContent] = useState("");
+  const [mv_id, setMv_id] = useState(id.name);
+  console.log("이름이 뭐에요 : " + mv_id);
 
   useEffect(() => {
     if (type === "update" && review) {
@@ -101,6 +104,11 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
     }
   };
 
+  const reviewTextarea = useRef();
+  const handleResizeHeight = () => {
+    reviewTextarea.style.height = "auto";
+    reviewTextarea.style.height = reviewTextarea.current.scrollHeight + "px";
+  };
   return (
     <AnimatePresence>
       {modalOpen && (
@@ -130,9 +138,10 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
             >
               <MdOutlineClose />
             </motion.div>
+
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <h1 className={styles.formTitle}>
-                {type === "add" ? "Add" : "Update"} Review
+                `${mv_id}` Review {type === "add" ? "작성" : "수정"}
               </h1>
               <input
                 type="hidden"
@@ -155,40 +164,63 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
               <p>
                 <label htmlFor="rate">
                   rate
-                  <input
+                  {/* <input
                     type="text"
                     id="rate"
                     value={rate}
                     onChange={(e) => setRate(e.target.value)}
-                  />
-                  {/* <Rating
-                  // setRate={setRate}
-                  rate={`${(
-                    <input
-                      type="onClick"
-                      id="rate"
-                      value={rate}
-                      onChange={(e) => setRate(e.target.value)}
-                    />
-                  )}`}
-                /> */}
+                  /> */}
+                  <select
+                    aria-label="Default select example"
+                    name="rate"
+                    id="rate"
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
+                  >
+                    <option>평점</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                  </select>
                 </label>
               </p>
-              <label htmlFor="content">
-                content
-                <input
-                  type="text"
-                  id="content"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                />
-              </label>
+              <div className={styles.plzContent}>
+                <label htmlFor="content">
+                  content
+                  {/* <input
+                    type="text"
+                    id="content"
+                    value={content}
+                    maxlength="200"
+                    placeholder="200자 내외로 입력해주세요"
+                    onChange={(e) => setContent(e.target.value)}
+                  /> */}
+                  <textarea
+                    className={styles.reviewTextarea}
+                    id="content"
+                    value={content}
+                    cols="150"
+                    maxlength="300"
+                    placeholder="300자 내외로 입력해주세요"
+                    // onkeydown="handleResizeHeight(`${content}`)"
+                    // onkeyup="handleResizeHeight(`${content}`)"
+                    onChange={(e) => setContent(e.target.value)}
+                  ></textarea>
+                </label>
+              </div>
               <div className={styles.buttonContainer}>
                 <Button type="submit" variant="primary">
-                  {type === "add" ? "Add Review" : "Update Review"}
+                  {type === "add" ? "등록하기" : "수정하기"}
                 </Button>
                 <Button variant="secondary" onClick={() => setModalOpen(false)}>
-                  Cancel
+                  취소
                 </Button>
               </div>
             </form>

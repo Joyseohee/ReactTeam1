@@ -27,9 +27,9 @@ function ReviewContent() {
     >
       <AnimatePresence>
         {ItemReviewList && ItemReviewList.length > 0 ? (
-          ItemReviewList.map((review) => (
-            <ReviewItem key={review.id} review={review} />
-          ))
+          ItemReviewList.slice(0)
+            .reverse()
+            .map((review) => <ReviewItem key={review.id} review={review} />)
         ) : (
           <motion.p variants={child} className={styles.emptyText}>
             리뷰가 없어용

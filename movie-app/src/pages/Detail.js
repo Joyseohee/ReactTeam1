@@ -19,7 +19,6 @@ import clock from "./images/clock.png";
 import percent from "./images/100-percent.png";
 import like from "./images/like.png";
 
-
 function Detail() {
   let id = useParams();
   const [movie, setMovie] = useState([]);
@@ -32,6 +31,7 @@ function Detail() {
   const [genre, setGenre] = useState([]);
   const [company, setCompany] = useState([]);
   const navigate = useNavigate();
+  const [nameReview, setNameReview] = useState([]);
 
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작
@@ -39,7 +39,6 @@ function Detail() {
     if (res.data) {
       setMovie(res.data);
       console.log(res.data);
-    } else {
     }
     setLoad(false); // 로딩 종료
   };
@@ -93,41 +92,72 @@ function Detail() {
 
   return (
     <>
+      {/* 헤더 */}
+      <Header />
+
+      {/* Detail 내용 */}
       {load ? (
         <Loading />
       ) : (
         <div className={style.back}>
           <Header />
           <div className={style.header}>
-            <div className={style.inner}
+            <div
+              className={style.inner}
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-              }}>
+              }}
+            >
               <div className={style.img_wrapper}>
                 <div className={style.box}>
-                  <img className={style.img} src={`${API_IMAGEURL}${movie.poster_path}`} />
-                  
-                  <span className={style.text}><a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank" rel="noopener noreferrer">TMDB로 보기</a></span>
+                  <img
+                    className={style.img}
+                    src={`${API_IMAGEURL}${movie.poster_path}`}
+                  />
+
+                  <span className={style.text}>
+                    <a
+                      href={`https://www.themoviedb.org/movie/${movie.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      TMDB로 보기
+                    </a>
+                  </span>
                 </div>
                 <section className={style.info_wrapper}>
-                  <span className={style.title}>{movie.title}</span><span className={style.release_date}> ( {movie.release_date} ) </span><br />
-                  <div>{genre.map((genre, i) => {
-                    return (
-                      <span key={i} className={style.genre}>
-                        {
+                  <span className={style.title}>{movie.title}</span>
+                  <span className={style.release_date}>
+                    {" "}
+                    ( {movie.release_date} ){" "}
+                  </span>
+                  <br />
+                  <div>
+                    {genre.map((genre, i) => {
+                      return (
+                        <span key={i} className={style.genre}>
+                          {
                             <span>
-                                <span>{genre.name}</span>
+                              <span>{genre.name}</span>
                             </span>
-                        }
-                      </span>
-                          );
-                      })}
-                  </div><br />
-                  <span><img src={clock} className={style.runtime_img} />{" "}</span><span className={style.runtime}>{movie.runtime} 분</span>
-                  <span><img src={percent} className={style.vote_average_img} />{" "}</span>
-                  <span className={style.vote_average}>{movie.vote_average}</span>
+                          }
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <br />
+                  <span>
+                    <img src={clock} className={style.runtime_img} />{" "}
+                  </span>
+                  <span className={style.runtime}>{movie.runtime} 분</span>
+                  <span>
+                    <img src={percent} className={style.vote_average_img} />{" "}
+                  </span>
+                  <span className={style.vote_average}>
+                    {movie.vote_average}
+                  </span>
                   <span>
                     <ClickLikes id={id} like={like} style={style} />
                   </span>
@@ -147,9 +177,14 @@ function Detail() {
                   <button className={style.playbutton} onClick={onClickButton}>트레일러 보기</button>
                   <div className={style.player}>
                     {isOpen && (
-                      <Video open={isOpen} movieKey={movieKey} style={style}
+                      <Video
+                        open={isOpen}
+                        movieKey={movieKey}
+                        style={style}
                         onClose={() => {
-                          setIsOpen(false);}}/>
+                          setIsOpen(false);
+                        }}
+                      />
                     )}
                   </div>
                 </section>
@@ -170,8 +205,7 @@ function Detail() {
             </Nav.Item>
           </Nav>
 
-          <TabContent clickTab={clickTab} movies={movie} company={company}/>
-
+            <TabContent clickTab={clickTab} movies={movie} company={company} />
           </div>
           <Top></Top>
         </div>
@@ -194,22 +228,26 @@ function TabContent(props) {
         <DetailContent movieId={movieId} />
         <hr />
         <h2 style={{ color: "white" }}>제작사</h2>
-        <div>{props.company.map((company, i) => {
-          return (
-            <span key={i} className={style.genre}>
-              {
+        <div>
+          {props.company.map((company, i) => {
+            return (
+              <span key={i} className={style.genre}>
+                {
                   <span>
-                    {
-                      company.logo_path == null?
-                      <span style={{ color: "white" }}>로고없음</span>:
-                      <img className={style.logo} src={`${API_IMAGEURL}${company.logo_path}`} />
-                    }
-                    <span> {company.name}      </span>
+                    {company.logo_path == null ? (
+                      <span style={{ color: "white" }}>로고없음</span>
+                    ) : (
+                      <img
+                        className={style.logo}
+                        src={`${API_IMAGEURL}${company.logo_path}`}
+                      />
+                    )}
+                    <span> {company.name} </span>
                   </span>
-              }
-            </span>
-                );
-            })}
+                }
+              </span>
+            );
+          })}
         </div>
         <hr />
         <h2 style={{ color: "white" }}>수익</h2>

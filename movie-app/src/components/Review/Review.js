@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./scss/Review.scss";
+import AOS from "aos";
+import { Modal } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 
 function Review() {
   let id = useParams();
@@ -35,27 +38,39 @@ function Review() {
     getReview();
   }, []);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="Review-container">
-      <div>
-        <p></p>
+      <div className="Review-title">
+        <Card className="ReviewTitleCard">
+          <Card.Body> 해외 평론 및 리뷰</Card.Body>
+        </Card>
       </div>
       {movie
         .slice(0)
         .reverse()
         .map((movie, i) => {
           return (
-            <div className="Review-box">
-              <Alert variant="light">
-                <Alert.Heading className="wantFlex">
-                  &nbsp; {movie.author} &nbsp;&nbsp; 평점 :{" "}
-                  <Rating rate={movie.author_details.rating / 2} />
-                </Alert.Heading>
-                <p>{movie.content}</p>
-                <hr />
-                <p className="mb-0">&nbsp;작성일 : {movie.created_at}</p>
-              </Alert>
-            </div>
+            <>
+              <div className="Review-box">
+                <Alert
+                  variant="light"
+                  data-aos="fade-up"
+                  data-aos-duration="3000"
+                >
+                  <Alert.Heading className="wantFlex">
+                    &nbsp; {movie.author} &nbsp;&nbsp;
+                    <Rating rate={movie.author_details.rating / 2} />
+                  </Alert.Heading>
+                  <p>{movie.content}</p>
+                  <hr />
+                  <p className="mb-0">&nbsp;작성일 : {movie.created_at}</p>
+                </Alert>
+              </div>
+            </>
           );
         })}
     </div>
