@@ -100,7 +100,6 @@ function Detail() {
         <Loading />
       ) : (
         <div className={style.back}>
-          <Header />
           <div className={style.header}>
             <div
               className={style.inner}
