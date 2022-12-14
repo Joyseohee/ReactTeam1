@@ -11,8 +11,11 @@ import Join from "./pages/Join";
 import MyReview from "./pages/MyReview";
 import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
+import Info from "./components/Common/FooterCommon/Info";
 import styled, { createGlobalStyle } from "styled-components";
 import ResultSearch from "./components/Search/ResultSearch";
+import Policy from "./components/Common/FooterCommon/Policy";
+import FAQ from "./components/Common/FooterCommon/FAQ";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
           <Route path="/join" element={<Join />} />
           {/* <Route path="/search" element={<Search />} /> */}
           <Route path="/ReviewMain" element={<ReviewMain />} />
+          <Route path="/Info" element={<Info />} />
+          <Route path="/Policy" element={<Policy />} />
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </div>
     </>
