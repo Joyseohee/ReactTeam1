@@ -19,8 +19,8 @@
     0 0 no-repeat;
 }
 .wrapperAccountName {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 10px;
 }
 .accountName.align-end {
   text-align: left;
@@ -41,6 +41,17 @@
 .align-end {
   vertical-align: bottom;
   margin: 0;
+}
+
+.Info,
+.InfoMargin,
+.accountName,
+.wrapperAccountName {
+  padding: 0;
+}
+
+.tab {
+  vertical-align: bottom;
 }
 
 .LoginId {
@@ -64,10 +75,12 @@
 }
 
 .likeMovieTab,
-.likeReviewTab {
+.likeReviewTab,
+.recommandTab {
   font-size: 20px;
   text-align: center;
-  height: 50px;
+  vertical-align: bottom;
+  padding: 50px 0 20px;
   border-bottom: 1px solid rgb(255, 255, 255, 0.6);
 }
 
@@ -76,14 +89,74 @@
 }
 
 .LikesMovieImg {
-  display: flex;
+  margin: 0;
+  display: block;
 }
 
 .likeMovieCard {
-  padding: 0;
+  text-align: center;
 }
 
 .rate {
   justify-content: center;
   display: inline-block;
+}
+
+.MyreviewWrapper {
+  color: black;
+  background-color: rgba(248, 249, 250, 0.8);
+  margin: 0px auto 30px;
+  border-radius: 15px;
+}
+
+.LikesMovieImg {
+  display: inline-block;
+  margin: auto;
+}
+
+.moviePoster {
+  padding: 0;
+  border-radius: 15px 0 0 15px;
+  overflow: hidden;
+  display: flex;
+}
+
+.reviewDetail {
+  padding: 20px 0 0 1.5rem;
+  text-align: left;
+}
+
+.myReviewTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.myReviewContent {
+  margin-bottom: 10px;
+  height: 120px;
+}
+
+.myReviewRates {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.myReviewDate {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.recommandContainer {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+.recommanBox {
+  margin: 0;
+}
+
+.recTitle {
+  margin: 10px;
 }

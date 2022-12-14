@@ -7,6 +7,7 @@ import MyLikesTab from "../../components/Mypage/MyLikesTab";
 import MyReviewTab from "../../components/Mypage/MyReviewTab";
 import { useEffect, useState } from "react";
 import ShowSelect from "../../components/Mypage/ShowSelect";
+import MyRecommandTab from "./MyRecommandTab";
 
 export default function MypageReal() {
   let [mpClickTab, setMpClickTab] = useState(0);
@@ -19,27 +20,34 @@ export default function MypageReal() {
         <Header />
         <Container fluid className="MypageWrapper">
           <Row>
-            <Col lg={2} sm={1}></Col>
+            <Col lg={3} sm={1}></Col>
             <Col className="infoComp">
               <MyInfo />
             </Col>
-            <Col lg={2} sm={1}></Col>
+            <Col lg={3} sm={1}></Col>
           </Row>
-          <Row>
+          <Row className="tab align-item-end">
             <Col lg={2} sm={1}></Col>
             <Col
-              className="likes col "
+              className="likes "
               onClick={() => {
                 setMpClickTab(1);
               }}
             >
               <MyLikesTab />
             </Col>
-
             <Col
-              className="myreviews col"
+              className="recommand"
               onClick={() => {
                 setMpClickTab(2);
+              }}
+            >
+              <MyRecommandTab />
+            </Col>
+            <Col
+              className="myreviews"
+              onClick={() => {
+                setMpClickTab(3);
               }}
             >
               <MyReviewTab />
@@ -48,7 +56,7 @@ export default function MypageReal() {
           </Row>
           <Row>
             <Col lg={2} sm={1}></Col>
-            <Col>
+            <Col className=" align-self-center">
               <ShowSelect mpClickTab={mpClickTab} />
             </Col>
             <Col lg={2} sm={1}></Col>

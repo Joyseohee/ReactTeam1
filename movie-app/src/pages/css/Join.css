@@ -4,8 +4,8 @@
   width: 100%;
 }
 
-.join .marginTop {
-  height: 120px;
+.join.marginTop {
+  height: 100px;
 }
 
 .join .signUp {
@@ -29,8 +29,9 @@
   text-align: center;
 }
 
-.join .btn-dark {
-  background-color: #fff;
+.joinButton {
+  background-color: #343a40;
+  color: #f8f9fa;
 }
 
 .join .row {

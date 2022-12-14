@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./css/Join.css";
 import Header from "../components/Common/header";
 import IdInput from "../components/Join/IdInput";
@@ -12,8 +11,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/Common/Footer";
 
 export default function Join() {
-  const navigate = useNavigate();
-
   let [loginId, setLoginId] = useState();
   let [loginPwd, setLoginPwd] = useState();
   let [loginNick, setLoginNick] = useState();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import tmdbAPI from "../tmdbAPI";
+import tmdbAPI from "../../tmdbAPI";
 import ReactPlayer from "react-player";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import style from "./Trailers.module.css";
+import style from "../../pages/css/Trailers.module.css";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
