@@ -74,30 +74,29 @@ function Popular() {
           <h4>Popular</h4>
         </div>
 
-        {movie && (
-          <>
-            {movie.map((movie, i) => {
-              return (
-                <div key={i}>
-                  <div className={style.movieCard}>
-                    <img
-                      data-aos="slide-up"
-                      className={style.moviePoster}
-                      src={`${API_IMAGEURL}${movie.poster_path}`}
-                      onClick={() => {
-                        navigate(`/detail/${movie.id}`);
-                      }}
-                    />
-                    <div className={style.title}>
-                      <div>{movie.title}</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        )}
-        {load ? <Loading /> : <></>}
+                {
+                    movie &&
+                    <>
+                        {
+                            movie.map((movie, i) => {
+                                return (
+                                    <div key={i}>
+                                        <div className={style.movieCard}>
+                                            <img data-aos="slide-up" className={style.moviePoster} src={`${API_IMAGEURL}${movie.poster_path}`} onClick={() => { navigate(`/detail/${movie.id}`) }} />
+                                            <div className={style.title}><div>{movie.title}</div></div>
+                                            <div className={style.release_date}>{movie.release_date}</div>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+
+
+                    </>
+                }
+                {
+                    load ? <Loading /> : <></>
+                }
 
         <div>
           <div ref={observerRef} className="Observer"></div>

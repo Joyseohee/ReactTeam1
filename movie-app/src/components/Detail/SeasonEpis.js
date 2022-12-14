@@ -36,9 +36,12 @@ function SeasonEpis (props){
       };
 
     const [isOpen, setIsOpen] = useState(false);
-    const onClickButton = () => {
+    const onClickButton = (i) => {
         setIsOpen(!isOpen);
+        setSn(i);
     };
+
+    const [sn, setSn] = useState(0);
 
       return (
         <div>
@@ -55,14 +58,20 @@ function SeasonEpis (props){
                     <section className={style.info}>
                         <div style={{ color: "white" }}>{season.name}</div>
                         <div style={{ color: "white" }}>{season.episode_count}개의 에피소드</div>
-                        <button style={{ color: "white" }} onClick={onClickButton}>에피소드 보기</button>
+                        <div style={{ color: "white" }}>{i}season</div>
+                        <button onClick={()=>onClickButton(i)}>에피소드 보기</button>
                         <div className={style.episode}>
                             {isOpen && (
-                            <Episodes open={isOpen} style={style} season={season}
+                            <h2 style={{ color: "white" }}>{i}</h2>
+                            )}
+                        </div>
+                        {/* <div className={style.episode}>
+                            {isOpen && (
+                            <Episodes open={isOpen} season={season} i={i} tvId={props.tvId}
                                 onClose={() => {
                                 setIsOpen(false);}}/>
                             )}
-                        </div>
+                        </div> */}
                         <div style={{ color: "white" }}>공개일 : {season.air_date}</div>
                         <div className={style.overview}>{season.overview}</div>
                     </section>
