@@ -34,6 +34,7 @@ const dropIn = {
 
 function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   let id = useParams();
+  console.log("id 파람 : " + id);
   const dispatch = useDispatch();
   const [authorid, setAuthorid] = useState(localStorage.getItem("accountId")); // 유저 아이디 값 삽입
   const [authorNick, setAuthorNick] = useState(
@@ -44,6 +45,8 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   const [movie_id, setMovie_id] = useState(id.id); // 영화 선택 -> id 값 삽입
   const [rate, setRate] = useState("");
   const [content, setContent] = useState("");
+  const [mv_id, setMv_id] = useState(id.name);
+  console.log("이름이 뭐에요 : " + mv_id);
 
   useEffect(() => {
     if (type === "update" && review) {
@@ -138,7 +141,7 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
 
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <h1 className={styles.formTitle}>
-                {type === "add" ? "Add" : "Update"} Review
+                `${mv_id}` Review {type === "add" ? "작성" : "수정"}
               </h1>
               <input
                 type="hidden"
