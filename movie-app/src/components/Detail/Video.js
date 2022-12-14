@@ -1,9 +1,8 @@
 import ReactPlayer from "react-player";
-import style from "./Video.module.css";
-import close from "../images/cross.png";
+import style from "../../pages/css/Video.module.css";
 import React, { useEffect} from "react";
 
-
+import close from "../../pages/images/close.png"
 
 function Video(props){
 
