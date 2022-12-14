@@ -4,18 +4,33 @@ import "../css/FAQ.scss";
 import Top from "../top";
 import Header from "../header";
 import Footer from "../Footer";
+import Card from "react-bootstrap/Card";
 
 function FAQ() {
   return (
     <>
       <Header></Header>
       <div className="FAQ_Container">
+        <img
+          src="https://media.istockphoto.com/id/889451818/photo/frequently-asked-questions-question-and-answer-icon.jpg?s=612x612&w=0&k=20&c=-XOJT336CDoiFiONQdqDkLYcjqxo8et2Va6Pqt9uhW0="
+          width="100%"
+          height="400px"
+          background-size="cover"
+        ></img>
         <div className="FAQ_title">
-          <h4>자주 묻는 질문</h4>
+          <Card className="FAQCard">
+            <Card.Body>
+              <h2>
+                <b>자주 묻는 질문</b>
+              </h2>
+            </Card.Body>
+          </Card>
         </div>
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
-            <Accordion.Header>NPM은 무엇인가요?</Accordion.Header>
+            <Accordion.Header onClick={onclick}>
+              NPM은 무엇인가요?
+            </Accordion.Header>
             <Accordion.Body>
               NPM는 각종 수상 경력에 빛나는 시리즈, 영화, 애니메이션, 다큐멘터리
               등 다양한 콘텐츠를 인터넷 연결이 가능한 수천 종의 디바이스에서

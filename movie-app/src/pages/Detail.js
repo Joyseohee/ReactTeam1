@@ -18,6 +18,7 @@ import Top from "../components/Common/top";
 import Trailers from "./Trailers";
 import Similar from "./Similar";
 import Header from "../components/Common/header";
+import Footer from "../components/Common/Footer";
 
 function Detail() {
   let id = useParams();
@@ -224,6 +225,7 @@ function Detail() {
             <TabContent clickTab={clickTab} movies={movie} company={company} />
           </div>
           <Top></Top>
+          <Footer></Footer>
         </div>
       )}
     </>
