@@ -8,9 +8,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 
- import style from "./Search.module.css";
+import style from "../pages/css/MainTV.module.css";
 import tmdbAPI from "../tmdbAPI";
-import Search from "./Search";
 import Loading from "../components/loading";
 import Header from "../components/Common/header";
 import Top from "../components/Common/top"
@@ -19,7 +18,7 @@ function MainTV() {
     const API_IMAGEURL = "https://image.tmdb.org/t/p/w300"; // 영화 이미지 baseURL
     const navigate = useNavigate();
     const [tv, setTv] = useState([]); // 가져올 영화 담을 배열
-    const [coming, setComing] = useState([]);
+    const [ontheair, setOntheair] = useState([]);
 
     const [page, setPage] = useState(1); // axios param전달해줄 페이지
     const [load, setLoad] = useState(false); // 로딩 성공/실패
@@ -30,7 +29,7 @@ function MainTV() {
     // 옵저버 생성 및 타겟(div) 지정
     useEffect(() => {
         AOS.init();
-        getUpcoming();
+        getOntheair();
         const observer = new IntersectionObserver(obCallback, { threshold: 0.5 });
         if (observerRef.current) observer.observe(observerRef.current);
         return () => {
@@ -67,20 +66,19 @@ function MainTV() {
     }, [page]);
 
     // upcoming 영화 출력
-    const getUpcoming = async () => {
-        const comovie = await tmdbAPI.get('tv/upcoming', { params: { page: 1 } });
-        setComing(comovie.data.results)
+    const getOntheair = async () => {
+        const ontheairTV = await tmdbAPI.get('tv/on_the_air', { params: { page: 1 } });
+        setOntheair(ontheairTV.data.results)
     }
 
   return (
     <>
       {/* 헤더 */}
       <Header />
-      {/* {Search()} */}
 
             {/* upcoming */}
             <div className={style.upcoming}>
-                <h4>Upcoming</h4>
+                <h4>On the air</h4>
             </div>
             <Swiper
                 effect={"coverflow"}
@@ -99,15 +97,14 @@ function MainTV() {
                 modules={[EffectCoverflow, Mousewheel, Navigation]}
                 className="mySwiper"
             >
-
                 <div className="container">
                     {
-                        coming &&
-                        coming.map((coming, i) =>
+                        ontheair &&
+                        ontheair.map((ontheair, i) =>
                             <SwiperSlide key={i}>
                                 <div className={style.swipercard}>
-                                    <img src={`https://image.tmdb.org/t/p/w500${coming.poster_path}`} onClick={() => { navigate(`detail/${coming.id}`) }} />
-                                    <div className={style.swiperTitle}>{coming.name}</div>
+                                    <img src={`https://image.tmdb.org/t/p/w500${ontheair.poster_path}`} onClick={() => { navigate(`detail/${ontheair.id}`) }} />
+                                    <div className={style.swiperTitle}>{ontheair.name}</div>
                                 </div>
                             </SwiperSlide>
                         )
@@ -132,7 +129,6 @@ function MainTV() {
                                         <div className={style.movieCard}>
                                             <img data-aos="slide-up" className={style.moviePoster} src={`${API_IMAGEURL}${tvs.poster_path}`} onClick={() => { navigate(`/tv/detail/${tvs.id}`) }} />
                                             <div className={style.title}><div>{tvs.name}</div></div>
-                                            {/* <div className={style.release_date}>{movie.release_date}</div> */}
                                         </div>
                                     </div>
                                 );
@@ -145,7 +141,6 @@ function MainTV() {
                 {
                     load ? <Loading /> : <></>
                 }
-                        
                 <div>
                     <div ref={observerRef} className="Observer"></div>
                 </div>

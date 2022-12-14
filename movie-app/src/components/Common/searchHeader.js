@@ -2,11 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { InputBase } from '@mui/material'
 import { Search as SearchIcon } from '@mui/icons-material'
+import axios from "axios";
 
 
 const SearchHeader = () => {
   const navigate = useNavigate()
-
+  //let [data, setData] = useState("");
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -65,8 +66,16 @@ const SearchHeader = () => {
           } else {
             navigate(`/search/${keyword}`)
           }
-        console.log(keyword);
         }}
+        // onInput = { (e) => {
+        //   console.log(e.target.value)
+          
+        //   axios
+        //   .get(`https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/${data}`)
+        //   .then((res) => {
+        //     setMovdata(res.data.result);
+        //   });
+        // }}
       />
     </Search> 
     </>
