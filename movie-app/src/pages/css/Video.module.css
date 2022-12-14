@@ -1,0 +1,31 @@
+.player_wrapper{
+    text-align: right;
+    z-index: 100;
+    position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.react_player{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close{
+    width: 80px;
+    height: 80px;
+}
+
+.novideo{
+    font-weight: bolder;
+    font-size: 60px;
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
