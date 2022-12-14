@@ -8,9 +8,6 @@ import DetailContent from "../components/Detail/DetailContent";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
 import Header from "../components/Common/header";
-
-import ReviewMain from "./ReviewMain";
-
 import Top from "../components/Common/top";
 import Trailers from "../components/Detail/Trailers";
 import Similar from "../components/Detail/Similar";
@@ -19,6 +16,8 @@ import clock from "./images/clock.png";
 import percent from "./images/100-percent.png";
 import like from "./images/like.png";
 import Footer from "../components/Common/Footer";
+import Review from "../components/Review/Review";
+import ReviewTemplate from "../components/Review/ReviewTemplate";
 
 function Detail() {
   let id = useParams();
@@ -216,7 +215,7 @@ function Detail() {
                   }}
                   eventKey="link-1"
                 >
-                  관련소식
+                  실관람평
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
@@ -226,7 +225,7 @@ function Detail() {
                   }}
                   eventKey="link-2"
                 >
-                  실관람평
+                  해외 평론 및 리뷰
                 </Nav.Link>
               </Nav.Item>
             </Nav>
@@ -288,13 +287,17 @@ function TabContent(props) {
     );
   }
   if (props.clickTab == 1) {
-    return <div style={{ color: "white" }}>{props.movies.tagline}</div>;
+    return (
+      <div style={{ color: "white" }}>
+        <ReviewTemplate></ReviewTemplate>
+      </div>
+    );
   }
+
   if (props.clickTab == 2) {
     return (
       <div style={{ color: "white" }}>
-        {props.movies.production_companies[0].name}
-        <ReviewMain></ReviewMain>
+        <Review></Review>
       </div>
     );
   }

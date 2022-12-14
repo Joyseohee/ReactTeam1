@@ -141,7 +141,7 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
 
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <h1 className={styles.formTitle}>
-                `${mv_id}` Review {type === "add" ? "작성" : "수정"}
+                Review {type === "add" ? "작성" : "수정"}
               </h1>
               <input
                 type="hidden"
