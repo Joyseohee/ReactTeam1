@@ -22,10 +22,10 @@ export default function MyReviewTd({ review }) {
   return (
     <>
       <div className="MyreviewWrapper">
+        <div className="moviePoster">
+          <Movie id={review.movie_id} width="200" />
+        </div>
         <div>
-          <div>
-            <Movie id={review.movie_id} width="200" />
-          </div>
           {/* 영화 제목 */}
           <div
             onClick={() => {
