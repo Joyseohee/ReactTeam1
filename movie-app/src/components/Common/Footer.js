@@ -22,10 +22,22 @@ function Footer() {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">이용약관</Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              navigate("/Policy");
+            }}
+          >
+            이용약관
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">자주 묻는 질문</Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              navigate("/FAQ");
+            }}
+          >
+            자주 묻는 질문
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       <p className="text-center mt-4 mb-4">회사명을 입력해주세요...</p>
