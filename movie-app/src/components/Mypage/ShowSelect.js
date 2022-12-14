@@ -1,6 +1,6 @@
 import MyReview from "./MyReview/MyReview";
 import Likes from "./MyLikes/Likes";
-import MyRecommand from "./MyReview/MyRecommand";
+import Recommend from "./Recommend";
 
 export default function ShowSelect({ mpClickTab }) {
   if (mpClickTab == 1) {
@@ -13,7 +13,7 @@ export default function ShowSelect({ mpClickTab }) {
   if (mpClickTab == 2) {
     return (
       <div className="mgClickBox">
-        <MyRecommand />
+        <Recommend />
       </div>
     );
   }

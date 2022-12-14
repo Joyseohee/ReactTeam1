@@ -56,7 +56,7 @@ export default function MypageReal() {
           </Row>
           <Row>
             <Col lg={2} sm={1}></Col>
-            <Col>
+            <Col className=" align-self-center">
               <ShowSelect mpClickTab={mpClickTab} />
             </Col>
             <Col lg={2} sm={1}></Col>

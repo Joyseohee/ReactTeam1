@@ -17,7 +17,8 @@ export default function Movie(props) {
   return (
     // <Col className="col align-self-center">
     <img
-      className="LikesMovieImg"
+      // className="{LikesMovieImg}"
+      className={props.style}
       src={`${API_IMAGEURL}${props.width}${movie.poster_path}`}
       onClick={() => {
         navigate(`/detail/${movie.id}`);
