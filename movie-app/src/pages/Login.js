@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./css/Login.css";
-import "./css/Login.scss";
 import { useNavigate } from "react-router-dom";
 import LoginButton from "../components/Login/LoginButton";
 import MoveToJoin from "../components/Login/MoveToJoin";

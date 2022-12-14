@@ -25,7 +25,7 @@ export default function MypageReal() {
             </Col>
             <Col lg={2} sm={1}></Col>
           </Row>
-          <Row>
+          <Row className="row tab align-item-end">
             <Col lg={2} sm={1}></Col>
             <Col
               className="likes col "

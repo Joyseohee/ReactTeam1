@@ -9,19 +9,16 @@ export default function LoginButton() {
 
   useEffect(() => {
     setLoginCheck(localStorage.getItem("loginCheck"));
-
-    if (loginCheck == 1) {
-      setLogCheck("Logout");
-    } else {
-      setLogCheck("Login");
-    }
+    loginCheck == 1 ? setLogCheck("Logout") : setLogCheck("Login");
   }, [loginCheck, LogCheck]);
 
   const chooseWhatToDo = () => {
     if (loginCheck == 1) {
+      setLogCheck("Login");
       Logout();
     }
     if (loginCheck == 0) {
+      setLogCheck("Logout");
       navigate("/login");
     }
   };

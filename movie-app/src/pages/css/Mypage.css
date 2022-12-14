@@ -43,6 +43,10 @@
   margin: 0;
 }
 
+.tab {
+  vertical-align: bottom;
+}
+
 .LoginId {
   font-size: 30px;
   font-weight: 700;
@@ -67,7 +71,8 @@
 .likeReviewTab {
   font-size: 20px;
   text-align: center;
-  height: 50px;
+  vertical-align: bottom;
+  padding: 50px 0 20px;
   border-bottom: 1px solid rgb(255, 255, 255, 0.6);
 }
 
@@ -76,7 +81,8 @@
 }
 
 .LikesMovieImg {
-  display: flex;
+  margin: auto;
+  display: block;
 }
 
 .likeMovieCard {
@@ -86,4 +92,10 @@
 .rate {
   justify-content: center;
   display: inline-block;
+}
+
+.MyreviewWrapper {
+  color: black;
+  background-color: rgba(248, 249, 250, 0.8);
+  margin: 10px auto;
 }
