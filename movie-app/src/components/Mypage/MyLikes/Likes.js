@@ -44,7 +44,7 @@ export default function Likes() {
                 );
               })}
         </Row>
-        {noMovie && <NoMovie />}
+        {/* {noMovie && <NoMovie />} */}
       </Container>
     </>
   );

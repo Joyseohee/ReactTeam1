@@ -47,7 +47,7 @@ export default function MypageReal() {
             <Col
               className="myreviews"
               onClick={() => {
-                setMpClickTab(2);
+                setMpClickTab(3);
               }}
             >
               <MyReviewTab />
