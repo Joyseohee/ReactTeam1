@@ -1,12 +1,16 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import "./pages/css/App.scss";
+
+import MainTV from "./pages/MainTV";
 import Main from "./pages/Main";
 import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
+import DetailTV from "./pages/DetailTV";
+
 import Login from "./pages/Login";
 import Join from "./pages/Join";
-import Search from "./pages/Search";
 import ReviewMain from "./pages/ReviewMain";
 import Info from "./components/Common/FooterCommon/Info";
 import styled, { createGlobalStyle } from "styled-components";
@@ -22,11 +26,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/tv/detail/:id" element={<DetailTV />} />
+          <Route path="/tv" element={<MainTV />} />
           <Route path="/search/:keyword" element={<ResultSearch />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          {/* <Route path="/search" element={<Search />} /> */}
           <Route path="/ReviewMain" element={<ReviewMain />} />
           <Route path="/Info" element={<Info />} />
           <Route path="/Policy" element={<Policy />} />

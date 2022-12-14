@@ -1,23 +1,23 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import style from "./Detail.module.scss";
+import style from "./css/Detail.module.scss";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
-import Video from "./Video";
-import DetailContent from "./DetailContent";
-import ReactPlayer from "react-player";
+import Video from "../components/Detail/Video";
+import DetailContent from "../components/Detail/DetailContent";
 import ClickLikes from "../components/Detail/ClickLikes";
 import { Nav } from "react-bootstrap";
+import Header from "../components/Common/header"
 
-import { useDispatch, useSelector } from "react-redux";
 import ReviewMain from "./ReviewMain";
-import clock from "../images/clock.png";
-import percent from "../images/100-percent.png";
-import like from "../images/like.png";
+
 import Top from "../components/Common/top";
-import Trailers from "./Trailers";
-import Similar from "./Similar";
-import Header from "../components/Common/header";
+import Trailers from "../components/Detail/Trailers";
+import Similar from "../components/Detail/Similar";
+
+import clock from "./images/clock.png";
+import percent from "./images/100-percent.png";
+import like from "./images/like.png";
 
 function Detail() {
   let id = useParams();
@@ -160,17 +160,20 @@ function Detail() {
                   <span>
                     <ClickLikes id={id} like={like} style={style} />
                   </span>
-                  <span className={style.vote_count}>좋아요</span> <br />
-                  <br />
-                  <span className={style.tagline}>{movie.tagline}</span>
-                  <br />
-                  <br />
-                  <span className={style.overview}>{movie.overview}</span>
-                  <br />
-                  <br />
-                  <button className={style.playbutton} onClick={onClickButton}>
-                    트레일러 보기
-                  </button>
+                  <span className={style.vote_count}>좋아요</span> <br /><br />
+                  {
+                    movie.tagline == ""?
+                    <h3 style={{ color: "white" }}>NO Tagline</h3> :
+                    <span className={style.tagline}>{movie.tagline}</span>
+                  }
+                  <br /><br />
+                  {
+                    movie.overview == ""?
+                    <h3 style={{ color: "white"}}>NO Overview</h3> :
+                    <span className={style.overview}>{movie.overview}</span>
+                  }
+                  <br /><br />
+                  <button className={style.playbutton} onClick={onClickButton}>트레일러 보기</button>
                   <div className={style.player}>
                     {isOpen && (
                       <Video
@@ -188,38 +191,18 @@ function Detail() {
             </div>
           </div>
           <div className={style.nav}>
-            <Nav fill variant="tabs" defaultActiveKey="link-0">
-              <Nav.Item>
-                <Nav.Link
-                  onClick={() => {
-                    setClickTab(0);
-                  }}
-                  eventKey="link-0"
-                >
-                  상세정보
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  onClick={() => {
-                    setClickTab(1);
-                  }}
-                  eventKey="link-1"
-                >
-                  관련소식
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  onClick={() => {
-                    setClickTab(2);
-                  }}
-                  eventKey="link-2"
-                >
-                  실관람평
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
+            <br />
+          <Nav fill variant="tabs" defaultActiveKey="link-0">
+            <Nav.Item>
+              <Nav.Link onClick={() => {setClickTab(0);}} eventKey="link-0">상세정보</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={() => {setClickTab(1);}} eventKey="link-1">관련소식</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={() => {setClickTab(2);}} eventKey="link-2">실관람평</Nav.Link>
+            </Nav.Item>
+          </Nav>
 
             <TabContent clickTab={clickTab} movies={movie} company={company} />
           </div>
