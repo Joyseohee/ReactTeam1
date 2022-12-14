@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 
 export default function Movie(props) {
   const [movie, setMovie] = useState([]);
-  const API_IMAGEURL = "https://image.tmdb.org/t/p/w300";
+  const API_IMAGEURL = "https://image.tmdb.org/t/p/w";
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Movie(props) {
     <Col className="col align-self-center">
       <img
         className="LikesMovieImg"
-        src={`${API_IMAGEURL}${movie.poster_path}`}
+        src={`${API_IMAGEURL}${props.width}${movie.poster_path}`}
         onClick={() => {
           navigate(`/detail/${movie.id}`);
         }}
