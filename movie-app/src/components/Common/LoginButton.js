@@ -19,9 +19,11 @@ export default function LoginButton() {
 
   const chooseWhatToDo = () => {
     if (loginCheck == 1) {
+      setLogCheck("Login");
       Logout();
     }
     if (loginCheck == 0) {
+      setLogCheck("Logout");
       navigate("/login");
     }
   };
