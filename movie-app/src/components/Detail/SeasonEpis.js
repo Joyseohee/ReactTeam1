@@ -26,6 +26,7 @@ function SeasonEpis (props){
         getSeason();
       }, []);
     
+    
       const getSeason = async () => {
         const res = await tmdbAPI.get(`tv/${props.tvId}`);
         if (res.data) {
