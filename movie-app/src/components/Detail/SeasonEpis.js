@@ -26,7 +26,7 @@ function SeasonEpis (props){
         getSeason();
       }, []);
     
-    
+
       const getSeason = async () => {
         const res = await tmdbAPI.get(`tv/${props.tvId}`);
         if (res.data) {
@@ -35,14 +35,15 @@ function SeasonEpis (props){
         }
       };
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState([]);
+  
     const onClickButton = (i) => {
-        setIsOpen(!isOpen);
+        const openinit = Array(season.length).fill(false);
+        openinit[i] = !openinit[i];
+        setIsOpen(openinit);
         setSn(i);
     };
-
     const [sn, setSn] = useState(0);
-
       return (
         <div>
             <h2 style={{ color: "white" }}>시즌</h2>
@@ -64,13 +65,13 @@ function SeasonEpis (props){
                             <h2 style={{ color: "white" }}>{i}</h2>
                             )}
                         </div> */}
-                        <div className={style.episode}>
-                            {isOpen && (
-                            <Episodes open={isOpen} season={season} i={sn} tvId={props.tvId}
+                            <div className={style.episode}>
+                            {isOpen[i] && (
+                            <Episodes open={isOpen} season={season} i={i} tvId={props.tvId}
                                 onClose={() => {
                                 setIsOpen(false);}}/>
                             )}
-                        </div>
+                            </div>
                         <div className={style.air_date}>공개일 : {season.air_date}</div><br />
                         <div className={style.overview}>{season.overview}</div>
                     </section>
@@ -80,7 +81,7 @@ function SeasonEpis (props){
             </div>
         </div>
       );
-
+          
 }
 
 export default SeasonEpis;

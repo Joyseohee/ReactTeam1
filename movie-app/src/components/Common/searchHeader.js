@@ -1,13 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { InputBase } from '@mui/material'
 import { Search as SearchIcon } from '@mui/icons-material'
 import axios from "axios";
+import { useEffect, useState } from 'react';
 
 
 const SearchHeader = () => {
   const navigate = useNavigate()
-  //let [data, setData] = useState("");
+  let [data, setData] = useState("");
+  let {params} = useParams();
+  
+  useEffect(() => {
+    params === undefined ? setData("data.json") : setData("tvdata.json");
+  }, [params])
+
+  console.log(params);
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -47,8 +55,8 @@ const SearchHeader = () => {
         },
       },
     },
-  }));
-
+})
+  )
   return (
     <>
      <Search>
@@ -73,7 +81,7 @@ const SearchHeader = () => {
         //   axios
         //   .get(`https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/${data}`)
         //   .then((res) => {
-        //     setMovdata(res.data.result);
+        //     //setMovdata(res.data.result);
         //   });
         // }}
       />
@@ -81,5 +89,4 @@ const SearchHeader = () => {
     </>
   );
 }
-
 export default SearchHeader
