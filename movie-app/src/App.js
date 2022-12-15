@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "./pages/css/App.scss";
 
 import MainTV from "./pages/MainTV";
 import Main from "./pages/Main";

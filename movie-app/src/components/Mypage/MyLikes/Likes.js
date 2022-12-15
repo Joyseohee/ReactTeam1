@@ -45,7 +45,6 @@ export default function Likes() {
                     <div
                       data-aos="fade-in"
                       data-aos-offset="100"
-                      // data-aos-delay="500"
                       data-aos-duration="800"
                       data-aos-easing="ease-in-out"
                       className="likeMovieCard"
