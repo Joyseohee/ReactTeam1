@@ -51,24 +51,8 @@ function SeasonEpis (props){
                     <section className={style.info}>
                         <div className={style.name}>{Season.name}</div>
                         <span className={style.episode_count}>{Season.episode_count}개의 에피소드&nbsp;&nbsp;&nbsp;</span>
-                        <div className={style.name}>{Season.name}</div>
-                        <span className={style.episode_count}>{Season.episode_count}개의 에피소드&nbsp;&nbsp;&nbsp;</span>
                         <button className={style.epibutton} onClick={()=>onClickButton(i)}>에피소드 보기</button><br /><br />
-                        <div className={style.episode}>
-                                {
-                                    Season.season_number === 0?<>
-                                    {isOpen[i] && (
-                                    <Episodes open={isOpen} season={Season} i={i} tvId={props.tvId}
-                                        onClose={() => {
-                                        setIsOpen(false);}}/>
-                                    )}</> :
-                                    <>{isOpen[i] && (
-                                        <Episodes open={isOpen} season={Season} i={i+1} tvId={props.tvId}
-                                            onClose={() => {
-                                            setIsOpen(false);}}/>
-                                        )}</>
-                                }
-                            </div>
+                        
                             <div className={style.episode}>
                                 {
                                     season[0].season_number == 0?<>
