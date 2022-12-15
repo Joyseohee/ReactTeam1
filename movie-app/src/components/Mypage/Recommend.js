@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -8,34 +8,27 @@ import style from "./Recommend.module.css";
 import Movie from "../Common/Movie";
 
 function Recommend() {
-  const API_IMAGEURL = "https://image.tmdb.org/t/p/w300"; // 영화 이미지 baseURL
-  const navigate = useNavigate();
   let [movdata, setMovdata] = useState([]);
   let [MyrecommendMovie, setMyRecommendMovie] = useState([]);
   let [recommendFirstMovie, setRecommendFirstMovie] = useState([]);
+
   const [change, setChange] = useState(false);
 
-  // 영화 데이터 저장
   useEffect(() => {
     axios
       .get("https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/data.json")
       .then((res) => {
         setMovdata(res.data.result);
       });
-  }, []);
 
-  // 첫 번째 렌더링
-  useEffect(() => {
     AOS.init();
     RecommendMovie();
-  }, []);
 
-  // 두 번째 렌더링(결과값 출력위해서 필요)
-  useEffect(() => {
     let timer = setTimeout(() => {
-      setChange(true);
       RecommendMovie();
+      setChange(true);
     }, 1);
+
     return () => {
       clearTimeout(timer);
     };
@@ -44,7 +37,6 @@ function Recommend() {
   // 영화 추천
   function RecommendMovie() {
     let myMovieId = JSON.parse(localStorage.getItem("likestore")); //로컬스토리지에서 영화이름 가져오기
-    console.log(myMovieId);
     let myMovieinfo = []; //이름, 장르번호 기억
     let firstMovie = []; //첫영화
     let myGenreIds = []; //장르번호
@@ -105,46 +97,46 @@ function Recommend() {
 
   return (
     <>
-      {MyrecommendMovie.length > 0 ? (
-        recommendFirstMovie.map((firstMovie, i) => {
-          return (
-            <>
-              <div className="recommandContainer">
-                <h4 className="recTitle">
-                  {firstMovie.title}과(와) 비슷한 장르
-                </h4>
-                <div data-aos="fade-up">
-                  <div className={style.recommendcontainer}>
-                    {MyrecommendMovie[i].map((recommendmovie, i) => {
-                      //2차원 배열을 맵으로 돌리기 위해
-                      const recommnedmovie =
-                        recommendmovie[firstMovie.title].id;
-                      return (
-                        <div
-                          className={style.recommendmovieCard}
-                          data-aos="fade-right"
-                        >
-                          <Movie
-                            id={recommnedmovie}
-                            width="300"
-                            style="recommanBox"
-                          />
-                        </div>
-                      );
-                    })}
+      {MyrecommendMovie.length > 0
+        ? recommendFirstMovie.map((firstMovie, i) => {
+            return (
+              <>
+                <div className="recommandContainer">
+                  <h4 className="recTitle">
+                    {firstMovie.title}과(와) 비슷한 장르
+                  </h4>
+                  <div data-aos="fade-up">
+                    <div className={style.recommendcontainer}>
+                      {MyrecommendMovie[i].map((recommendmovie, i) => {
+                        //2차원 배열을 맵으로 돌리기 위해
+                        const recommnedmovie =
+                          recommendmovie[firstMovie.title].id;
+                        return (
+                          <div
+                            className={style.recommendmovieCard}
+                            data-aos="fade-right"
+                          >
+                            <Movie
+                              id={recommnedmovie}
+                              width="300"
+                              style="recommanBox"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
+              </>
+            );
+          })
+        : change && (
+            <>
+              <div>
+                <h4 style={{ color: "#fff" }}>추천할 영화가 없습니다</h4>
               </div>
             </>
-          );
-        })
-      ) : (
-        <>
-          <div>
-            <h4 style={{ color: "#fff" }}>추천할 영화가 없습니다</h4>
-          </div>
-        </>
-      )}
+          )}
     </>
   );
 }

@@ -4,10 +4,7 @@ import { useLocation } from "react-router-dom";
 
 export default function ErrorMessage() {
   const location = useLocation();
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
+  useEffect(() => {}, [location]);
 
   return (
     <>

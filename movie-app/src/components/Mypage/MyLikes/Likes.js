@@ -7,22 +7,26 @@ import NoMovie from "./NoMovie";
 
 export default function Likes() {
   let [recentId, setRecentId] = useState([]);
-  // let recentId = useRef([]);
-  let [noMovie, setNoMovie] = useState(true);
+
+  let [change, setChange] = useState(false);
 
   useEffect(() => {
     let arr = localStorage.getItem("likestore");
     arr = JSON.parse(arr);
     arr = new Set(arr);
     arr = [...arr];
-    setRecentId(arr);
-    console.log(noMovie);
+
     AOS.init();
-  }, [recentId[0], noMovie]);
 
-  // const display() = () => {
+    let timer = setTimeout(() => {
+      setRecentId(arr);
+      setChange(true);
+    }, 1);
 
-  // }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [recentId[0], change]);
 
   return (
     <>
@@ -34,9 +38,8 @@ export default function Likes() {
           lg={3}
           className="row justify-content-start gy-5 gx-0"
         >
-          {recentId == null
-            ? null
-            : recentId.map((LikesId) => {
+          {recentId.length > 0
+            ? recentId.map((LikesId) => {
                 return (
                   <Col>
                     <div
@@ -56,10 +59,11 @@ export default function Likes() {
                     </div>
                   </Col>
                 );
-              })}
+              })
+            : null}
         </Row>
       </Container>
-      {noMovie && <NoMovie />}
+      {recentId.length < 1 && change && <NoMovie />}
     </>
   );
 }
