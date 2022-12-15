@@ -25,7 +25,6 @@ function Trailers(props) {
     const res = await tmdbAPI.get(`movie/${props.movieId}/videos`, { params: { language: "en-US" } });
     if (res.data) {
       setVideo(res.data.results);
-    } else {
     }
   };
 

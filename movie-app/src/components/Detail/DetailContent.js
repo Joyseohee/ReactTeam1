@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import profile from "../../pages/images/profile.png"
+import profile from "../../pages/images/profile.png";
 
 import style from "../../pages/css/DetailContent.module.css";
 

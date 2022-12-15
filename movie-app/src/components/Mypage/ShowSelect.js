@@ -3,21 +3,21 @@ import Likes from "./MyLikes/Likes";
 import Recommend from "./Recommend";
 
 export default function ShowSelect({ mpClickTab }) {
-  if (mpClickTab == 1) {
+  if (mpClickTab == 0) {
     return (
       <div className="mgClickBox">
         <Likes />
       </div>
     );
   }
-  if (mpClickTab == 2) {
+  if (mpClickTab == 1) {
     return (
       <div className="mgClickBox">
         <Recommend />
       </div>
     );
   }
-  if (mpClickTab == 3) {
+  if (mpClickTab == 2) {
     return (
       <div className="mgClickBox">
         <MyReview />

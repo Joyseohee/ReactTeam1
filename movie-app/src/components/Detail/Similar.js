@@ -24,13 +24,13 @@ function Similar(props){
         getSimilar();
       }, []);
     
-      const getSimilar = async () => {
-        const res = await tmdbAPI.get(`movie/${props.movieId}/similar`);
-        if (res.data) {
-            setSimilar(res.data.results);
-        } else {
-        }
-      };
+    const getSimilar = async () => {
+      const res = await tmdbAPI.get(`movie/${props.movieId}/similar`);
+      if (res.data) {
+          setSimilar(res.data.results);
+      } else {
+      }
+    };
 
       return(
         <>

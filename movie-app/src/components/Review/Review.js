@@ -5,7 +5,6 @@ import Alert from "react-bootstrap/Alert";
 import Rating from "./Rating";
 import "./scss/Review.scss";
 import AOS from "aos";
-import { Modal } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 function Review() {
@@ -18,18 +17,11 @@ function Review() {
     setLoad(true); // 로딩 시작
 
     const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
-      //      params: { page: `${page}` },
       params: { language: "*", page: `${page}` }, //추가한것
     });
-    // console.log(res.data);
-    console.log(" results :" + res.data.results);
 
     if (res.data) {
-      setMovie(res.data.results); // console.log(res.data);
-      //let temp = [...movie, ...res.data.results];
-      console.log(movie);
     } else {
-      console.log("error");
     }
     setLoad(false); // 로딩 종료
   };

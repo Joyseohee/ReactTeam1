@@ -133,8 +133,6 @@
 .InfoMap {
   display: flex;
   color: antiquewhite;
-  // margin-top: 50px;
-  // margin-bottom: 50px;
   margin: 30px 50px 30px 50px;
   justify-content: space-between;
   align-items: center;
@@ -158,34 +156,6 @@
   h1 {
     margin-bottom: 50px;
   }
-  //   h1,
-  //   h2,
-  //   h3 {
-  //     font-family: sofia-pro, sans-serif;
-  //     font-weight: 600;
-  //     font-style: normal;
-  //     display: grid;
-  //   }
-
-  //   h1 {
-  //     font-size: 36px;
-  //     font-weight: 700;
-  //     letter-spacing: -1px;
-  //     line-height: 1.2;
-  //     text-align: center;
-  //     margin: 150px 0 40px;
-  //   }
-
-  //   h2 {
-  //     font-weight: 400;
-  //     margin: 50px 0 10px;
-  //   }
-
-  //   p {
-  //     margin: 0 0 0 0;
-  //     font-size: 18px;
-  //     color: #fdfdfd;
-  //   }
 
   Table {
     border-style: 1 solid;
@@ -195,15 +165,6 @@
     text-align: left;
   }
 }
-
-// .InfoTable {
-//   margin-top: 50px;
-//   display: inline;
-//   width: 100%;
-//   height: auto;
-//   margin-bottom: 50px;
-//   //   margin: auto;
-// }
 
 .table-striped-columns > :not(caption) > tr > :nth-child(even) {
   --bs-table-accent-bg: var(--bs-table-striped-bg);

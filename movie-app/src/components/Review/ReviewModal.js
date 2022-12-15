@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import toast from "react-hot-toast";
-// import { addTodo, updateTodo } from "./todoSlice";
 import { addReview, updateReview } from "../../store";
 import styles from "./scss/Reviewmodal.module.scss";
 import Button from "./Button";
-import Rating from "./Rating";
 
 const dropIn = {
   hidden: {
@@ -34,19 +32,15 @@ const dropIn = {
 
 function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   let id = useParams();
-  console.log("id 파람 : " + id);
   const dispatch = useDispatch();
   const [authorid, setAuthorid] = useState(localStorage.getItem("accountId")); // 유저 아이디 값 삽입
   const [authorNick, setAuthorNick] = useState(
     localStorage.getItem("accountNick")
   ); // 유저 닉네임 값 삽입
-  // const [authorid, setAuthorid] = useState("SMPark1234"); // 유저 아이디 값 삽입
-  // const [authorNick, setAuthorNick] = useState("SMPark"); // 유저 닉네임 값 삽입
+
   const [movie_id, setMovie_id] = useState(id.id); // 영화 선택 -> id 값 삽입
   const [rate, setRate] = useState("");
   const [content, setContent] = useState("");
-  const [mv_id, setMv_id] = useState(id.name);
-  console.log("이름이 뭐에요 : " + mv_id);
 
   useEffect(() => {
     if (type === "update" && review) {
@@ -104,11 +98,6 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
     }
   };
 
-  const reviewTextarea = useRef();
-  const handleResizeHeight = () => {
-    reviewTextarea.style.height = "auto";
-    reviewTextarea.style.height = reviewTextarea.current.scrollHeight + "px";
-  };
   return (
     <AnimatePresence>
       {modalOpen && (
@@ -164,12 +153,6 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
               <p>
                 <label htmlFor="rate">
                   rate
-                  {/* <input
-                    type="text"
-                    id="rate"
-                    value={rate}
-                    onChange={(e) => setRate(e.target.value)}
-                  /> */}
                   <select
                     aria-label="Default select example"
                     name="rate"
@@ -194,14 +177,6 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
               <div className={styles.plzContent}>
                 <label htmlFor="content">
                   content
-                  {/* <input
-                    type="text"
-                    id="content"
-                    value={content}
-                    maxlength="200"
-                    placeholder="200자 내외로 입력해주세요"
-                    onChange={(e) => setContent(e.target.value)}
-                  /> */}
                   <textarea
                     className={styles.reviewTextarea}
                     id="content"
@@ -209,8 +184,6 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
                     cols="150"
                     maxlength="300"
                     placeholder="300자 내외로 입력해주세요"
-                    // onkeydown="handleResizeHeight(`${content}`)"
-                    // onkeyup="handleResizeHeight(`${content}`)"
                     onChange={(e) => setContent(e.target.value)}
                   ></textarea>
                 </label>
