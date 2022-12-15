@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { deleteReview } from "../../store";
 import styles from "./scss/ItemReview.module.scss";
 import CheckButton from "./CheckButton";
-import Rating from "./Rating";
 import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";

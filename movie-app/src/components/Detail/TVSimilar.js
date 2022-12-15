@@ -44,7 +44,7 @@ function TVSimilar(props){
               return (
                   <SwiperSlide key={i}>
                     <img className={style.img} src={`${API_IMAGEURL}${similar.poster_path}`} onClick={() => { navigate(`/tv/detail/${similar.id}`); window.location.reload()}} />
-                    <h4 style={{ color: "white", textAlign: "center" }}>{similar.name}</h4>
+                    <div style={{ fontSize: '15px', color: "white", textAlign: "center" }}>{similar.name}</div>
                 </SwiperSlide>
               );
             })}

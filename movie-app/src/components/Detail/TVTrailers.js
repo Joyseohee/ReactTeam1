@@ -14,27 +14,35 @@ import style from "../../pages/css/Trailers.module.css";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-function TVTrailers(props){
-    const [video,setVideo] = useState([]);
-    useEffect(() => {
-        getVideo();
-      }, []);
-    
-    const getVideo = async () => {
-      const res = await tmdbAPI.get(`tv/${props.tvId}/videos`, { params: { language: "en-US" } });
-      if (res.data) {
-        setVideo(res.data.results);
-      } else {
-      }
-    };
+function TVTrailers(props) {
+  const [video, setVideo] = useState([]);
+  useEffect(() => {
+    getVideo();
+  }, []);
 
-      return(
-        <>
-        <h4 style={{ color: "white" }}>관련 동영상 ({video.length}개)</h4>
-            <Swiper slidesPerView={3} spaceBetween={10} slidesPerGroup={1}
-                        loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
-                        modules={[Pagination, Navigation]} className="mySwiper">
-            
+  const getVideo = async () => {
+    const res = await tmdbAPI.get(`tv/${props.tvId}/videos`, {
+      params: { language: "en-US" },
+    });
+    if (res.data) {
+      setVideo(res.data.results);
+    } else {
+    }
+  };
+
+  return (
+    <>
+      <h4 style={{ color: "white" }}>관련 동영상 ({video.length}개)</h4>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={10}
+        slidesPerGroup={1}
+        loopFillGroupWithBlank={true}
+        pagination={{ clickable: true }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
         <div className={style.container}>
             {video.map((video, i) => {
               return (
