@@ -18,14 +18,15 @@ const InfoMap = () => {
     <div
       style={{
         width: "100%",
-        display: "inline-block",
+        display: "flex",
         marginLeft: "5px",
         marginRight: "5px",
+        marginBottom: "50px",
       }}
     >
       <div
         id="map"
-        style={{ width: "50%", height: "500px", display: "inline-table" }}
+        style={{ width: "100%", height: "500px", display: "inline-table" }}
       ></div>
     </div>
   );

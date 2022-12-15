@@ -14,7 +14,8 @@ function FAQ() {
         <img
           src="https://media.istockphoto.com/id/889451818/photo/frequently-asked-questions-question-and-answer-icon.jpg?s=612x612&w=0&k=20&c=-XOJT336CDoiFiONQdqDkLYcjqxo8et2Va6Pqt9uhW0="
           width="100%"
-          height="400px"
+          height="300px"
+          opacity="0.5"
           background-size="cover"
         ></img>
         <div className="FAQ_title">

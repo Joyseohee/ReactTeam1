@@ -44,7 +44,6 @@ function SeasonEpis (props){
         setSn(i);
     };
     const [sn, setSn] = useState(0);
-
       return (
         <div>
             <h2 style={{ color: "white" }}>시즌</h2>
@@ -55,26 +54,25 @@ function SeasonEpis (props){
                 {
                     season.poster_path == null?
                     <img className={style.img} src={png} /> :
-                    <img className={style.img} src={`${API_IMAGEURL}${season.poster_path}`} />
+                    <img className={style.img_poster} src={`${API_IMAGEURL}${season.poster_path}`} />
                 }
                     <section className={style.info}>
-                        <div style={{ color: "white" }}>{season.name}</div>
-                        <div style={{ color: "white" }}>{season.episode_count}개의 에피소드</div>
-                        <div style={{ color: "white" }}>{i}season</div>
-                        <button onClick={()=> {onClickButton(i); console.log(isOpen)}}>에피소드 보기</button>
-                        <div className={style.episode}>
-                            {isOpen[i] && (
-                            <h2 style={{ color: "white" }}>{i}</h2>
-                            )}
-                        </div>
+                        <div className={style.name}>{season.name}</div>
+                        <span className={style.episode_count}>{season.episode_count}개의 에피소드&nbsp;&nbsp;&nbsp;</span>
+                        <button className={style.epibutton} onClick={()=>onClickButton(i)}>에피소드 보기</button><br /><br />
                         {/* <div className={style.episode}>
                             {isOpen && (
+                            <h2 style={{ color: "white" }}>{i}</h2>
+                            )}
+                        </div> */}
+                            <div className={style.episode}>
+                            {isOpen[i] && (
                             <Episodes open={isOpen} season={season} i={i} tvId={props.tvId}
                                 onClose={() => {
                                 setIsOpen(false);}}/>
                             )}
-                        </div> */}
-                        <div style={{ color: "white" }}>공개일 : {season.air_date}</div>
+                            </div>
+                        <div className={style.air_date}>공개일 : {season.air_date}</div><br />
                         <div className={style.overview}>{season.overview}</div>
                     </section>
                 </div>
