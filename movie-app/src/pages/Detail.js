@@ -282,7 +282,7 @@ function TabContent(props) {
           <h5 style={{ color: "white" }}>${props.movies.revenue}</h5>
         </div>
         <hr />
-        <Trailers videokey={props.videokey} />
+        <Trailers movieId={movieId} />
         <hr />
         <Similar movieId={movieId} />
       </>
