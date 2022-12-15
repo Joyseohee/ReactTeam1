@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import tmdbAPI from "../../tmdbAPI";
-
+import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import tmdbAPI from "../../tmdbAPI";
 import profile from "../../pages/images/profile.png";
-
 import style from "../../pages/css/DetailContent.module.css";
-
-import { Pagination, Navigation } from "swiper";
 
 function DetailContent(props) {
   const [actor, setActor] = useState([]);
@@ -40,10 +36,13 @@ function DetailContent(props) {
               return (
                 <SwiperSlide key={i}>
                   {
-                    actor.profile_path == null ?
+                    actor.profile_path == null
+                    ?
                       <>
                       <img src={profile} className={style.profile} />
-                      <div className={style.actorName}>{actor.name}</div></> :
+                      <div className={style.actorName}>{actor.name}</div>
+                      </>
+                      :
                       <div className={style.movieCard}>
                         <img src={`https://www.themoviedb.org/t/p/w138_and_h175_face/${actor.profile_path}`} className={style.actor} />
                         <div className={style.actorName}>{actor.name}</div>

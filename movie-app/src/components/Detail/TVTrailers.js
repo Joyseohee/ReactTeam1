@@ -30,7 +30,7 @@ function TVTrailers(props){
 
       return(
         <>
-        <h2 style={{ color: "white" }}>관련 동영상 ({video.length})</h2>
+        <h4 style={{ color: "white" }}>관련 동영상 ({video.length}개)</h4>
             <Swiper slidesPerView={3} spaceBetween={10} slidesPerGroup={1}
                         loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">
@@ -39,7 +39,7 @@ function TVTrailers(props){
             {video.map((video, i) => {
               return (
                   <SwiperSlide key={i}>
-                    <h5 style={{ color: "white" }}>({video.name})</h5>
+                    <div style={{ color: "white", width: '360px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>({video.name})</div>
                     <ReactPlayer
                     className={style.react_player}
                     url={`https://www.youtu.be/${video.key}`} // 플레이어 url
