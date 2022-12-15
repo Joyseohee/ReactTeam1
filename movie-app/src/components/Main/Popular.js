@@ -24,7 +24,10 @@ function Popular() {
       .then((res) => {
         setMovdata(res.data.result);
       });
+      
   }, []);
+
+  
   // 옵저버 생성 및 타겟(div) 지정
   useEffect(() => {
     AOS.init();
