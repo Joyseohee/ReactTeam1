@@ -187,7 +187,7 @@ const ResultSearch = () => {
       <Header />
 
       <div className={style.btnWrap}>
-        <h4>검색 결과</h4>
+        <h4>{JSON.stringify(keyword.keyword)} 검색 결과</h4>
         <FormGroup style={{ width: "200px" }}>
           <FormControlLabel
             control={
