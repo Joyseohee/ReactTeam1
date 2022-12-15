@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-import tmdbAPI from "../../tmdbAPI";
-import ReactPlayer from "react-player";
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import tmdbAPI from "../../tmdbAPI";
+import ReactPlayer from "react-player/lazy";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import style from "../../pages/css/Trailers.module.css";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
-import { width } from "@mui/system";
 
 function Trailers(props) {
   const [video, setVideo] = useState([]);
@@ -45,7 +40,7 @@ function Trailers(props) {
                 <ReactPlayer
                   className={style.react_player}
                   url={`https://www.youtu.be/${video.key}`} // 플레이어 url
-                  width="600px" // 플레이어 크기 (가로)
+                  width="500px" // 플레이어 크기 (가로)
                   height="300px" // 플레이어 크기 (세로)
                   controls={true} // 플레이어 컨트롤 노출 여부
                   light={false} // 플레이어 모드
