@@ -12,16 +12,13 @@ import Loading from "../loading";
 function Review() {
   const movieID = useParams().id;
   console.log("check id : " + movieID);
-  let id = useParams();
-  // console.log("let id : " + id);
   const [load, setLoad] = useState(null);
   const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
-  console.log(id);
+
   const getReview = async () => {
     setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
-      // const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
+    const res = await tmdbAPI.get(`movie/${movieID}/reviews?`, {
       params: { language: "*", page: `${page}` }, //추가한것
     });
     if (res.data) {
