@@ -1,22 +1,21 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import styled, { createGlobalStyle } from "styled-components";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "./pages/css/App.scss";
 
 import MainTV from "./pages/MainTV";
 import Main from "./pages/Main";
 import Mypage from "./pages/Mypage";
 import Detail from "./pages/Detail";
 import DetailTV from "./pages/DetailTV";
-
 import Login from "./pages/Login";
 import Join from "./pages/Join";
+import Error from "./pages/Error";
+
 import Info from "./components/Common/FooterCommon/Info";
-import styled, { createGlobalStyle } from "styled-components";
 import ResultSearch from "./components/Search/ResultSearch";
 import Policy from "./components/Common/FooterCommon/Policy";
 import FAQ from "./components/Common/FooterCommon/FAQ";
-import Error from "./pages/Error";
 
 function App() {
   return (
@@ -42,12 +41,13 @@ function App() {
   );
 }
 
+// 컴포넌트 넘치는 페이지 전체 배경색 주기
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #000000;
   }
 `;
-
+// 전체 페이지 너비 설정
 const Container = styled.div`
   width: 100%;
   height: 100%;

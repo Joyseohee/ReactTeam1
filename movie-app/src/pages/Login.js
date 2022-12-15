@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./css/Login.css";
 import { useNavigate } from "react-router-dom";
+import "./css/Login.css";
+import { Col, Container, Row } from "react-bootstrap";
 import LoginButton from "../components/Login/LoginButton";
 import MoveToJoin from "../components/Login/MoveToJoin";
 import LoginIdInput from "../components/Login/LoginIdInput";
 import LoginPwdInput from "../components/Login/LoginPwdInput";
 import Logo from "../components/Common/Logo";
-import { Col, Container, Row } from "react-bootstrap";
 
 export default function Mypage() {
   const navigate = useNavigate();
 
+  // 로그인 성공 혹은 실패 여부 체크
   let [loginId, setLoginId] = useState();
   let [loginPwd, setLoginPwd] = useState();
-
   const Login = () => {
     if (loginIdOk && loginPwdOk) {
       localStorage.setItem("loginCheck", 1);
@@ -25,14 +25,9 @@ export default function Mypage() {
     }
   };
 
-  useEffect(() => {
-    setLoginId(localStorage.getItem("accountId"));
-    setLoginPwd(localStorage.getItem("accountPwd"));
-  });
-
+  // 입력한 아이디, 비밀번호가 저장된 아이디, 비밀번호와 일치하는지 확인
   let [loginIdOk, setloginIdOk] = useState(false);
   let [loginPwdOk, setloginPwdOk] = useState(false);
-
   const loginInputId = (inputId) => {
     if (loginId == inputId) {
       setloginIdOk(true);
@@ -47,6 +42,11 @@ export default function Mypage() {
       setloginPwdOk(false);
     }
   };
+
+  useEffect(() => {
+    setLoginId(localStorage.getItem("accountId"));
+    setLoginPwd(localStorage.getItem("accountPwd"));
+  });
 
   return (
     <>
@@ -69,11 +69,13 @@ export default function Mypage() {
                 </Row>
                 <Row className="row id justify-content-center">
                   <Col className="col-lg-8">
+                    {/* 아이디 input */}
                     <LoginIdInput loginInputId={loginInputId} />
                   </Col>
                 </Row>
                 <Row className="row pwd justify-content-center">
                   <Col className="col-lg-8">
+                    {/* 비밀번호 input */}
                     <LoginPwdInput loginInputPwd={loginInputPwd} />
                   </Col>
                   <Row className="row error justify-content-center">
@@ -82,11 +84,13 @@ export default function Mypage() {
                 </Row>
                 <Row className="row button justify-content-center">
                   <Col className="col-lg-8">
+                    {/* 로그인 버튼 */}
                     <LoginButton Login={Login} />
                   </Col>
                 </Row>
                 <Row className="row justify-content-center">
                   <Col className="col-lg-8 joinLink">
+                    {/* 회원 가입 페이지로 이동 */}
                     <MoveToJoin />
                   </Col>
                 </Row>

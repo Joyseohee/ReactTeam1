@@ -37,7 +37,6 @@ function Search() {
   }, [timesort]);
 
   useEffect(() => {
-    console.log("data1 = " + data);
     axios({
       method: "get",
       url: `https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/${data}`,
@@ -56,7 +55,6 @@ function Search() {
         <button
           onClick={() => {
             setTvMovie(!tvmovie);
-            console.log("setTVmovie" + tvmovie);
           }}
         >
           영화? 티비?
@@ -171,13 +169,10 @@ function Search() {
   //검색
   function SearchName() {
     let movies = []; // 검색한 영화 담는 배열
-    console.log(movdata);
-    console.log(data);
 
     setCount(count + 1);
     //검색값
     let search = document.getElementById("search").value;
-    console.log("search : " + search);
     //첫 글자 대문자 (original_title도 검색하기 위해)
     if (search.length !== 0) {
       search = search.charAt(0).toUpperCase() + search.slice(1);
@@ -202,8 +197,6 @@ function Search() {
       }
     }
     setMovie(movies);
-    console.log("movies : " + movies);
-    console.log("movie: " + movie);
   }
 
   function RecommendMovie() {
@@ -230,39 +223,16 @@ function Search() {
       }
     }
 
-    // console.log("myMovieId: " + typeof(myMovieId[1]) );
-    // console.log("movdata[0].id " + typeof(movdata[0].id) );
-    // console.log("myMovie === movdata?" + myMovieId[1] === movdata[0].id);
-    // console.log(myMovieinfo);
-    // console.log(firstMovie);
-
     movietitle = Object.keys(myMovieinfo);
-    // console.log(movietitle);
-
-    //let key = Object.keys(recommendMovieInfo[0]);
-    // console.log(recommendMovieinfo[Object.keys(recommendMovieinfo[0])[0]]);
-
-    // for(let i = 0; i < movie.length; i ++) {
-    //     recommendMovieInfo = {
-    //         [movietitle[i]] : []
-    //     }
-    // }
 
     for (let i = 0; i < myGenreIds.length; i++) {
       for (let j = 0; j < movdata.length; j++) {
         if (movdata[j].genre_ids.includes(myGenreIds[i])) {
           recommendMovieInfo.push({ [movietitle[i]]: movdata[j] });
-          //recommendMovieInfo.push({ title : movdata[j] });
-          // let key = Object.keys(recommendMovieinfo[i])[i];
-          // recommendMovieinfo.key.push(movdata[j]); // 키가 안쓰임
         }
       }
     }
 
-    //console.log(Object.keys(recommendMovieInfo[130]))
-
-    // console.log(recommendMovieInfo[0][movietitle[0]].id);
-    // console.log(firstMovie[0].id);
     for (let i = 0; i < movietitle.length; i++) {
       randommovie = [];
       random2 = [];

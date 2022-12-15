@@ -22,7 +22,6 @@ function Policy() {
             src="https://kinsta.com/wp-content/uploads/2022/06/what-is-npm-1200x675.png"
             width="100%"
             height="400px"
-            // background-size="cover"
           ></img>
         </div>
         <Card className="PolicyCard">
