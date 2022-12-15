@@ -8,7 +8,14 @@ function ReviewHeader() {
 
   return (
     <div className={styles.appHeader}>
-      <Button variant="primary" onClick={() => setModalOpen(true)}>
+      <Button
+        variant="primary"
+        onClick={() => setModalOpen(true)}
+        style={{
+          backgroundColor: "black",
+          border: "solid 3px red",
+        }}
+      >
         리뷰 등록
       </Button>
       <ReviewModal

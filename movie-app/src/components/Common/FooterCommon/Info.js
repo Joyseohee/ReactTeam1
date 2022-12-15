@@ -29,7 +29,7 @@ function Info() {
       if (deltaY > 0) {
         // 스크롤 내릴 때
         if (scrollTop >= 0 && scrollTop < pageHeight) {
-          //현재 1페이지
+          // 1페이지
           outerDivRef.current.scrollTo({
             top: pageHeight + DIVIDER_HEIGHT,
             left: 0,
@@ -37,7 +37,7 @@ function Info() {
           });
           setScrollIndex(2);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-          //현재 2페이지
+          // 2페이지
           outerDivRef.current.scrollTo({
             top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
             left: 0,
@@ -45,7 +45,7 @@ function Info() {
           });
           setScrollIndex(3);
         } else {
-          // 현재 3페이지
+          // 3페이지
           outerDivRef.current.scrollTo({
             top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
             left: 0,
@@ -56,7 +56,7 @@ function Info() {
       } else {
         // 스크롤 올릴 때
         if (scrollTop >= 0 && scrollTop < pageHeight) {
-          //현재 1페이지
+          // 1페이지
           outerDivRef.current.scrollTo({
             top: 0,
             left: 0,
@@ -64,7 +64,7 @@ function Info() {
           });
           setScrollIndex(1);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-          //현재 2페이지
+          // 2페이지
           outerDivRef.current.scrollTo({
             top: 0,
             left: 0,
@@ -72,7 +72,7 @@ function Info() {
           });
           setScrollIndex(1);
         } else {
-          // 현재 3페이지
+          // 3페이지
           outerDivRef.current.scrollTo({
             top: pageHeight + DIVIDER_HEIGHT,
             left: 0,
@@ -162,7 +162,6 @@ function Info() {
                   <thead>
                     <tr>
                       <th>주소</th>
-                      {/* <th>서울 종로구 창경궁로 254</th> */}
                       <th rowspan="2">서울 종로구 창경궁로 254</th>
                       <th></th>
                     </tr>
@@ -170,7 +169,6 @@ function Info() {
                   <tbody>
                     <tr>
                       <td>대표전화</td>
-                      {/* <td>02-2188-6980</td> */}
                       <td rowspan="2">02-2188-6980</td>
                       <th></th>
                     </tr>

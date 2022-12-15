@@ -37,8 +37,8 @@ function Review() {
     <div className="Review-container">
       <div className="Review-title">
         <Card className="ReviewTitleCard">
-          <Card.Body>
-            <h3>해외 평론 및 리뷰</h3>
+          <Card.Body className="CardBody">
+            <p>해외 평론 및 리뷰</p>
           </Card.Body>
         </Card>
       </div>

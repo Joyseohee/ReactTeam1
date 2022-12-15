@@ -11,6 +11,7 @@ import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import RatingView from "./RatingView";
 
 const child = {
   hidden: { y: 20, opacity: 0 },
@@ -48,8 +49,16 @@ function ReviewItem({ review }) {
                         {review.authorNick}
                         <p></p>
                       </Col>
+                      {/* <Col>
+                        <Rating
+                          // setRate={setRate}
+                          rate={review.rate}
+                        />
+                      </Col> */}
+                    </Row>
+                    <Row>
                       <Col>
-                        <Rating rate={review.rate / 2} />
+                        <RatingView rate={review.rate}></RatingView>
                       </Col>
                     </Row>
                     <Row>
