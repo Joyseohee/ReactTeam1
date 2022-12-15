@@ -16,6 +16,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import ResultSearch from "./components/Search/ResultSearch";
 import Policy from "./components/Common/FooterCommon/Policy";
 import FAQ from "./components/Common/FooterCommon/FAQ";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/Info" element={<Info />} />
           <Route path="/Policy" element={<Policy />} />
           <Route path="/FAQ" element={<FAQ />} />
+          <Route path="/*" element={<Error />} />
         </Routes>
       </div>
     </>

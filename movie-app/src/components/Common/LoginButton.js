@@ -8,7 +8,11 @@ export default function LoginButton() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoginCheck(localStorage.getItem("loginCheck"));
+    let arr = localStorage.getItem("loginCheck");
+    if (arr != null) {
+      setLoginCheck(localStorage.getItem("loginCheck"));
+      console.log(loginCheck);
+    }
     loginCheck == 1 ? setLogCheck("Logout") : setLogCheck("Login");
   }, [loginCheck, LogCheck]);
 
