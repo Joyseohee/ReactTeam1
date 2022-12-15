@@ -8,13 +8,16 @@ export default function MyPageButton() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    setLoginCheck(localStorage.getItem("loginCheck"));
+    let arr = localStorage.getItem("loginCheck");
+    if (arr != null) {
+      setLoginCheck(localStorage.getItem("loginCheck"));
+    }
   }, [loginCheck]);
 
   const navigateMyPageOrNot = () => {
     if (loginCheck == 0) {
       alert("로그인을 진행해주세요");
-      navigate("/");
+      navigate("/login");
     }
     if (loginCheck == 1) {
       navigate("/mypage");
