@@ -1,9 +1,8 @@
 import ReactPlayer from "react-player";
 import style from "../../pages/css/Video.module.css";
-import React, { useEffect} from "react";
+import React from "react";
 
 import close from "../../pages/images/close.png"
-import { textAlign } from "@mui/system";
 
 function Video(props){
 

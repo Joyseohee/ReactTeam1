@@ -21,15 +21,13 @@ function TVDetailPerson(props){
         getActor();
       }, []);
     
-      const getActor = async () => {
-        //setLoad(true); // 로딩 시작
-        const res = await tmdbAPI.get(`tv/${props.tvId}/credits`, { params: { language: "en-US" } });
-        if (res.data) {
-          setActor(res.data.cast);
-        } else {
-        }
-        //setLoad(false); // 로딩 종료
-      };
+    const getActor = async () => {
+      const res = await tmdbAPI.get(`tv/${props.tvId}/credits`, { params: { language: "en-US" } });
+      if (res.data) {
+        setActor(res.data.cast);
+      } else {
+      }
+    };
 
       return(
         <>

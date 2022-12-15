@@ -1,28 +1,14 @@
 import React,{ useEffect, useState } from "react";
 import tmdbAPI from "../../tmdbAPI";
-import { useNavigate } from "react-router-dom";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import png from "../../pages/images/png.png";
 import close from "../../pages/images/close.png"
 
 import style from "../../pages/css/Episodes.module.css";
 
-// import required modules
-import { Pagination, Navigation } from "swiper";
-
 function Episodes(props){
-    const navigate = useNavigate();
-    const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-    // console.log(props.season.season_number);
-    console.log("시즌넘버" + props.i)
+    const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
     const [seasonDe, setSeasonDe] = useState([]);
     const [epi,setEpi] = useState([]);
@@ -35,14 +21,9 @@ function Episodes(props){
         if (res.data) {
             setSeasonDe(res.data);
             setEpi(res.data.episodes);
-        //console.log(res.data.results);
         } else {
         }
       };
-
-       console.log("시즌s : " + seasonDe);
-       console.log("에피 : " + epi);
-      
 
     const handleClose = () => {
         props.onClose?.();
