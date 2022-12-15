@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
 import { MdOutlineClose } from "react-icons/md";
@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import { addReview, updateReview } from "../../store";
 import styles from "./scss/Reviewmodal.module.scss";
 import Button from "./Button";
+import Rating from "./Rating";
+import StarRating from "./StarRating";
 
 const dropIn = {
   hidden: {
@@ -41,6 +43,15 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   const [movie_id, setMovie_id] = useState(id.id); // 영화 선택 -> id 값 삽입
   const [rate, setRate] = useState("");
   const [content, setContent] = useState("");
+
+  // 별점(starRating) 값을 받아온다
+  const getRatingValue = useCallback(
+    (e) => {
+      setRate(e.target.value);
+      console.log("getrating : " + rate);
+    },
+    [rate]
+  );
 
   useEffect(() => {
     if (type === "update" && review) {
@@ -150,10 +161,20 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
                 value={movie_id}
                 onChange={(e) => setMovie_id(e.target.value)}
               />
-              <p>
-                <label htmlFor="rate">
-                  rate
-                  <select
+              <div
+                className="starbox"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <p>
+                  <label htmlFor="rate">
+                    선택하신 별점 : {rate}
+                    {/* <input
+                    type="text"
+                    id="rate"
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
+                  /> */}
+                    {/* <select
                     aria-label="Default select example"
                     name="rate"
                     id="rate"
@@ -171,12 +192,31 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
                     <option value="3">3</option>
                     <option value="2">2</option>
                     <option value="1">1</option>
-                  </select>
-                </label>
-              </p>
+                  </select> */}
+                    <StarRating
+                      type="radio"
+                      rate={rate}
+                      setRate={setRate}
+                      getRatingValue={getRatingValue}
+                      id="rate"
+                      name="rate"
+                      value={rate}
+                      onChange={(e) => setRate(e.target.value)}
+                    ></StarRating>
+                  </label>
+                </p>
+              </div>
               <div className={styles.plzContent}>
                 <label htmlFor="content">
-                  content
+                  내용
+                  {/* <input
+                    type="text"
+                    id="content"
+                    value={content}
+                    maxlength="200"
+                    placeholder="200자 내외로 입력해주세요"
+                    onChange={(e) => setContent(e.target.value)}
+                  /> */}
                   <textarea
                     className={styles.reviewTextarea}
                     id="content"
@@ -184,15 +224,25 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
                     cols="150"
                     maxlength="300"
                     placeholder="300자 내외로 입력해주세요"
+                    font-size="large"
                     onChange={(e) => setContent(e.target.value)}
                   ></textarea>
                 </label>
               </div>
               <div className={styles.buttonContainer}>
-                <Button type="submit" variant="primary">
+                {/* <Button type="submit" variant="primary"> */}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  style={{ backgroundColor: "black" }}
+                >
                   {type === "add" ? "등록하기" : "수정하기"}
                 </Button>
-                <Button variant="secondary" onClick={() => setModalOpen(false)}>
+                <Button
+                  variant="secondary"
+                  style={{ backgroundColor: "black" }}
+                  onClick={() => setModalOpen(false)}
+                >
                   취소
                 </Button>
               </div>
