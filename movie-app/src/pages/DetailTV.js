@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import style from "./css/Detail.module.scss";
-import Loading from "../components/loading";
-import tmdbAPI from "../tmdbAPI";
-import Video from "../components/Detail/Video";
-import DetailContent from "../components/Detail/DetailContent";
-import ClickLikes from "../components/Detail/ClickLikes";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+
+import style from "./css/Detail.module.scss";
+import percent from "./images/100-percent.png";
+import tmdbAPI from "../tmdbAPI";
+import Loading from "../components/loading";
 import Header from "../components/Common/header";
 import TVDetailPerson from "../components/Detail/TVDetailPerson";
 import TVSimilar from "../components/Detail/TVSimilar";
@@ -14,27 +13,19 @@ import TVTrailers from "../components/Detail/TVTrailers";
 import TVVideo from "../components/Detail/TVVideo";
 import SeasonEpis from "../components/Detail/SeasonEpis";
 import Top from "../components/Common/top";
-import Trailers from "../components/Detail/Trailers";
-import Similar from "../components/Detail/Similar";
-import clock from "./images/clock.png";
-import percent from "./images/100-percent.png";
-import like from "./images/like.png";
 import Footer from "../components/Common/Footer";
-import Review from "../components/Review/Review";
+import TvReview from "../components/Review/TvReview";
 
 function Detail() {
   let id = useParams();
   const [tv, setTv] = useState([]);
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-  console.log(id.id);
   const [load, setLoad] = useState(null);
-  const [video, setVideo] = useState([]);
   const [tvKey, setTvkey] = useState();
   const [genre, setGenre] = useState([]);
   const [company, setCompany] = useState([]);
   const [country, setCountry] = useState([]);
-  const navigate = useNavigate();
 
   // TV 디테일 받아오기
   const getTvdetail = async () => {
@@ -42,66 +33,45 @@ function Detail() {
     const res = await tmdbAPI.get(`tv/${id.id}`);
     if (res.data) {
       setTv(res.data);
-      console.log(res.data);
-    } else {
-    }
-    setLoad(false); // 로딩 종료
-  };
-
-  // 장르 받아오기
-  const getGenre = async () => {
-    setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`tv/${id.id}`);
-    if (res.data) {
       setGenre(res.data.genres);
       setCountry(res.data.production_countries);
-      console.log(res.data.genres);
-    } else {
-    }
-    setLoad(false); // 로딩 종료
-  };
-
-  // 제작사 받아오기
-  const getCompany = async () => {
-    setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`tv/${id.id}`);
-    if (res.data) {
       setCompany(res.data.production_companies);
-    } else {
     }
     setLoad(false); // 로딩 종료
   };
 
   useEffect(() => {
-    getGenre();
-    getCompany();
     getTvdetail();
+    getTVvideo();
   }, []);
 
   let [clickTab, setClickTab] = useState(0);
 
-  useEffect(() => {
-    tmdbAPI
-      .get(`tv/${id.id}/videos`, { params: { language: "en-US" } })
-      .then((res) => {
-        console.log(res.data.results);
-        setTvkey(res.data.results[0].key);
-      });
-  }, []);
-  console.log("tvKey: " + tvKey);
+  const getTVvideo = async () => {
+    setLoad(true);
+    const res = await tmdbAPI.get(`tv/${id.id}/videos`, {
+      params: { language: "en-US" },
+    });
+    if (res.data) {
+      setTvkey(res.data.results[0].key);
+    }
+    setLoad(false);
+  };
 
   const [isOpen, setIsOpen] = useState(false);
+
   const onClickButton = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <>
+      <Header />
+
       {load ? (
         <Loading />
       ) : (
         <div className={style.back}>
-          <Header />
           <div className={style.header}>
             <div
               className={style.inner}
@@ -117,7 +87,6 @@ function Detail() {
                     className={style.img}
                     src={`${API_IMAGEURL}${tv.poster_path}`}
                   />
-
                   <span className={style.text}>
                     <a
                       href={`https://www.themoviedb.org/tv/${tv.id}`}
@@ -150,7 +119,7 @@ function Detail() {
                   </div>
                   <br />
                   <span className={style.seasons}>
-                    시즌 {tv.number_of_seasons} 개
+                    시즌 {tv.number_of_seasons}개
                   </span>
                   <span className={style.seasons}>
                     {" "}
@@ -162,11 +131,6 @@ function Detail() {
                     <img src={percent} className={style.vote_average_img} />{" "}
                   </span>
                   <span className={style.vote_average}>{tv.vote_average}</span>
-                  <span>
-                    <ClickLikes id={id} like={like} style={style} />
-                  </span>
-                  <span className={style.vote_count}>좋아요</span> <br />
-                  <br />
                   {tv.origin_country == "" ? (
                     <h3 style={{ color: "white" }}>NO Tagline</h3>
                   ) : (
@@ -261,48 +225,54 @@ function Detail() {
 }
 
 function TabContent(props) {
-  const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
-  console.log(props.clickTab);
   const tvId = props.tv.id;
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w200";
-
-  console.log("movieId" + props.tv.id);
 
   if (props.clickTab == 0) {
     return (
       <>
         <TVDetailPerson tvId={tvId} />
         <hr />
-        <h2 style={{ color: "white" }}>제작사</h2>
-        <div>
+
+        <div style={{ paddingTop: "1%" }}>
+          <h4 style={{ color: "white" }}>제작사</h4>
+        </div>
+
+        <div className={style.company}>
           {props.company.map((company, i) => {
             return (
-              <span key={i} className={style.genre}>
+              <div key={i} style={{ paddingBottom: "1%" }}>
                 {
-                  <span>
+                  <div>
                     {company.logo_path == null ? (
-                      <span style={{ color: "white" }}>로고없음</span>
+                      <div style={{ color: "white" }}>로고없음</div>
                     ) : (
-                      <img
-                        className={style.logo}
-                        src={`${API_IMAGEURL}${company.logo_path}`}
-                      />
+                      <div className={style.imgCover}>
+                        <img
+                          className={style.logo}
+                          src={`${API_IMAGEURL}${company.logo_path}`}
+                        />
+                      </div>
                     )}
-                    <span> {company.name} </span>
-                  </span>
+                    <div className={style.companyName}> {company.name} </div>
+                  </div>
                 }
-              </span>
+              </div>
             );
           })}
         </div>
         <hr />
-        <h2 style={{ color: "white" }}>진행상황</h2>
-        <h2 style={{ color: "white" }}>{props.tv.status}</h2>
+
+        <div style={{ paddingTop: "1%" }}>
+          <h4 style={{ color: "white" }}>진행상황</h4>
+        </div>
+        <div style={{ paddingBottom: "1%" }}>
+          <h5 style={{ color: "white" }}>{props.tv.status}</h5>
+        </div>
         <hr />
         <TVTrailers tvId={tvId} />
         <hr />
         <TVSimilar tvId={tvId} />
-        <hr />
       </>
     );
   }
@@ -316,8 +286,7 @@ function TabContent(props) {
   if (props.clickTab == 2) {
     return (
       <div style={{ color: "white" }}>
-        {props.tv.production_companies[0].name}
-        <Review></Review>
+        <TvReview></TvReview>
       </div>
     );
   }

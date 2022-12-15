@@ -15,6 +15,7 @@ export default function Join() {
   let [loginPwd, setLoginPwd] = useState();
   let [loginNick, setLoginNick] = useState();
 
+  // 회원가입 버튼 누르고 회원가입 시 로컬 스토리지에 데이터 저장
   const Join = () => {
     localStorage.setItem("accountId", loginId);
     localStorage.setItem("accountPwd", loginPwd);
@@ -24,6 +25,7 @@ export default function Join() {
     setLoginNick(localStorage.getItem("accountNick"));
   };
 
+  // 정규표현식 확인 및 데이터 입력
   let [isIdValid, setIsIdValid] = useState(false);
   let [isPwdValid, setIsPwdValid] = useState(false);
 
@@ -99,11 +101,17 @@ export default function Join() {
             </a>
           </Col>
         </Row>
+        {/* 아이디 input */}
         <IdInput isIdOk={isIdOk} idCheck={idCheck} />
+        {/* 닉네임 input */}
         <NickInput inputNick={inputNick} />
+        {/* 비밀번호 input */}
         <PwdInput isPwdOk={isPwdOk} pwdCheck={pwdCheck} />
+        {/* 비밀번호 확인 input */}
         <PwdInput2 isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
+        {/* 장르 input */}
         <GenreInput isPwd2Ok={isPwd2Ok} pwdCheckProper={pwdCheckProper} />
+        {/* 회원가입 input */}
         <JoinButton disabledJoinBtn={disabledJoinBtn} Join={Join} />
       </Container>
       <Footer></Footer>

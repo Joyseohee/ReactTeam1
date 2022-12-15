@@ -24,17 +24,17 @@ function TVSimilar(props){
         getSimilar();
       }, []);
     
-      const getSimilar = async () => {
-        const res = await tmdbAPI.get(`tv/${props.tvId}/similar`);
-        if (res.data) {
-            setSimilar(res.data.results);
-        } else {
-        }
-      };
+    const getSimilar = async () => {
+      const res = await tmdbAPI.get(`tv/${props.tvId}/similar`);
+      if (res.data) {
+          setSimilar(res.data.results);
+      } else {
+      }
+    };
 
       return(
         <>
-        <h2 style={{ color: "white" }}>비슷한 TV 시리즈</h2>
+        <h4 style={{ color: "white" }}>비슷한 TV 시리즈</h4>
             <Swiper slidesPerView={7} spaceBetween={10} slidesPerGroup={1} loop={true}
                         loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">

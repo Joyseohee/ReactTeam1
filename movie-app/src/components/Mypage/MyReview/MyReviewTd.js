@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import MyReviewDetail from "./MyReviewDetail";
-import Rating from "../../Review/Rating";
 import Movie from "../../Common/Movie";
+import RatingView from "../../Review/RatingView";
 
 export default function MyReviewTd({ review }) {
   let [movieTitle, setMovieTitle] = useState();
@@ -37,7 +37,7 @@ export default function MyReviewTd({ review }) {
           </div>
           {/* 별점 */}
           <div className="myReviewRates">
-            <Rating rate={review.rate / 2} />
+            <RatingView rate={review.rate}></RatingView>
           </div>
           {/* 리뷰 내용 */}
           <div

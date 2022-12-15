@@ -18,11 +18,23 @@
   }
 }
 
-.ReviewTitleCard {
+.Review-title {
+  display: inline-block;
+  width: 100%;
+  font-family: "Poppins";
+  font-size: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
   text-align: center;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  color: antiquewhite;
+}
+
+.ReviewTitleCard {
   background-color: black;
-  color: wheat;
-  font-size: larger;
+  margin-bottom: 5%;
 }
 
 .Reviewpage {
@@ -47,4 +59,8 @@
     display: flex;
     margin: inherit;
   }
+}
+
+.CardBody {
+  font-family: "Cafe24Ssurround";
 }

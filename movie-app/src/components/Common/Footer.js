@@ -9,7 +9,6 @@ function Footer() {
   return (
     <>
       <div className="Footer-title">
-        {/* hr 두깨감 주고 그림자 줘서 header와 비슷한 느낌으로 수정하기 */}
         <hr />
       </div>
       <div className="Footer-Nav">
@@ -50,7 +49,6 @@ function Footer() {
           }}
         >
           <img src="/images/logo.png" width="100px" height="100px"></img>
-          {/* main nav 설정완료*/}
         </p>
         <Nav className="justify-content-end" activeKey="/">
           <Nav.Item>

@@ -12,7 +12,6 @@ export default function ClickLikes(props) {
 
   useEffect(() => {
     let checkId = Number(id.id);
-    // setLikeMovie(localStorage.getItem(`checkLike${checkId}`));
     if (localStorage.getItem(`checkLike${checkId}`) != null) {
       setOpacityLikes("30%");
     } else {
@@ -67,7 +66,6 @@ export default function ClickLikes(props) {
     localStorage.setItem("likestore", JSON.stringify(arr));
     setRecentId(arr);
   };
-  console.log(opacityLikes);
 
   return (
     <>
