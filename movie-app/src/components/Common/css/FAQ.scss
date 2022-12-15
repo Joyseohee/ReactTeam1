@@ -9,7 +9,6 @@
 }
 
 .accordion {
-  //--bs-accordion-bg: black;
   color: black;
   @if (accordion-collapse collapse) {
     --bs-accordion-bg: black;

@@ -1,90 +1,73 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+
 import style from "./css/Detail.module.scss";
+import Header from "../components/Common/header";
 import Loading from "../components/loading";
 import tmdbAPI from "../tmdbAPI";
 import Video from "../components/Detail/Video";
 import DetailContent from "../components/Detail/DetailContent";
 import ClickLikes from "../components/Detail/ClickLikes";
-import { Nav } from "react-bootstrap";
-import Header from "../components/Common/header";
 import Top from "../components/Common/top";
 import Trailers from "../components/Detail/Trailers";
 import Similar from "../components/Detail/Similar";
-
-import clock from "./images/clock.png";
-import percent from "./images/100-percent.png";
-import like from "./images/like.png";
 import Footer from "../components/Common/Footer";
 import Review from "../components/Review/Review";
 import ReviewTemplate from "../components/Review/ReviewTemplate";
 
+import clock from "./images/clock.png";
+import percent from "./images/100-percent.png";
+import like from "./images/like.png";
+
 function Detail() {
-  let id = useParams();
-  const [movie, setMovie] = useState([]);
+  const movieID = useParams().id;
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
-  console.log(id.id);
   const [load, setLoad] = useState(null);
-  const [video, setVideo] = useState([]);
-  const [movieKey, setMoviekey] = useState();
-  const [genre, setGenre] = useState([]);
+  const [movieInfo, setMovieInfo] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [company, setCompany] = useState([]);
-  const navigate = useNavigate();
+  const [video, setVideo] = useState([]);
+  const [videokey, setVideokey] = useState();
 
-  const getDetailmv = async () => {
-    setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
-    if (res.data) {
-      setMovie(res.data);
-      console.log(res.data);
-    }
-    setLoad(false); // 로딩 종료
-  };
+  useEffect(() => {
+    getMovieDetail();
+    getVideo();
+  }, []);
 
-  // 장르 받아오기
-  const getGenre = async () => {
-    setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
+  // 영화 상세정보, 제작사, 장르
+  const getMovieDetail = async () => {
+    setLoad(true);
+    const res = await tmdbAPI.get(`movie/${movieID}`);
     if (res.data) {
-      setGenre(res.data.genres);
-      console.log(res.data.genres);
-    } else {
-    }
-    setLoad(false); // 로딩 종료
-  };
-
-  // 제작사 받아오기
-  const getCompany = async () => {
-    setLoad(true); // 로딩 시작
-    const res = await tmdbAPI.get(`movie/${id.id}`);
-    if (res.data) {
+      setMovieInfo(res.data);
+      setGenres(res.data.genres);
       setCompany(res.data.production_companies);
     } else {
+      console.log("error");
     }
-    setLoad(false); // 로딩 종료
+    setLoad(false);
   };
 
-  useEffect(() => {
-    getDetailmv();
-    getGenre();
-    getCompany();
-  }, []);
+  // 영화 관련 영상
+  const getVideo = async () => {
+    setLoad(true);
+    const res = await tmdbAPI.get(`movie/${movieID}/videos`, {
+      params: { language: "en-US" },
+    });
+    if (res.data) {
+      setVideo(res.data.results);
+      setVideokey(res.data.results[0].key);
+    } else {
+      console.log("error");
+    }
+    setLoad(false);
+  };
 
   let [clickTab, setClickTab] = useState(0);
-
-  useEffect(() => {
-    tmdbAPI
-      .get(`movie/${id.id}/videos`, { params: { language: "en-US" } })
-      .then((res) => {
-        console.log(res.data.results);
-        setVideo(res.data.results);
-        setMoviekey(res.data.results[0].key);
-      });
-  }, []);
-  console.log("movieKey: " + movieKey);
-
   const [isOpen, setIsOpen] = useState(false);
+
   const onClickButton = () => {
     setIsOpen(!isOpen);
   };
@@ -94,7 +77,6 @@ function Detail() {
       {/* 헤더 */}
       <Header />
 
-      {/* Detail 내용 */}
       {load ? (
         <Loading />
       ) : (
@@ -103,7 +85,7 @@ function Detail() {
             <div
               className={style.inner}
               style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${movieInfo.backdrop_path})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
@@ -112,12 +94,12 @@ function Detail() {
                 <div className={style.box}>
                   <img
                     className={style.img}
-                    src={`${API_IMAGEURL}${movie.poster_path}`}
+                    src={`${API_IMAGEURL}${movieInfo.poster_path}`}
                   />
 
                   <span className={style.text}>
                     <a
-                      href={`https://www.themoviedb.org/movie/${movie.id}`}
+                      href={`https://www.themoviedb.org/movie/${movieInfo.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -126,19 +108,19 @@ function Detail() {
                   </span>
                 </div>
                 <section className={style.info_wrapper}>
-                  <span className={style.title}>{movie.title}</span>
+                  <span className={style.title}>{movieInfo.title}</span>
                   <span className={style.release_date}>
                     {" "}
-                    ( {movie.release_date} ){" "}
+                    ( {movieInfo.release_date} ){" "}
                   </span>
                   <br />
                   <div>
-                    {genre.map((genre, i) => {
+                    {genres.map((genres, i) => {
                       return (
                         <span key={i} className={style.genre}>
                           {
                             <span>
-                              <span>{genre.name}</span>
+                              <span>{genres.name}</span>
                             </span>
                           }
                         </span>
@@ -149,29 +131,29 @@ function Detail() {
                   <span>
                     <img src={clock} className={style.runtime_img} />{" "}
                   </span>
-                  <span className={style.runtime}>{movie.runtime} 분</span>
+                  <span className={style.runtime}>{movieInfo.runtime} 분</span>
                   <span>
                     <img src={percent} className={style.vote_average_img} />{" "}
                   </span>
                   <span className={style.vote_average}>
-                    {movie.vote_average}
+                    {movieInfo.vote_average}
                   </span>
                   <span>
-                    <ClickLikes id={id} like={like} style={style} />
+                    <ClickLikes id={movieID} like={like} style={style} />
                   </span>
                   <span className={style.vote_count}>좋아요</span> <br />
                   <br />
-                  {movie.tagline == "" ? (
+                  {movieInfo.tagline == "" ? (
                     <h3 style={{ color: "white" }}>NO Tagline</h3>
                   ) : (
-                    <span className={style.tagline}>{movie.tagline}</span>
+                    <span className={style.tagline}>{movieInfo.tagline}</span>
                   )}
                   <br />
                   <br />
-                  {movie.overview == "" ? (
+                  {movieInfo.overview == "" ? (
                     <h3 style={{ color: "white" }}>NO Overview</h3>
                   ) : (
-                    <span className={style.overview}>{movie.overview}</span>
+                    <span className={style.overview}>{movieInfo.overview}</span>
                   )}
                   <br />
                   <br />
@@ -182,7 +164,7 @@ function Detail() {
                     {isOpen && (
                       <Video
                         open={isOpen}
-                        movieKey={movieKey}
+                        videokey={videokey}
                         style={style}
                         onClose={() => {
                           setIsOpen(false);
@@ -229,10 +211,18 @@ function Detail() {
               </Nav.Item>
             </Nav>
 
-            <TabContent clickTab={clickTab} movies={movie} company={company} />
+            <TabContent
+              clickTab={clickTab}
+              movies={movieInfo}
+              company={company}
+            />
           </div>
-          <Top></Top>
-          <Footer></Footer>
+
+          {/* 위로가기 버튼 */}
+          <Top />
+
+          {/* 푸터 */}
+          <Footer />
         </div>
       )}
     </>
@@ -240,48 +230,57 @@ function Detail() {
 }
 
 function TabContent(props) {
-  const [review1, setReview1] = useState([]); // 가져올 영화 담을 배열
-  console.log(props.clickTab);
   const movieId = props.movies.id;
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w200";
-
-  console.log("movieId" + props.movies.id);
 
   if (props.clickTab == 0) {
     return (
       <>
+        {/* 등장인물 */}
         <DetailContent movieId={movieId} />
+
         <hr />
-        <h2 style={{ color: "white" }}>제작사</h2>
-        <div>
+
+        <div style={{ paddingTop: "1%" }}>
+          <h4 style={{ color: "white" }}>제작사</h4>
+        </div>
+
+        <div className={style.company}>
           {props.company.map((company, i) => {
             return (
-              <span key={i} className={style.genre}>
+              <div key={i} style={{ paddingBottom: "1%" }}>
                 {
-                  <span>
+                  <div>
                     {company.logo_path == null ? (
-                      <span style={{ color: "white" }}>로고없음</span>
+                      <div style={{ color: "white" }}>로고없음</div>
                     ) : (
-                      <img
-                        className={style.logo}
-                        src={`${API_IMAGEURL}${company.logo_path}`}
-                      />
+                      <div className={style.imgCover}>
+                        <img
+                          className={style.logo}
+                          src={`${API_IMAGEURL}${company.logo_path}`}
+                        />
+                      </div>
                     )}
-                    <span> {company.name} </span>
-                  </span>
+                    <div className={style.companyName}> {company.name}</div>
+                  </div>
                 }
-              </span>
+              </div>
             );
           })}
         </div>
+
         <hr />
-        <h2 style={{ color: "white" }}>수익</h2>
-        <h2 style={{ color: "white" }}>${props.movies.revenue}</h2>
+
+        <div style={{ paddingTop: "1%" }}>
+          <h4 style={{ color: "white" }}>수익</h4>
+        </div>
+        <div style={{ paddingBottom: "1%" }}>
+          <h5 style={{ color: "white" }}>${props.movies.revenue}</h5>
+        </div>
         <hr />
         <Trailers movieId={movieId} />
         <hr />
         <Similar movieId={movieId} />
-        <hr />
       </>
     );
   }

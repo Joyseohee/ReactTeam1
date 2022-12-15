@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./scss/Modal.scss";
 
 function Modal({ onClose }) {
   const handleClose = () => {
     onClose?.();
   };
-
-  let [onInsert, setOnInsert] = useState("");
 
   return (
     <div className="Overlay">

@@ -39,8 +39,7 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
   const [authorNick, setAuthorNick] = useState(
     localStorage.getItem("accountNick")
   ); // 유저 닉네임 값 삽입
-  // const [authorid, setAuthorid] = useState("SMPark1234"); // 유저 아이디 값 삽입
-  // const [authorNick, setAuthorNick] = useState("SMPark"); // 유저 닉네임 값 삽입
+
   const [movie_id, setMovie_id] = useState(id.id); // 영화 선택 -> id 값 삽입
   const [rate, setRate] = useState("");
   const [content, setContent] = useState("");
@@ -110,11 +109,6 @@ function ReviewModal({ type, modalOpen, setModalOpen, review }) {
     }
   };
 
-  const reviewTextarea = useRef();
-  const handleResizeHeight = () => {
-    reviewTextarea.style.height = "auto";
-    reviewTextarea.style.height = reviewTextarea.current.scrollHeight + "px";
-  };
   return (
     <AnimatePresence>
       {modalOpen && (
