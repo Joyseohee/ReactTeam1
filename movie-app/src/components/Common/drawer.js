@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Drawer, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 import { LiveTv as LiveTvIcon, Mail as MailIcon, Menu as MenuIcon, Category as CategoryIcon} from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import './drawer.css';
 
@@ -11,6 +11,7 @@ export default function TemporaryDrawer() {
     left: false,
   });
 
+  
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;

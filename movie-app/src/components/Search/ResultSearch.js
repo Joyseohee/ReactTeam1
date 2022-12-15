@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { FormGroup, Switch, FormControlLabel } from "@mui/material";
 import axios from "axios";
@@ -9,6 +9,7 @@ import "aos/dist/aos.css";
 import style from "./ResultSearch.module.css";
 import Header from "../Common/header";
 import Top from "../Common/top";
+import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 const ResultSearch = () => {
   const keyword = useParams(); // URL 검색 키워드 받기
@@ -47,6 +48,7 @@ const ResultSearch = () => {
     AOS.init();
     SearchName();
   }, [keyword]);
+
 
   // 두 번째 렌더링(결과값 출력위해서 필요)
   useEffect(() => {
@@ -187,7 +189,7 @@ const ResultSearch = () => {
       <Header />
 
       <div className={style.btnWrap}>
-        <h4>검색 결과</h4>
+        <h4>{JSON.stringify(keyword.keyword)} 검색 결과</h4>
         <FormGroup style={{ width: "200px" }}>
           <FormControlLabel
             control={

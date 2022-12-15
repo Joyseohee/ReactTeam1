@@ -1,0 +1,36 @@
+.resultBox {
+    position:absolute;
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+    max-height: 500px;
+    overflow: auto;
+    width: 250px;
+}
+
+.box {
+    margin-top: 10px;
+    display: flex;
+    transition: all 2s;
+    padding-bottom: 10px;
+}
+.box:hover {
+    background-color: rgb(110, 31, 31);
+}
+
+.title {
+    margin: 10px 10px 0px 10px;
+}
+.moviePoster{
+    width: 80px;
+    height:100px;
+    margin: 10px 10px 0px 10px;
+}
+.hr {
+    color: red;
+    border-width:1px 0px 0px 0px;
+    box-shadow: 1px 1px 1px rgba(228, 61, 61, 0.4);
+    height:1px;
+    opacity:1;
+}
+

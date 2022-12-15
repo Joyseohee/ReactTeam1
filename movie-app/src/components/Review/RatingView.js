@@ -12,7 +12,7 @@ export default function ReatingView(props) {
         "& > legend": { mt: 5 },
       }}
     >
-      <Typography component="legend">{value}</Typography>
+      <Typography component="legend"></Typography>
       <Rating name="read-only" value={value} readOnly />
     </Box>
   );
