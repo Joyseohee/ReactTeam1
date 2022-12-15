@@ -22,7 +22,7 @@ function Episodes(props){
     const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
     // console.log(props.season.season_number);
-    //console.log("시즌넘버" + props.i)
+    console.log("시즌넘버" + props.i)
 
     const [seasonDe, setSeasonDe] = useState([]);
     const [epi,setEpi] = useState([]);
