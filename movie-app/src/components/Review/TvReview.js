@@ -2,41 +2,37 @@ import tmdbAPI from "../../tmdbAPI";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import Rating from "./Rating";
 import "./scss/Review.scss";
 import AOS from "aos";
 import Card from "react-bootstrap/Card";
 import RatingView from "./RatingView";
 
-function Review() {
-  const movieID = useParams().id;
-  console.log("check id : " + movieID);
-  let id = useParams();
-  // console.log("let id : " + id);
+function TvReview() {
+  const TvID = useParams().id;
+  console.log("check id : " + TvID);
+
   const [load, setLoad] = useState(null);
-  const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
+  const [tvReview, setTvReview] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
 
-  const getReview = async () => {
+  const getTvReview = async () => {
     setLoad(true); // 로딩 시작
 
-    const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
+    const res = await tmdbAPI.get(`tv/${TvID}/reviews?`, {
       // const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
       params: { language: "*", page: `${page}` }, //추가한것
     });
 
     if (res.data) {
-      setMovie(res.data.results);
+      setTvReview(res.data.results);
     } else {
+      console.log("error");
     }
     setLoad(false); // 로딩 종료
   };
 
   useEffect(() => {
-    getReview();
-  }, []);
-
-  useEffect(() => {
+    getTvReview();
     AOS.init();
   }, []);
 
@@ -49,10 +45,10 @@ function Review() {
           </Card.Body>
         </Card>
       </div>
-      {movie
+      {tvReview
         .slice(0)
         .reverse()
-        .map((movie, i) => {
+        .map((tvReview, i) => {
           return (
             <>
               <div className="Review-box">
@@ -62,15 +58,15 @@ function Review() {
                   data-aos-duration="3000"
                 >
                   <Alert.Heading className="wantFlex">
-                    &nbsp; {movie.author} &nbsp;&nbsp;
+                    &nbsp; {tvReview.author} &nbsp;&nbsp;
                     {/* <Rating rate={movie.author_details.rating / 2} /> */}
                     <RatingView
-                      rate={movie.author_details.rating / 2}
+                      rate={tvReview.author_details.rating / 2}
                     ></RatingView>
                   </Alert.Heading>
-                  <p>{movie.content}</p>
+                  <p>{tvReview.content}</p>
                   <hr />
-                  <p className="mb-0">&nbsp;작성일 : {movie.created_at}</p>
+                  <p className="mb-0">&nbsp;작성일 : {tvReview.created_at}</p>
                 </Alert>
               </div>
             </>
@@ -80,4 +76,4 @@ function Review() {
   );
 }
 
-export default Review;
+export default TvReview;

@@ -22,6 +22,7 @@ import like from "./images/like.png";
 
 function Detail() {
   const movieID = useParams().id;
+  console.log(movieID);
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   const [load, setLoad] = useState(null);
@@ -64,6 +65,7 @@ function Detail() {
     }
     setLoad(false);
   };
+  console.log("videokey: " + videokey);
 
   let [clickTab, setClickTab] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -99,7 +101,8 @@ function Detail() {
 
                   <span className={style.text}>
                     <a
-                      href={`https://www.themoviedb.org/movie/${movieInfo.id}`}
+                      href={`https://www.themoviedb.org/movie/${movieID}`}
+                      // href={`https://www.themoviedb.org/movie/${movieInfo.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
