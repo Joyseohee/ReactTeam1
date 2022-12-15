@@ -34,7 +34,7 @@ function TVDetailPerson(props){
       return(
         <>
             <h1 style={{color: "white"}}>등장인물</h1>
-            <Swiper slidesPerView={7} spaceBetween={10} slidesPerGroup={7} loop={true} initialSlide={1} centeredSlides={true}
+            <Swiper slidesPerView={7} spaceBetween={10} slidesPerGroup={7} loop={true} initialSlide={5} centeredSlides={true}
                          pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">
             
