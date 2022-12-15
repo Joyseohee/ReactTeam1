@@ -98,7 +98,7 @@
 .Info2 {
   color: antiquewhite;
   display: flex;
-  margin: 320px 20px 350px 200px;
+  margin: 340px 260px;
   align-items: center;
   h1,
   h2,
@@ -133,7 +133,9 @@
 .InfoMap {
   display: flex;
   color: antiquewhite;
-  margin: 30px 50px 30px 50px;
+  // margin-top: 50px;
+  // margin-bottom: 50px;
+  margin: 30px 180px;
   justify-content: space-between;
   align-items: center;
   a {
