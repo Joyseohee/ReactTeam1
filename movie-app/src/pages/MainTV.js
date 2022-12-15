@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Mousewheel } from "swiper";
 import AOS from "aos";
@@ -13,7 +13,7 @@ import tmdbAPI from "../tmdbAPI";
 import Loading from "../components/loading";
 import Header from "../components/Common/header";
 import Top from "../components/Common/top"
-
+import axios from "axios";
 function MainTV() {
     const API_IMAGEURL = "https://image.tmdb.org/t/p/w300"; // 영화 이미지 baseURL
     const navigate = useNavigate();
@@ -25,7 +25,6 @@ function MainTV() {
     const preventRef = useRef(true); // 중복 실행 방지
     const observerRef = useRef(null); // observer Element(옵저버 타겟 대상 담을 곳)
 
-
     // 옵저버 생성 및 타겟(div) 지정
     useEffect(() => {
         AOS.init();
@@ -36,7 +35,7 @@ function MainTV() {
             observer.disconnect();
         };
     }, []);
-
+    
     // 옵저버 콜백함수
     const obCallback = (entries) => {
         const target = entries[0];

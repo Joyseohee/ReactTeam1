@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { AppBar, Box, Toolbar, Typography, IconButton } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 import TemporaryDrawer from "./drawer";
 import SearchHeader from "./searchHeader";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./scss/Modal.scss";
 
 function Modal({ onClose }) {
@@ -6,13 +6,10 @@ function Modal({ onClose }) {
     onClose?.();
   };
 
-  let [onInsert, setOnInsert] = useState("");
-
   return (
     <div className="Overlay">
       <div className="ModalWrap">
         <div className="Contents">
-          {/* <div className="ModalImg" onInsert={onInsert}> */}
           <form>
             <div className="ModalImg">
               <button type="submit" className="ModalPageButton">

@@ -6,11 +6,10 @@ const Loading = () => {
         <div style={{display:'flex', justifyContent:'center' }}>
         <BeatLoader
         color="white"
-        size="25"
-        margin="auto"
-        height={100}
-        width={100}
-        timeout={1000000}
+        size="25px"
+        margin={0}
+        height={15}
+        width={5}
         />
         </div>
     );

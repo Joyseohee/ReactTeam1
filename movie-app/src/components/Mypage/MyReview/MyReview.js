@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import MyReviewTd from "./MyReviewTd";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import MyReviewTd from "./MyReviewTd";
 
 export default function MyReview() {
   const reviewList = useSelector((state) => state.review.reviewList);

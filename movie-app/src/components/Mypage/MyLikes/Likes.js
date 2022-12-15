@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Movie from "../../Common/Movie";
 import AOS from "aos";
@@ -7,7 +7,6 @@ import NoMovie from "./NoMovie";
 
 export default function Likes() {
   let [recentId, setRecentId] = useState([]);
-
   let [change, setChange] = useState(false);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export default function Likes() {
                     <div
                       data-aos="fade-in"
                       data-aos-offset="100"
-                      // data-aos-delay="500"
                       data-aos-duration="800"
                       data-aos-easing="ease-in-out"
                       className="likeMovieCard"

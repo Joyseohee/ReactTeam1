@@ -1,9 +1,7 @@
-
-
 .inner{
     color: #fff;
-    margin-left: 12%;
-    margin-right: 12%;
+    // margin-left: 12%;
+    // margin-right: 12%;
     background-color: rgba(14, 13, 13, 0.938);
 }
 
@@ -123,7 +121,15 @@
 }
 
 .logo{
- background-color: rgb(180, 177, 177);
+ background-color: #fff;
+ width: 80%;
+ height: 80%;
+}
+
+.logoCover {
+    vertical-align: middle;
+    width: 160px;
+    height: 230px;
 }
 
 .playbutton{
@@ -172,4 +178,17 @@ a {
 .nav .nav-link{
     color: red;
     background-color: aquamarine;
+}
+
+.company {
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+    justify-content: flex-start;
+}
+
+.companyName{
+    font-size: 13px;
+    color: rgb(235, 216, 194);
+    word-break: break-all;
 }

@@ -36,18 +36,39 @@ function SeasonEpis (props){
         <div>
             <h2 style={{ color: "white" }}>시즌</h2>
         <div className={style.container}>
+            
             {season.map((Season, i) => {
               return (
                 <div className={style.box}>
                 {
                     Season.poster_path == null?
+                    
+                    
                     <img className={style.img} src={png} /> :
+                    
                     <img className={style.img_poster} src={`${API_IMAGEURL}${Season.poster_path}`} />
                 }
                     <section className={style.info}>
                         <div className={style.name}>{Season.name}</div>
                         <span className={style.episode_count}>{Season.episode_count}개의 에피소드&nbsp;&nbsp;&nbsp;</span>
+                        <div className={style.name}>{Season.name}</div>
+                        <span className={style.episode_count}>{Season.episode_count}개의 에피소드&nbsp;&nbsp;&nbsp;</span>
                         <button className={style.epibutton} onClick={()=>onClickButton(i)}>에피소드 보기</button><br /><br />
+                        <div className={style.episode}>
+                                {
+                                    Season.season_number === 0?<>
+                                    {isOpen[i] && (
+                                    <Episodes open={isOpen} season={Season} i={i} tvId={props.tvId}
+                                        onClose={() => {
+                                        setIsOpen(false);}}/>
+                                    )}</> :
+                                    <>{isOpen[i] && (
+                                        <Episodes open={isOpen} season={Season} i={i+1} tvId={props.tvId}
+                                            onClose={() => {
+                                            setIsOpen(false);}}/>
+                                        )}</>
+                                }
+                            </div>
                             <div className={style.episode}>
                                 {
                                     season[0].season_number == 0?<>
@@ -69,6 +90,7 @@ function SeasonEpis (props){
                 </div>
               );
             })}
+            
             </div>
         </div>
       );
