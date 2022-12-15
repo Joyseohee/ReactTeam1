@@ -22,7 +22,6 @@ function Popular() {
     axios
       .get(`https://raw.githubusercontent.com/xoxorbrb/xoxorbrb/main/data.json`)
       .then((res) => {
-        console.log(res);
         setMovdata(res.data.result);
       });
   }, []);
