@@ -30,8 +30,13 @@ const SearchHeader = () => {
   }, [search])
 
   useEffect(() => {
+    if(search ==="") {
+      setSearch("");
+    }
+    if(search !== "") {
     SearchName();
     console.log(search);
+    }
   }, [search]);
 
   function SearchName() {
@@ -108,14 +113,15 @@ const SearchHeader = () => {
             movies && movies.map((item, i) => {
               return (
                 <>
-                  <div className={mycss.box}>
+                  <div className={mycss.box} onClick= {() => {
+                    data=== "data.json" ? navigate(`/detail/${item.id}`): navigate(`/tv/detail/${item.id}`); }}>
                     <img
                       className={mycss.moviePoster}
                       src={`${API_IMAGEURL}${item.poster_path}`}
-                      onClick={() => {
-                        navigate(`/detail/${item.id}`);
-                      }}
-                    /><div className={mycss.result} >{item.title}{item.name}</div>
+                      // onClick={() => {
+                      //   data=== "data.json" ? navigate(`/detail/${item.id}`): navigate(`/tv/detail/${item.id}`);
+                      // }}
+                    /><div className={mycss.title} >{item.title}{item.name}</div>
 
                   </div>
                   <hr className = {mycss.hr}></hr>
