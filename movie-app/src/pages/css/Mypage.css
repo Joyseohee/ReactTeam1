@@ -89,7 +89,7 @@
 }
 
 .LikesMovieImg {
-  margin: 0;
+  margin: 20px;
   display: block;
 }
 
@@ -159,4 +159,12 @@
 
 .recTitle {
   margin: 10px;
+}
+
+.MyLikes {
+  margin-bottom: 20px;
+}
+
+.MyReviewBox {
+  margin-left: 0;
 }

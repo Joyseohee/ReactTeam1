@@ -20,7 +20,7 @@ export default function MyReview() {
 
   useEffect(() => {
     AOS.init();
-  });
+  }, []);
 
   return (
     <>
