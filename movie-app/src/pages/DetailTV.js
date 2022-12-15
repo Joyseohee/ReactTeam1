@@ -212,7 +212,6 @@ function TabContent(props) {
         <TVTrailers tvId={tvId} />
         <hr />
         <TVSimilar tvId={tvId} />
-        <hr />
       </>
     );
   }

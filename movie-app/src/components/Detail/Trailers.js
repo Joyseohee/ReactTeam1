@@ -31,7 +31,7 @@ function Trailers(props){
       return(
         <>
         <h2 style={{ color: "white" }}>관련 동영상 ({video.length})</h2>
-            <Swiper slidesPerView={3} spaceBetween={10} slidesPerGroup={1} loop={true}
+            <Swiper slidesPerView={3} spaceBetween={10} slidesPerGroup={1}
                         loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">
             

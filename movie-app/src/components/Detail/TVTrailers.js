@@ -39,7 +39,7 @@ function TVTrailers(props){
             {video.map((video, i) => {
               return (
                   <SwiperSlide key={i}>
-                    <h5 style={{ color: "white" }}>({video.name})</h5>
+                    <div className={style.want}><h5 style={{ color: "white" }}>({video.name})</h5></div>
                     <ReactPlayer
                     className={style.react_player}
                     url={`https://www.youtu.be/${video.key}`} // 플레이어 url

@@ -30,3 +30,9 @@
     object-fit: cover;
   }
   
+  .want{
+    width: 600px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
