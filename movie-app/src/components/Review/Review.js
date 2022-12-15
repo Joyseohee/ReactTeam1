@@ -2,39 +2,38 @@ import tmdbAPI from "../../tmdbAPI";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import Rating from "./Rating";
+// import RatingView from "./RatingView";
 import "./scss/Review.scss";
 import AOS from "aos";
 import Card from "react-bootstrap/Card";
+import Loading from "../loading"
 
 function Review() {
   let id = useParams();
   const [load, setLoad] = useState(null);
   const [movie, setMovie] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
-
+  console.log(id);
   const getReview = async () => {
     setLoad(true); // 로딩 시작
-
     const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
       params: { language: "*", page: `${page}` }, //추가한것
     });
-
     if (res.data) {
-    } else {
+      setMovie(res.data.results)
     }
     setLoad(false); // 로딩 종료
   };
 
   useEffect(() => {
+    AOS.init();
     getReview();
   }, []);
 
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
   return (
+    load ? 
+    <Loading /> 
+    : 
     <div className="Review-container">
       <div className="Review-title">
         <Card className="ReviewTitleCard">
@@ -57,7 +56,7 @@ function Review() {
                 >
                   <Alert.Heading className="wantFlex">
                     &nbsp; {movie.author} &nbsp;&nbsp;
-                    <Rating rate={movie.author_details.rating / 2} />
+                    {/* <RatingView rate={movie.author_details.rating}></RatingView> */}
                   </Alert.Heading>
                   <p>{movie.content}</p>
                   <hr />

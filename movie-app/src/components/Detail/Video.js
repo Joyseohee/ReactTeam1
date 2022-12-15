@@ -16,9 +16,12 @@ function Video(props) {
           <button className="ModalPageButton" onClick={handleClose}>
             <img src={close} className={style.close} />
           </button>
+          {
+            props.videokey == null?
+            <h1 className={style.novideo}>관련된 트레일러가 존재하지 않습니다.</h1> :
           <ReactPlayer
             className={style.react_player}
-            url={`https://www.youtu.be/${props.movieKey}`} // 플레이어 url
+            url={`https://www.youtu.be/${props.videokey}`} // 플레이어 url
             width="1100px" // 플레이어 크기 (가로)
             height="800px" // 플레이어 크기 (세로)
             playing={true} // 자동 재생 on
@@ -27,6 +30,7 @@ function Video(props) {
             light={false} // 플레이어 모드
             pip={true} // pip 모드 설정 여부
           />
+          }
         </div>
       </div>
     </div>
