@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player";
 import style from "../../pages/css/Video.module.css";
-import React, { useEffect} from "react";
+import React from "react";
 
 import close from "../../pages/images/close.png"
 
@@ -9,7 +9,7 @@ function Video(props){
     const handleClose = () => {
         props.onClose?.();
     };
-    console.log("모달????"+props.movieKey)
+    
     return (
         <div className={style.back}>
             <div className={style.player_wrapper}>
