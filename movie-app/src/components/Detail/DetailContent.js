@@ -22,7 +22,6 @@ function DetailContent(props) {
   }, []);
 
   const getActor = async () => {
-    //setLoad(true); // 로딩 시작
     const res = await tmdbAPI.get(`movie/${props.movieId}/credits`, {
       params: { language: "en-US" },
     });
@@ -30,7 +29,6 @@ function DetailContent(props) {
       setActor(res.data.cast);
     } else {
     }
-    //setLoad(false); // 로딩 종료
   };
 
   return (

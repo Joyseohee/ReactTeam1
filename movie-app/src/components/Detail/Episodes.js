@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 import tmdbAPI from "../../tmdbAPI";
-import { useNavigate } from "react-router-dom";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import png from "../../pages/images/png.png";
 import close from "../../pages/images/close.png";
@@ -13,7 +7,6 @@ import close from "../../pages/images/close.png";
 import style from "../../pages/css/Episodes.module.css";
 
 function Episodes(props) {
-  const navigate = useNavigate();
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   const [seasonDe, setSeasonDe] = useState([]);
