@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { InputBase } from '@mui/material'
 import { CollectionsBookmarkOutlined, Search as SearchIcon, SettingsCellOutlined } from '@mui/icons-material'
@@ -11,14 +11,13 @@ const SearchHeader = () => {
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w300";
   const navigate = useNavigate()
   let [data, setData] = useState("");
-  
+  let loc = useLocation();
 
   let [movies, setMovies] = useState([]);
   let url = `${window.location.href}`;
   
   useEffect(() => {
     url === "http://localhost:3000/" || "" ? setData("data.json") : setData("tvdata.json");
-    
   }, [url])
   
   let [search, setSearch] = useState("");
