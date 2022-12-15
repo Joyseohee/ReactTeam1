@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
-import Col from "react-bootstrap/Col";
 
 export default function AccountName() {
   let [loginId, setLoginId] = useState();
