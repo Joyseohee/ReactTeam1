@@ -26,7 +26,7 @@ function SeasonEpis (props){
         getSeason();
       }, []);
     
-    
+
       const getSeason = async () => {
         const res = await tmdbAPI.get(`tv/${props.tvId}`);
         if (res.data) {
@@ -35,14 +35,14 @@ function SeasonEpis (props){
         }
       };
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState([]);
+  
     const onClickButton = (i) => {
         const openinit = Array(season.length).fill(false);
         openinit[i] = !openinit[i];
         setIsOpen(openinit);
         setSn(i);
     };
-
     const [sn, setSn] = useState(0);
       return (
         <div>
@@ -81,7 +81,7 @@ function SeasonEpis (props){
             </div>
         </div>
       );
-
+          
 }
 
 export default SeasonEpis;
