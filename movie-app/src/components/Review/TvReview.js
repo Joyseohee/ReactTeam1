@@ -10,16 +10,13 @@ import RatingView from "./RatingView";
 function TvReview() {
   const TvID = useParams().id;
   console.log("check id : " + TvID);
-
   const [load, setLoad] = useState(null);
   const [tvReview, setTvReview] = useState([]); // 가져올 영화 담을 배열
   const [page, setPage] = useState(1); // axios param전달해줄 페이지
 
   const getTvReview = async () => {
     setLoad(true); // 로딩 시작
-
     const res = await tmdbAPI.get(`tv/${TvID}/reviews?`, {
-      // const res = await tmdbAPI.get(`movie/${id.id}/reviews?`, {
       params: { language: "*", page: `${page}` }, //추가한것
     });
 
@@ -59,7 +56,6 @@ function TvReview() {
                 >
                   <Alert.Heading className="wantFlex">
                     &nbsp; {tvReview.author} &nbsp;&nbsp;
-                    {/* <Rating rate={movie.author_details.rating / 2} /> */}
                     <RatingView
                       rate={tvReview.author_details.rating / 2}
                     ></RatingView>
