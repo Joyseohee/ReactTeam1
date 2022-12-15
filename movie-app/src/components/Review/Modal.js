@@ -10,7 +10,6 @@ function Modal({ onClose }) {
     <div className="Overlay">
       <div className="ModalWrap">
         <div className="Contents">
-          {/* <div className="ModalImg" onInsert={onInsert}> */}
           <form>
             <div className="ModalImg">
               <button type="submit" className="ModalPageButton">

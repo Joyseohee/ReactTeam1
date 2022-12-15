@@ -62,6 +62,7 @@ function Detail() {
     } else {
       console.log("error");
     }
+    console.log(res.data.results[0].key)
     setLoad(false);
   };
 
@@ -278,7 +279,7 @@ function TabContent(props) {
           <h5 style={{ color: "white" }}>${props.movies.revenue}</h5>
         </div>
         <hr />
-        <Trailers movieId={movieId} />
+        <Trailers videokey={props.videokey} />
         <hr />
         <Similar movieId={movieId} />
       </>
