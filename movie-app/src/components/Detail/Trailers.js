@@ -45,7 +45,7 @@ function Trailers(props) {
                 <ReactPlayer
                   className={style.react_player}
                   url={`https://www.youtu.be/${video.key}`} // 플레이어 url
-                  width="600px" // 플레이어 크기 (가로)
+                  width="500px" // 플레이어 크기 (가로)
                   height="300px" // 플레이어 크기 (세로)
                   controls={true} // 플레이어 컨트롤 노출 여부
                   light={false} // 플레이어 모드
