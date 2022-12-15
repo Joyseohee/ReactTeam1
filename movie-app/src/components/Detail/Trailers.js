@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-import tmdbAPI from "../../tmdbAPI";
-import ReactPlayer from "react-player";
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import tmdbAPI from "../../tmdbAPI";
+import ReactPlayer from "react-player/lazy";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import style from "../../pages/css/Trailers.module.css";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
-import { width } from "@mui/system";
 
 function Trailers(props) {
   const [video, setVideo] = useState([]);
