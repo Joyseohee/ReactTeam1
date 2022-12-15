@@ -34,7 +34,9 @@ function Similar(props){
 
       return(
         <>
-        <h2 style={{ color: "white" }}>비슷한 영화</h2>
+        <div style={{paddingTop:'1%'}}>
+        <h4 style={{ color: "white" }}>비슷한 영화</h4>
+        </div>
             <Swiper slidesPerView={7} spaceBetween={10} slidesPerGroup={1} loop={true}
                         loopFillGroupWithBlank={true} pagination={{clickable: true}} navigation={true}
                         modules={[Pagination, Navigation]} className="mySwiper">
@@ -44,7 +46,7 @@ function Similar(props){
               return (
                   <SwiperSlide key={i}>
                     <img className={style.img} src={`${API_IMAGEURL}${similar.poster_path}`} onClick={() => { navigate(`/detail/${similar.id}`); window.location.reload()}} />
-                    <h4 style={{ color: "white", textAlign: "center" }}>{similar.title}</h4>
+                    <div style={{ fontSize: '15px', color: "white", textAlign: "center" }}>{similar.title}</div>
                 </SwiperSlide>
               );
             })}
