@@ -31,7 +31,6 @@ function Detail() {
   const [genre, setGenre] = useState([]);
   const [company, setCompany] = useState([]);
   const navigate = useNavigate();
-  const [nameReview, setNameReview] = useState([]);
 
   const getDetailmv = async () => {
     setLoad(true); // 로딩 시작

@@ -15,6 +15,7 @@ import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import RatingView from "./RatingView";
 
 const child = {
   hidden: { y: 20, opacity: 0 },
@@ -32,15 +33,6 @@ function ReviewItem({ review }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
-  // console.log(id.id);
-
-  // useEffect(() => {
-  //   if (todo.status === "complete") {
-  //     setChecked(true);
-  //   } else {
-  //     setChecked(false);
-  //   }
-  // }, [todo.status]);
 
   const handleCheck = () => {
     setChecked(!checked);
@@ -76,18 +68,22 @@ function ReviewItem({ review }) {
                     <p>{review.date}</p>
                   </div>
                 </div> */}
-
                   <Container>
                     <Row>
                       <Col>
                         {review.authorNick}
                         <p></p>
                       </Col>
-                      <Col>
+                      {/* <Col>
                         <Rating
                           // setRate={setRate}
-                          rate={review.rate / 2}
+                          rate={review.rate}
                         />
+                      </Col> */}
+                    </Row>
+                    <Row>
+                      <Col>
+                        <RatingView rate={review.rate}></RatingView>
                       </Col>
                     </Row>
                     <Row>

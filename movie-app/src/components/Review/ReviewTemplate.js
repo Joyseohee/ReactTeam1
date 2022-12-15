@@ -10,7 +10,7 @@ const ReviewTemplate = () => {
   return (
     <>
       <div className="ReviewList-Template">
-        <ReviewPageTitle>실시간 반응 및 리뷰</ReviewPageTitle>
+        <ReviewPageTitle>이 영화 어떠셨나요??</ReviewPageTitle>
         <div className={styles.app__wrapper}>
           <ReviewHeader />
           <ReviewContent />
