@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { addReview, updateReview } from "../../store";
 import styles from "./scss/Reviewmodal.module.scss";
 import Button from "./Button";
-import Rating from "./Rating";
 import StarRating from "./StarRating";
 
 const dropIn = {
