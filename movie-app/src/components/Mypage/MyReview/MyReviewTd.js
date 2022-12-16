@@ -22,8 +22,8 @@ export default function MyReviewTd({ review }) {
   return (
     <>
       <Row className="MyreviewWrapper">
-        <Col className="moviePoster col-lg-2 col-md-4">
-          <Movie id={review.movie_id} width="200" style="MyReviewBox" />
+        <Col lg={2} md={4} className="moviePoster">
+          <Movie id={review.movie_id} width="300" style="MyReviewBox" />
         </Col>
         <Col className="reviewDetail">
           {/* 영화 제목 */}

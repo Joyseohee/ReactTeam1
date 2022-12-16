@@ -102,7 +102,6 @@ function Detail() {
                   <span className={style.text}>
                     <a
                       href={`https://www.themoviedb.org/movie/${movieID}`}
-                      // href={`https://www.themoviedb.org/movie/${movieInfo.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -293,7 +292,6 @@ function TabContent(props) {
           <h4 style={{ color: "white" }}>수익</h4>
         </div>
         <div style={{ paddingBottom: "1%" }}>
-          {/* <h5 style={{ color: "white" }}>${props.movies.revenue}</h5> */}
           <h5 style={{ color: "white" }}>${Formchange(revenue)}</h5>
         </div>
         <hr />
