@@ -11,7 +11,9 @@ export default function ClickLikes(props) {
   let [opacityLikes, setOpacityLikes] = useState();
 
   useEffect(() => {
-    let checkId = Number(id.id);
+    console.log("id:" + id);
+    let checkId = Number(id);
+    console.log(checkId);
     if (localStorage.getItem(`checkLike${checkId}`) != null) {
       setOpacityLikes("30%");
     } else {
@@ -21,7 +23,7 @@ export default function ClickLikes(props) {
 
   // 좋아요 버튼 클릭
   const clickLikes = () => {
-    let checkId = Number(id.id);
+    let checkId = Number(id);
     setLikeMovie(localStorage.getItem(`checkLike${checkId}`));
     // 좋아요 누른 영화
     if (likeMovie === 1) {
@@ -36,7 +38,7 @@ export default function ClickLikes(props) {
   // 좋아요 함수
   const storeLikes = () => {
     let arr = localStorage.getItem("likestore");
-    let checkId = Number(id.id);
+    let checkId = Number(id);
     setLikeMovie(likeMovie + 1);
     setOpacityLikes("30%");
     localStorage.setItem(`checkLike${checkId}`, likeMovie);
@@ -57,7 +59,7 @@ export default function ClickLikes(props) {
   const cancleLikes = () => {
     let arr = localStorage.getItem("likestore");
     arr = JSON.parse(arr);
-    let checkId = Number(id.id);
+    let checkId = Number(id);
     setLikeMovie(likeMovie - 1);
     setOpacityLikes("100%");
     localStorage.removeItem(`checkLike${checkId}`);
