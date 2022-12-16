@@ -22,7 +22,6 @@ import like from "./images/like.png";
 
 function Detail() {
   const movieID = useParams().id;
-  console.log(movieID);
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w400";
 
   const [load, setLoad] = useState(null);
@@ -63,10 +62,8 @@ function Detail() {
     } else {
       console.log("error");
     }
-    console.log(res.data.results[0].key)
     setLoad(false);
   };
-  console.log("videokey: " + videokey);
 
   let [clickTab, setClickTab] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +71,8 @@ function Detail() {
   const onClickButton = () => {
     setIsOpen(!isOpen);
   };
+
+
 
   return (
     <>
@@ -103,7 +102,6 @@ function Detail() {
                   <span className={style.text}>
                     <a
                       href={`https://www.themoviedb.org/movie/${movieID}`}
-                      // href={`https://www.themoviedb.org/movie/${movieInfo.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -233,9 +231,24 @@ function Detail() {
   );
 }
 
+
+
 function TabContent(props) {
   const movieId = props.movies.id;
   const API_IMAGEURL = "https://image.tmdb.org/t/p/w200";
+
+  const revenue = props.movies.revenue;
+  
+  
+
+  const Formchange = (revenue) => {
+    if(!revenue){
+      return revenue
+    } else {
+      return revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+
 
   if (props.clickTab == 0) {
     return (
@@ -279,7 +292,7 @@ function TabContent(props) {
           <h4 style={{ color: "white" }}>수익</h4>
         </div>
         <div style={{ paddingBottom: "1%" }}>
-          <h5 style={{ color: "white" }}>${props.movies.revenue}</h5>
+          <h5 style={{ color: "white" }}>${Formchange(revenue)}</h5>
         </div>
         <hr />
         <Trailers movieId={movieId} />
