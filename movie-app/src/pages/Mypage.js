@@ -12,7 +12,7 @@ import ShowSelect from "../components/Mypage/ShowSelect";
 
 export default function Mypage() {
   let [loginCheck, setLoginCheck] = useState(0);
-  let [mpClickTab, setMpClickTab] = useState([]);
+  let [mpClickTab, setMpClickTab] = useState();
   let clickTab = [
     { name: "likeMovieTab", tab: "기대하는 영화" },
     { name: "recommandTab", tab: "추천 영화" },
