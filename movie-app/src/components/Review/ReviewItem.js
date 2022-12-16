@@ -43,26 +43,29 @@ function ReviewItem({ review }) {
                 <div className={styles.todoDetails}>
                   <CheckButton checked={checked} handleCheck={handleCheck} />
                   <Container>
-                    <Row>
-                      <Col>
-                        {review.authorNick}
-                        <p></p>
-                      </Col>
-                      {/* <Col>
+                    <div className="reviewText">
+                      <Row
+                        className="align-items-center"
+                        style={{ marginBottom: "20px" }}
+                      >
+                        <Col lg={4}>
+                          <b>{review.authorNick}</b>
+                          <p></p>
+                        </Col>
+                        {/* <Col>
                         <Rating
                           // setRate={setRate}
                           rate={review.rate}
                         />
                       </Col> */}
-                    </Row>
+                        <Col style={{ display: "inline-flex;" }}>
+                          <RatingView rate={review.rate}></RatingView>
+                        </Col>
+                      </Row>
+                    </div>
                     <Row>
                       <Col>
-                        <RatingView rate={review.rate}></RatingView>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <p>{review.content}</p>
+                        <p id="margintop">{review.content}</p>
                       </Col>
                     </Row>
                     <Row>
