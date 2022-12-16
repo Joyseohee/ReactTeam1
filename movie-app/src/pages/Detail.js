@@ -63,7 +63,7 @@ function Detail() {
     } else {
       console.log("error");
     }
-    console.log(res.data.results[0].key)
+    console.log(res.data.results[0].key);
     setLoad(false);
   };
   console.log("videokey: " + videokey);
